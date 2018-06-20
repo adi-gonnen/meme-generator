@@ -17,13 +17,13 @@ var gMemeTest = {
 };
 
 var canvas = document.querySelector('.canvas');
-// var context = canvas.getContext('2d');
+var context = canvas.getContext('2d');
 
 //TODO: init() function on canvas - when user choose a img
-// renderCanvasSize();
-// drawImgOnCanvas();
-// var txt = onTxtInsert();
-// renderTxtCanvas(txt);
+renderCanvasSize();
+drawImgOnCanvas();
+var txt = onTxtInsert();
+renderTxtCanvas(txt);
 
 //function renderCanvasSize = get the size of image and render according it
 //TODO: change the width & height according img size
