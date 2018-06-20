@@ -20,29 +20,29 @@ var gMemeTest = {
 var gCanvas = document.querySelector('.canvas');
 var gCtx = gCanvas.getContext('2d');
 
-initCanvas();
 
-function initCanvas() {
-    var imageDimentionsObj = drawImgOnCanvas();
-    renderCanvasSize(imageDimentionsObj);
+
+function initCanvas(img) {
+    var imgDimsObj = drawImgOnCanvas(img);
+    renderCanvasSize(imgDimsObj);
     var txt = onTxtInsert();
     renderTxtCanvas(txt);
 }
 
 //TODO: get the gImgs[i].url - and update the function
-function drawImgOnCanvas() {
-    var imageObj = new Image();
+function drawImgOnCanvas(img) {
+    console.log('img', img);
+    var imgCanvas = new Image();
+    console.log('imgCanvas', imgCanvas);
     //TODO: get the gImgs[i].url - and update the function
-    // imageObj.src = 'img/meme1.jpg';
-    // imageObj.src = 'img/2.jpg';
-    imageObj.src = 'img/5.jpg';
-    console.log(imageObj);
-    imageObj.onload = function () {
-        console.log('imageObj.onload', 'jhgjhghghhfvtu');
+    // img.src = 'img/meme1.jpg';
+    // img.src = 'img/2.jpg';
+    imgCanvas.src = img.url;
+    imgCanvas.onload = function () {
         drawImage(this);
     };
     //TODO: seprate returm to diffrent func
-    return {width: imageObj.width, height: imageObj.height};
+    return {width: imgCanvas.width, height: imgCanvas.height};
 }
 
 
@@ -60,13 +60,13 @@ function drawImgOnCanvas() {
 
 
 
-function drawImage(imageObj) {
+function drawImage(imgCanvas) {
     var x = 0;//TODO: CHECK THE REAL LOCATION;
     var y = 0;//TODO: CHECK THE REAL LOCATION;
 
-    gCtx.drawImage(imageObj, x, y);
+    gCtx.drawImage(imgCanvas, x, y);
 
-    // var imageData = ctx.getImageData(x, y, imageObj.width, imageObj.height);
+    // var imageData = gCtx.getImageData(x, y, imgCanvas.width, imgCanvas.height);
     var data = imageData.data;
 
     // overwrite original image
@@ -88,9 +88,9 @@ function drawImage(imageObj) {
 
 //function renderCanvasSize = get the size of image and render according it
 //TODO: change the width & height according img size
-function renderCanvasSize(imageDimentionsObj) {
-    gCanvas.width = imageDimentionsObj.width;
-    gCanvas.height = imageDimentionsObj.height;
+function renderCanvasSize(imgDimsObj) {
+    gCanvas.width = imgDimsObj.width;
+    gCanvas.height = imgDimsObj.height;
     gCtx.fillStyle = 'lightblue';
     gCtx.fillRect(0, 0, gCanvas.width, gCanvas.height);
 }

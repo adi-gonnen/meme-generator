@@ -16,9 +16,7 @@ h1 {
     margin: auto;
     text-align: center;
 }
-.hide {
-    display: hide;
-}
+
 .show {
     display: block;
 }
@@ -51,4 +49,8 @@ h1 {
     border-radius: 5px;
     height: 40px;
     width: 300px;
+}
+
+.hide {
+    display: none;
 }
