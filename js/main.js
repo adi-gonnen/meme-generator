@@ -38,12 +38,27 @@ function getImgsForDisplay() {
 }
 
 function selectImg(elImg) {
+    console.log('elImg', elImg);
+    var imgId = elImg.id;
+    var img = findItemById(imgId);
     toggleGallery();
+    initCanvas(img);
 }
 
 function toggleGallery() {
-    var showCanvas = document.querySelector('.canvas');
+    var showCanvas = document.querySelector('.container-canvas-page');
     showCanvas.classList.remove('hide');
     var hideGallery = document.querySelector('.gallery');
     hideGallery.classList.add('hide');
+}
+
+function findItemById(imgId) {
+    for (var i = 0; i < gImgs.length; i++) {
+        var img = gImgs[i];
+        if (img.id === imgId) {
+            console.log('img.id', img.id);
+            console.log('id', imgId);
+            return img;
+        }
+    }
 }

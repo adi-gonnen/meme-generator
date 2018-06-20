@@ -10,18 +10,20 @@
 </head>
 
 <body>
-    <button class="btn return-btn">return to gallery</button>
-    
-    <div class="editor container">
-        <input name="newGuess" type="txt" class="line-input" placeholder="Enter your text" onchange="onTxtInsert()" required>text edditor
-        <ul class="edditor-btns container">
-            <li class="btn font-btn"><button>font</button></li>
-            <li class="btn color-btn"><button>color</button></li>
-            <li class="btn size-btn"><button>size</button></li>
-        </ul>
-        <button class="add-line">add line</button>
+    <!-- TODO: change onload to onclick on selected img -->
+    <div class="container container-canvas-page hide">
+        <button class="btn return-btn">return to gallery</button>
+        <div class="editor container">
+            <input name="newGuess" type="txt" class="line-input" placeholder="Enter your text" oninput="onTxtInsert()" required>text edditor
+            <ul class="edditor-btns container">
+                <li class="btn font-btn"><button>font</button></li>
+                <li class="btn color-btn"><button>color</button></li>
+                <li class="btn size-btn"><button>size</button></li>
+            </ul>
+            <button class="add-line">add line</button>
+        </div>
+        <canvas class="canvas"></canvas>
     </div>
-    <canvas class="canvas"></canvas>
     <script src="js/general-service.js"></script>
     <script src="js/meme-service.js"></script>
     <script src="js/main.js"></script>
