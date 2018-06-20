@@ -8,16 +8,17 @@
     <link rel="stylesheet" href="css/main.css"/>
 </head>
     
-    <body>
+    <body onload="init()">
     <header class="header">
         <h1>meme generator</h1>
     </header>
     <div class="filter">
-        <input class="search-words" placeholder="Search an image...">
+        <input id="search" type="txt" class="search-words" placeholder="Search an image...">
+        <button onclick="searchImg()">search</button>
     </div>
     <div class="grid-conteiner gallery">grid gallery
     </div>
-    <div>canvas</div>
+    <div class="canvas">canvas</div>
     <footer>footer</footer>
     <script src="js/utill-service.js"></script>
     <script src="js/general-service.js"></script>
