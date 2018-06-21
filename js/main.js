@@ -59,6 +59,7 @@ function backToGallery() {
 }
 
 function initCanvas(img) {
+    gMemeIdUpdate();
     gCanvas = document.querySelector('.canvas');
     gCtx = gCanvas.getContext('2d');
     var imgDimsObj = drawImgOnCanvas(img);
@@ -77,6 +78,7 @@ function onTxtInsert() {
     if (elLineInputTop.value) {
         txt = elLineInputTop.value;
         pos = 'top';
+        gMeme.txts[0].line = txt;
         // console.log('elLineInputTop', txt);
         renderTxtCanvas(txt, pos);
     } 
@@ -84,7 +86,10 @@ function onTxtInsert() {
         txt = elLineInputBottom.value;
         pos = 'bottom';
         // console.log('elLineInputBottom', txt);
+        gMeme.txts[1].line = txt;
         renderTxtCanvas(txt, pos);
+        console.log('gNene: ', gMeme);
+        
     }
     // var txt = elLineInput.value;
     // return txt;
@@ -92,20 +97,28 @@ function onTxtInsert() {
 
 
 //get DOM txt
-function getTxtElement() {
+function getTxtElement(pos) {
     //TODO: change the selector to txt on canvas
     //TODO: RENDER CANVAS AND CLEAR
-    var elTextLabel = document.querySelector('.textlabel');
+    // var elTextLabel = document.querySelector('.textlabel');
+    var elTextLabel = document.querySelector('.line-input-top');
+    var elTextLabel = document.querySelector('.line-input-bottom');
     return elTextLabel;
 }
 
 function updateFontSizeOnEl(elTextLabel, updatedFontSize) {
     // console.log('updatedFontSize-new !!-', updatedFontSize);
+    //TODO: change according to txt array
+    gMeme.txts[0].size = updatedFontSize;
+    console.log('gMeme.txts[0].size-new !!-', gMeme.txts[0].size);
     elTextLabel.style.fontSize = updatedFontSize + 'px';
 }
 
 //get current font size
 function getCurrFontSize(elTextLabel) {
+    console.log('elTextLabel', elTextLabel);
+    
+    // debugger;
     var fontSizeTxt = window.getComputedStyle(elTextLabel, null).getPropertyValue('font-size');
     var fontSize = parseFloat(fontSizeTxt);
     return fontSize;
@@ -119,6 +132,8 @@ function updateFontSizeValue(elTextLabel, currFontSize, diff) {
 }
 
 function onIncreaseSize() {
+    // debugger;
+    clearCanvas();
     onUpdateFontSize(1);
 }
 
@@ -135,34 +150,55 @@ function onUpdateFontSize(diff) {
 }
 
 //get color-
-function getColorValue(colorValue) {
+function getColorValue() {
+    var elInputColor = document.querySelector('#colorValue').value;
     // console.log('colorValue-??--', colorValue);
-    return changeTxtColor(colorValue);
+    console.log('elInputColor-??--', elInputColor);
+    return elInputColor;
 }
 
 //change color
 function changeTxtColor(colorValue) {
     //TODO: change element - to txt element on canvas
-    var elTxt = document.querySelector('.txt-container .textlabel');
+    // var elTxt = document.querySelector('.txt-container .textlabel');
     // console.log('elTxt--', elTxt);
-    elTxt.style.color = colorValue;
+    // elTxt.style.color = colorValue;
 }
 
 //render txt in canvas
 function renderTxtCanvas(txt, pos) {
+    // var canvas = document.getElementById('canvas');
     var x = 250;
     var y = 400;
-  // Make sure canvas is supported
-  if (gCanvas.getContext){
-    gCtx.font = "40px Impact";       
-    gCtx.fillStyle = 'white';
-    if (pos === 'top') gCtx.fillText(txt, 250, 43);
-    else gCtx.fillText(txt, x, y);
-    gCtx.save();      
-  }                  
+    // Make sure canvas is supported
+    if (gCanvas.getContext) {
+        // var ctx = canvas.getContext('2d');
+        gCtx.font = "40px Impact";
+        gCtx.fillStyle = getColorValue();
+        // debugger;
+        console.log('ctx.fillStyle--', gCtx.fillStyle);
+        //TODO :  change according to txt array
+        console.log('gMeme.txts[0][color]--', gMeme.txts[0].color);
+        gMeme.txts[0].color = gCtx.fillStyle;
+        if (pos === 'top') gCtx.fillText(txt, 250, 43);
+        else gCtx.fillText(txt, x, y)
+        gCtx.save();
+    }
 }
 
 function downloadImg(elImg) {
     var currImg = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream"); 
     elImg.href = currImg;
+}
+
+
+//download
+
+
+
+function clearCanvas() {
+    gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height);
+    var currImg = getCurrImg();
+    console.log('currImg--', currImg);
+    initCanvas(currImg);
 }

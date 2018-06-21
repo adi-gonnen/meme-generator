@@ -2,24 +2,52 @@
 
 console.log('canvas');
 
-// var gImgsTest = [{ id: 1, url: 'img/2.jpg', keywords: ['happy'] }];
-
-var gMemeTest = {
-    selectedImgId: 5,
+//TODO: update all the properties - according to btns! and object positions
+var gMeme = {
+    selectedImgId: null,
     txts: [
         {
-            line: 'I never eat Falafel',
-            size: 20,
+            line: '',
+            pos: 'top',
+            size: 16,
             align: 'left',
-            color: 'red'
+            color: 'white',
+            textShadow: false,
+            // positionX: 0,
+            // positionY: 0,
+        },
+        {
+            line: '',
+            pos: 'bottom',
+            size: 16,
+            align: 'left',
+            color: 'white',
+            textShadow: false,
+            // positionX: 0,
+            // positionY: 0,
         }
     ]
 };
 
-//TODO: init() function on canvas - when user choose a img
 var gCanvas;
 var gCtx;
 
+// var MEME_KEY = 'currMeme';
+
+// var gImgsTest = [{ id: 1, url: 'img/2.jpg', keywords: ['happy'] }];
+
+
+
+//TODO: init() function on canvas - when user choose a img
+function gMemeIdUpdate() {
+    var img = getCurrImg();
+    //update the img.id
+    console.log('img.idAAA', img.id);
+    
+    gMeme.selectedImgId = img.id;
+    console.log('gmeme  AAAA', gMeme);
+    console.log('gMeme.selectedImgId', gMeme.selectedImgId);
+}
 
 function drawImgOnCanvas(img) {
     console.log('img', img);
@@ -100,7 +128,7 @@ function renderCanvasSize(imgDimsObj) {
 
     // gCanvas.width = imgDimsObj.width;
     // gCanvas.height = imgDimsObj.height;
-    gCtx.fillStyle = 'lightblue';
+    gCtx.fillStyle = 'rgb(239, 245, 243)';
     gCtx.fillRect(0, 0, gCanvas.width, gCanvas.height);
 
        // gCanvas.width = 450;
@@ -108,29 +136,13 @@ function renderCanvasSize(imgDimsObj) {
     // if (imgDimsObj.width > imgDimsObj.height)
 }
 
-//class
-function handleLine(ev) {
-    var elModal = document.querySelector('.modal')
-  
-    var chart = charts.find(function(chart) {
-      return(
-        ev.clientX > chart.x &&
-        ev.clientX < chart.x + barWidth && 
-        ev.clientY > chart.y &&
-        ev.clientY < chart.y + chart.rate * heightFactor
-      )
-    })
-    if (chart) {
-      elModal.style.display = 'block'
-      elModal.innerText = 'name: ' + chart.name + ' rate: ' + chart.rate
-      elModal.style.top = ev.clientY + 'px'
-      elModal.style.left = ev.clientX + 'px'
-    } else {
-      elModal.style.display = 'none'
-    }
-  
-  
-  }
+// function saveCurrMeme(gMeme) {
+//     saveToStorage(MEME_KEY, gMeme);
+// }
 
+// function getCurrMeme() {
+//     var currMeme = loadFromStorage(MEME_KEY);
+//     return currMeme;
+// }
 
 
