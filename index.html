@@ -28,7 +28,7 @@
                     <div class="txt-container flex space-around align-center ">
                         <div class="upper-text">
                             <label for="lineTxt" class="textlabel">Enter Upper Text</label>
-                            <input name="lineTxt" type="txt" class="line-input-top" placeholder="Enter your text" oninput="onTxtInsert()" required>
+                            <input name="lineTxt" type="txt" class="line-input-top" placeholder="Enter your text" oninput="onTxtInsert()" required autofocus>
                         </div>
                         <div class="bottom-text">
                             <label for="lineTxt" class="textlabel">Enter Bottom Text</label>
@@ -59,14 +59,14 @@
                         <button class="btn remove-line-btn">- Line</button>
                     </ul>
                     <button class="btn download-btn">
-                        <a href="#" onclick="downloadImg(this)" download="my-img.jpg" >
+                        <a href="#" onclick="downloadImg(this)" class="download" download="my-img.jpg" >
                         Download as jpeg
                         </a>
                     </button> 
                 </div>
             </div>
     <!-- TODO: change onload to onclick on selected img -->
-            <footer class="footer">design by Liron & Adi</footer>
+            <footer class="footer">design by Liron &amp; Adi</footer>
         </main>
         <script src="js/utill-service.js"></script>
         <script src="js/gallery-service.js"></script>

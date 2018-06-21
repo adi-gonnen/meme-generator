@@ -68,6 +68,11 @@ function initCanvas(img) {
     // renderTxtCanvas(txt);
 }
 
+function renderMeme() {
+    
+}
+
+//TODO: dinamic -  array of txts
 //get input text from user and draw in canvas
 function onTxtInsert() {
     var elLineInputTop = document.querySelector('.line-input-top');
@@ -101,7 +106,8 @@ function getTxtElement(pos) {
     //TODO: change the selector to txt on canvas
     //TODO: RENDER CANVAS AND CLEAR
     // var elTextLabel = document.querySelector('.textlabel');
-    var elTextLabel = document.querySelector('.line-input-top');
+    //NOT FINISH!!!!
+    var elTextLabel = document.querySelector(`.line-input-${pos}`);
     var elTextLabel = document.querySelector('.line-input-bottom');
     return elTextLabel;
 }
@@ -110,7 +116,9 @@ function updateFontSizeOnEl(elTextLabel, updatedFontSize) {
     // console.log('updatedFontSize-new !!-', updatedFontSize);
     //TODO: change according to txt array
     gMeme.txts[0].size = updatedFontSize;
+    gMeme.txts[1].size = updatedFontSize;
     console.log('gMeme.txts[0].size-new !!-', gMeme.txts[0].size);
+    console.log('gMeme-after updateFontSizeOnEl', gMeme);
     elTextLabel.style.fontSize = updatedFontSize + 'px';
 }
 
@@ -132,6 +140,9 @@ function updateFontSizeValue(elTextLabel, currFontSize, diff) {
 }
 
 function onIncreaseSize() {
+    console.log('gMeme.txts[0].size onIncreaseSize', gMeme.txts[0].size);
+    console.log('gMeme.txts[1].size onIncreaseSize', gMeme.txts[1].size);
+
     // debugger;
     clearCanvas();
     onUpdateFontSize(1);
@@ -143,7 +154,8 @@ function onDecreaseSize() {
 
 function onUpdateFontSize(diff) {
     var elTextLabel = getTxtElement();
-    var currFontSize = getCurrFontSize(elTextLabel);
+    // var currFontSize = getCurrFontSize(elTextLabel);
+    var currFontSize = gMeme.txts[0].size;
     var updatedFontSize = updateFontSizeValue(elTextLabel, currFontSize, diff);
     // console.log('currFontSize-??--', updatedFontSize);
     updateFontSizeOnEl(elTextLabel, updatedFontSize);

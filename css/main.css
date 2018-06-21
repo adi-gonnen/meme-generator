@@ -26,10 +26,13 @@ a {
     text-decoration: none;
 }
 
+.btn, a {
+    color: #fa9908;
+}
+
 .btn {
     cursor: pointer;
     background-color: #363636;
-    color: #fa9908;
     padding: 10px;
     margin: 5px;
     border-radius: 6px;
@@ -201,9 +204,6 @@ a {
     flex-direction: column;
 }
 
-button:active {
-    color: white;
-}
 /* should be last!*/
 .hide {
     display: none;
