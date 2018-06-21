@@ -75,6 +75,69 @@ function onTxtInsert() {
 
 //render txt in canvas
 function renderTxtCanvas(txt) {
+
+}
+
+
+//get DOM txt
+function getTxtElement() {
+    //TODO: change the selector to txt on canvas
+    //TODO: RENDER CANVAS AND CLEAR
+    var elTextLabel = document.querySelector('.textlabel');
+    return elTextLabel;
+}
+
+function updateFontSizeOnEl(elTextLabel, updatedFontSize) {
+    // console.log('updatedFontSize-new !!-', updatedFontSize);
+    elTextLabel.style.fontSize = updatedFontSize + 'px';
+}
+
+//get current font size
+function getCurrFontSize(elTextLabel) {
+    var fontSizeTxt = window.getComputedStyle(elTextLabel, null).getPropertyValue('font-size');
+    var fontSize = parseFloat(fontSizeTxt);
+    return fontSize;
+}
+
+function updateFontSizeValue(elTextLabel, currFontSize, diff) {
+    var fontSizeTxt = elTextLabel.style.fontSize;
+    fontSizeTxt = (currFontSize + diff);
+    var updatedFontSize = parseFloat(fontSizeTxt);
+    return updatedFontSize;
+}
+
+function onIncreaseSize() {
+    onUpdateFontSize(1);
+}
+
+function onDecreaseSize() {
+    onUpdateFontSize(-1);
+}
+
+function onUpdateFontSize(diff) {
+    var elTextLabel = getTxtElement();
+    var currFontSize = getCurrFontSize(elTextLabel);
+    var updatedFontSize = updateFontSizeValue(elTextLabel, currFontSize, diff);
+    // console.log('currFontSize-??--', updatedFontSize);
+    updateFontSizeOnEl(elTextLabel, updatedFontSize);
+}
+
+//get color-
+function getColorValue(colorValue) {
+    console.log('colorValue-??--', colorValue);
+    return changeTxtColor(colorValue);
+}
+
+//change color
+function changeTxtColor(colorValue) {
+    //TODO: change element - to txt element on canvas
+    var elTxt = document.querySelector('.txt-container .textlabel');
+    console.log('elTxt--', elTxt);
+    elTxt.style.color = colorValue;
+}
+
+//render txt in canvas
+function renderTxtCanvas(txt) {
     var canvas = document.getElementById('canvas');
  
   // Make sure canvas is supported
