@@ -71,6 +71,7 @@ function onTxtInsert() {
     var elLineInput = document.querySelector('.line-input');
     var txt = elLineInput.value;
     console.log('elLineInput', txt);
+    renderTxtCanvas(txt);
     return txt;
 }
 
@@ -90,7 +91,7 @@ function getTxtElement() {
 
 function updateFontSizeOnEl(elTextLabel, updatedFontSize) {
     // console.log('updatedFontSize-new !!-', updatedFontSize);
-    elTextLabel.style.fontSize = updatedFontSize  + 'px';
+    elTextLabel.style.fontSize = updatedFontSize + 'px';
 }
 
 //get current font size
@@ -136,3 +137,20 @@ function changeTxtColor(colorValue) {
     console.log('elTxt--', elTxt);
     elTxt.style.color = colorValue;
 }
+
+//render txt in canvas
+function renderTxtCanvas(txt) {
+    var canvas = document.getElementById('canvas');
+
+    // Make sure canvas is supported
+    if (canvas.getContext) {
+        var ctx = canvas.getContext('2d');
+        ctx.font = "40px Impact";
+        //  ctx.color="white";
+        ctx.fillStyle = 'white';
+        ctx.fillText(txt, 248, 43);
+        ctx.save();
+    }
+}
+
+

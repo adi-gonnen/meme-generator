@@ -20,6 +20,7 @@ var gMemeTest = {
 var gCanvas;
 var gCtx;
 
+
 function drawImgOnCanvas(img) {
     console.log('img', img);
     var imgCanvas = new Image();
@@ -47,8 +48,28 @@ function drawImage(imgCanvas) {
     // gCtx.putImageData(imageData, x, y);
 }
 
+function drawCanvas(img) {
+    var ctx = canvas.getContext('2d');
+    var x = 0;
+    var y = 0;
+    // var width = 300;
+    // var height = 400;
+    var imageObj = new Image();
+    
+    imageObj.onload = function() {
+      ctx.drawImage(imageObj, x, y);
+    };
+    // var imageUrl = img.url;
+    // ctx.setBackgroundImage(imageUrl);
+    imageObj.src =  img.url;
 
-//function renderCanvasSize = get the size of image and render according it
+}
+
+function getImgSize(imgDimsObj) {
+    
+}
+
+// function renderCanvasSize = get the size of image and render according it
 function renderCanvasSize(imgDimsObj) {
     gCanvas.width = imgDimsObj.width;
     gCanvas.height = imgDimsObj.height;

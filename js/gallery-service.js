@@ -42,6 +42,7 @@ function selectImg(elImg) {
     initCanvas(img);
 }
 
+
 function findItemById(imgId) {
     for (var i = 0; i < gImgs.length; i++) {
         var img = gImgs[i];
