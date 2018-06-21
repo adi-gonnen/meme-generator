@@ -124,7 +124,7 @@ function onUpdateFontSize(diff) {
     updateFontSizeOnEl(elTextLabel, updatedFontSize);
 }
 
-//get color
+//get color-
 function getColorValue(colorValue) {
     console.log('colorValue-??--', colorValue);
     return changeTxtColor(colorValue);
