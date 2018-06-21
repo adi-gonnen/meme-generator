@@ -154,3 +154,10 @@ function renderTxtCanvas(txt) {
 }
 
 
+//download
+
+function downloadImg(elLink) {
+    var imgContent = gCanvas.toDataURL('image/jpeg');
+    elLink.href = imgContent;
+}
+
