@@ -31,6 +31,8 @@ var gImgs = [
     {id: makeId(), url: 'img/protrait.jpg', keywords: ['woman']},
 ]; 
 
+var IMG_KEY = 'currImg';
+
 function init() {
     renderGallery(gImgs);
 }
@@ -39,7 +41,10 @@ function selectImg(elImg) {
     console.log('elImg', elImg);
     var imgId = elImg.id;
     var img = findItemById(imgId);
+    console.log('img--', img);
     toggleGallery();
+    // debugger;
+    saveCurrImg(img);
     initCanvas(img);
 }
 
@@ -53,4 +58,14 @@ function findItemById(imgId) {
             return img;
         }
     }
+}
+
+
+function saveCurrImg(img) {
+    saveToStorage(IMG_KEY, img);
+}
+
+function getCurrImg() {
+    var currImg = loadFromStorage(IMG_KEY);
+    return currImg;
 }

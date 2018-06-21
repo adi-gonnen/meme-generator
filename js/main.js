@@ -58,12 +58,11 @@ function backToGallery() {
 }
 
 function initCanvas(img) {
+    gMemeIdUpdate();
     gCanvas = document.querySelector('.canvas');
     gCtx = gCanvas.getContext('2d');
     var imgDimsObj = drawImgOnCanvas(img);
     renderCanvasSize(imgDimsObj);
-    var txt = onTxtInsert();
-    renderTxtCanvas(txt);
 }
 
 //get input text from user and draw in canvas
@@ -72,25 +71,27 @@ function onTxtInsert() {
     var txt = elLineInput.value;
     console.log('elLineInput', txt);
     renderTxtCanvas(txt);
+    //TODO: txts in array
+    console.log('gMeme', gMeme);
+    gMeme.txts[0].line = txt;
+    console.log('gmeme', gMeme);
     return txt;
 }
-
-//render txt in canvas
-function renderTxtCanvas(txt) {
-
-}
-
 
 //get DOM txt
 function getTxtElement() {
     //TODO: change the selector to txt on canvas
     //TODO: RENDER CANVAS AND CLEAR
-    var elTextLabel = document.querySelector('.textlabel');
+    // var elTextLabel = document.querySelector('.textlabel');
+    var elTextLabel = document.querySelector('.line-input');
     return elTextLabel;
 }
 
 function updateFontSizeOnEl(elTextLabel, updatedFontSize) {
     // console.log('updatedFontSize-new !!-', updatedFontSize);
+    //TODO: change according to txt array
+    gMeme.txts[0].size = updatedFontSize;
+    console.log('gMeme.txts[0].size-new !!-', gMeme.txts[0].size);
     elTextLabel.style.fontSize = updatedFontSize + 'px';
 }
 
@@ -109,6 +110,7 @@ function updateFontSizeValue(elTextLabel, currFontSize, diff) {
 }
 
 function onIncreaseSize() {
+    clearCanvas();
     onUpdateFontSize(1);
 }
 
@@ -125,31 +127,36 @@ function onUpdateFontSize(diff) {
 }
 
 //get color-
-function getColorValue(colorValue) {
-    console.log('colorValue-??--', colorValue);
-    return changeTxtColor(colorValue);
+function getColorValue() {
+    var elInputColor = document.querySelector('#colorValue').value;
+    // console.log('colorValue-??--', colorValue);
+    console.log('elInputColor-??--', elInputColor);
+    return elInputColor;
 }
 
 //change color
 function changeTxtColor(colorValue) {
     //TODO: change element - to txt element on canvas
-    var elTxt = document.querySelector('.txt-container .textlabel');
-    console.log('elTxt--', elTxt);
-    elTxt.style.color = colorValue;
+    // var elTxt = document.querySelector('.txt-container .textlabel');
+    // console.log('elTxt--', elTxt);
+    // elTxt.style.color = colorValue;
 }
 
 //render txt in canvas
 function renderTxtCanvas(txt) {
-    var canvas = document.getElementById('canvas');
-
+    // var canvas = document.getElementById('canvas');
     // Make sure canvas is supported
-    if (canvas.getContext) {
-        var ctx = canvas.getContext('2d');
-        ctx.font = "40px Impact";
-        //  ctx.color="white";
-        ctx.fillStyle = 'white';
-        ctx.fillText(txt, 248, 43);
-        ctx.save();
+    if (gCanvas.getContext) {
+        // var ctx = canvas.getContext('2d');
+        gCtx.font = "40px Impact";
+        gCtx.fillStyle = getColorValue();
+        // debugger;
+        console.log('ctx.fillStyle--', gCtx.fillStyle);
+        //TODO :  change according to txt array
+        console.log('gMeme.txts[0][color]--', gMeme.txts[0].color);
+        gMeme.txts[0].color = gCtx.fillStyle;
+        gCtx.fillText(txt, 248, 43);
+        gCtx.save();
     }
 }
 
@@ -161,3 +168,10 @@ function downloadImg(elLink) {
     elLink.href = imgContent;
 }
 
+
+function clearCanvas() {
+    gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height);
+    var currImg = getCurrImg();
+    console.log('currImg--', currImg);
+    initCanvas(currImg);
+}
