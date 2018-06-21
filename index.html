@@ -13,15 +13,14 @@
         <h1>meme generator</h1>
     </header>
     <div class="filter">
-        <input id="search" type="txt" class="search-words" placeholder="Search an image...">
-        <button onclick="searchImg()">search</button>
+        <input id="search" type="txt" class="search-words" oninput="searchImg()" placeholder="Type an image category">
     </div>
     <div class="grid-conteiner gallery">grid gallery
     </div>
     <div class="container container-canvas-page hide">
             <button class="btn return-btn">return to gallery</button>
             <div class="editor container">
-                <input name="newGuess" type="txt" class="line-input" placeholder="Enter your text" oninput="onTxtInsert()" required>text edditor
+                <input name="lineTxt" type="txt" class="line-input" placeholder="Enter your text" oninput="onTxtInsert()" required>text edditor
                 <ul class="edditor-btns container">
                     <li class="btn font-btn"><button>font</button></li>
                     <li class="btn color-btn"><button>color</button></li>

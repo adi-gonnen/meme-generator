@@ -25,10 +25,10 @@ function filterImgs(imgs) {
     var userSearch = document.getElementById("search").value;
     if (userSearch === '') return imgs;
     else return imgs.filter(function(img) {
-        return img.keywords.forEach(function (keyword) {
-            return keyword === userSearch;
-            })
-        })
+        return img.keywords.some(function (keyword) {
+            return keyword.substring(0, userSearch.length) === userSearch;
+            });
+        });
 }
 
 function getImgsForDisplay() {
