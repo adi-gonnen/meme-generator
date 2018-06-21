@@ -8,7 +8,7 @@ function init() {
 }
 
 function renderGallery() {
-    var imgs = getImgsForDisplay()
+    var imgs = filterImgs(gImgs)
     var strHtml = '';
     imgs.forEach(function (img, idx) {
         strHtml += `<img id="${img.id}" class="item-img" onclick="selectImg(this)" style="background-image: url('../${img.url}')"></img>\n`
