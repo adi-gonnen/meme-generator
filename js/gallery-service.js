@@ -30,3 +30,26 @@ var gImgs = [
     {id: makeId(), url: 'img/X-Everywhere.jpg', keywords: ['toy']},
 ]; 
 
+function init() {
+    renderGallery(gImgs);
+}
+
+function selectImg(elImg) {
+    console.log('elImg', elImg);
+    var imgId = elImg.id;
+    var img = findItemById(imgId);
+    toggleGallery();
+    initCanvas(img);
+}
+
+
+function findItemById(imgId) {
+    for (var i = 0; i < gImgs.length; i++) {
+        var img = gImgs[i];
+        if (img.id === imgId) {
+            console.log('img.id', img.id);
+            console.log('id', imgId);
+            return img;
+        }
+    }
+}

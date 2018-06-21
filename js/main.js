@@ -3,12 +3,12 @@
 console.log('test');
 
 
-function init() {
-    renderGallery();
-}
 
-function renderGallery() {
-    var imgs = filterImgs(gImgs)
+
+function renderGallery(imgs) {
+    // var imgs = filterImgs(gImgs);
+    imgs = getImgsForDisplay();
+
     var strHtml = '';
     imgs.forEach(function (img, idx) {
         strHtml += `<img id="${img.id}" class="item-img" onclick="selectImg(this)" style="background-image: url('../${img.url}')"></img>\n`
@@ -37,28 +37,53 @@ function getImgsForDisplay() {
     return imgs;
 }
 
-function selectImg(elImg) {
-    console.log('elImg', elImg);
-    var imgId = elImg.id;
-    var img = findItemById(imgId);
-    toggleGallery();
-    initCanvas(img);
-}
+
 
 function toggleGallery() {
-    var showCanvas = document.querySelector('.container-canvas-page');
-    showCanvas.classList.remove('hide');
-    var hideGallery = document.querySelector('.gallery');
-    hideGallery.classList.add('hide');
+    var elCanvas = document.querySelector('.container-canvas-page');
+    elCanvas.classList.remove('hide');
+    var elGallery = document.querySelector('.gallery');
+    elGallery.classList.add('hide');
+    var elSearch = document.querySelector('.filter');
+    elSearch.classList.add('hide');
 }
 
-function findItemById(imgId) {
-    for (var i = 0; i < gImgs.length; i++) {
-        var img = gImgs[i];
-        if (img.id === imgId) {
-            console.log('img.id', img.id);
-            console.log('id', imgId);
-            return img;
-        }
-    }
+
+
+
+
+// CANVAS
+
+
+function initCanvas(img) {
+    gCanvas = document.querySelector('.canvas');
+    gCtx = gCanvas.getContext('2d');
+    var imgDimsObj = drawImgOnCanvas(img);
+    renderCanvasSize(imgDimsObj);
+    var txt = onTxtInsert();
+    renderTxtCanvas(txt);
+}
+
+//get input text from user and draw in canvas
+function onTxtInsert() {
+    var elLineInput = document.querySelector('.line-input');
+    var txt = elLineInput.value;
+    console.log('elLineInput', txt);
+    renderTxtCanvas(txt);
+    return txt;
+}
+
+//render txt in canvas
+function renderTxtCanvas(txt) {
+    var canvas = document.getElementById('canvas');
+ 
+  // Make sure canvas is supported
+  if (canvas.getContext){
+     var ctx = canvas.getContext('2d');
+     ctx.font = "40px Impact";       
+    //  ctx.color="white";
+    ctx.fillStyle = 'white';
+     ctx.fillText(txt, 248, 43);
+     ctx.save();      
+  }                  
 }

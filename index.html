@@ -5,37 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>meme-generator</title>
+    <link rel="shortcut icon" href="img/fabicon_trans.png" type="image/png">
     <link rel="stylesheet" href="css/main.css"/>
 </head>
     
     <body onload="init()">
-    <header class="header">
-        <h1>meme generator</h1>
-    </header>
-    <div class="filter">
-        <input id="search" type="txt" class="search-words" oninput="searchImg()" placeholder="Type an image category">
-    </div>
-    <div class="grid-conteiner gallery">grid gallery
-    </div>
-    <div class="container container-canvas-page hide">
-            <button class="btn return-btn">return to gallery</button>
-            <div class="editor container">
-                <input name="lineTxt" type="txt" class="line-input" placeholder="Enter your text" oninput="onTxtInsert()" required>text edditor
-                <ul class="edditor-btns container">
-                    <li class="btn font-btn"><button>font</button></li>
-                    <li class="btn color-btn"><button>color</button></li>
-                    <li class="btn size-btn"><button>size</button></li>
-                </ul>
-                <button class="add-line">add line</button>
+        <header class="header">
+            <h1>Meme Generator</h1>
+        </header>
+        <main class="main-container">
+            <div class="filter">
+                <input id="search" type="txt" class="search-words" oninput="searchImg()" placeholder="Type an image category...">
             </div>
-            <canvas class="canvas"></canvas>
-        </div>    
-    <footer>footer</footer>
-    <script src="js/utill-service.js"></script>
-    <script src="js/general-service.js"></script>
-    <script src="js/meme-service.js"></script>
-    <script src="js/canvas-service.js"></script>
-    <script src="js/main.js"></script>
-
-</body>
+            <div class="gallery-images flex space-around align-center">
+                <div class="grid-conteiner gallery">grid gallery</div>
+            </div>
+            <div class="container container-canvas-page hide flex align-center">
+                <div class="canvas-return-btn-container flex space-around column">
+                    <button class="btn return-btn">Back to gallery</button>
+                    <canvas  id="canvas" class="canvas"></canvas>
+                </div>
+                <div class="editor container flex space-around align-center column">
+                    <div class="txt-container flex space-around align-center ">
+                        <label for="lineTxt" class="textlabel">Enter Text</label>
+                        <div>
+                            <input name="lineTxt" type="txt" class="line-input" placeholder="Enter your text" oninput="onTxtInsert()" required>
+                        </div>
+                    </div>
+                    <ul class="edditor-btns container clean-list flex space-around align-center">
+                        <li><button class="btn font-btn">Font</button></li>
+                        <li><button class="btn color-btn">Color</button></li>
+                        <li><button class="btn size-plus-btn">+</button></li>
+                        <li><button class="btn size-minus-btn">-</button></li>
+                    </ul>
+                    <button class="btn add-line-btn">+ Line</button>
+                </div>
+            </div>
+        </main>  
+        <footer class="footer">footer</footer>
+        <script src="js/utill-service.js"></script>
+        <script src="js/gallery-service.js"></script>
+        <script src="js/canvas-service.js"></script>
+        <script src="js/main.js"></script>  
+    </body>
 </html>
