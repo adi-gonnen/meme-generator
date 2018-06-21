@@ -8,18 +8,125 @@ html, body {
 }
 
 body{
-    background-color: rgb(239, 245, 243);
+    background-color: #ffffff;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
-h1 {
-    margin: auto;
-    text-align: center;
+div, h1, h2, li {
+    margin: 0;
 }
+
+a {
+    text-decoration: none;
+}
+
+.btn {
+    cursor: pointer;
+    background-color: #363636;
+    color: #fa9908;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 6px;
+    border: 0;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.btn:focus {
+    outline: none;
+}
+
+
+/* Helpers */
+
 
 .show {
     display: block;
 }
+
+
+
+
+.text-align {
+    text-align: center;
+}
+
+/* .container {
+    padding: 0 20px;
+} */
+
+/* lists */
+.clean-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* flex */
+.flex {
+    display: flex;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+.space-around {
+    justify-content: space-around;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.column {
+    flex-direction: column;
+}
+
+.align-item {
+    align-self: center;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+.column {
+    flex-direction: column;
+}
+
+
+/* webpage*/
+
+.header {
+    background-color: #363636;
+    color: #fa9908;
+}
+
+.header h1 {
+    margin: auto;
+    text-align: center;
+    font-size: 4rem;
+    padding: 10px;
+    /* text-shadow: 5px 2px  white; */
+    text-shadow: 4px 3px black;
+}
+
+.main-container {
+    width: 100%;
+    max-width: 980px;
+    /* is height nessersy??*/
+    height: 100vh;
+    margin: 0 auto;
+    background-color: rgb(239, 245, 243);
+    padding: 20px 0;
+
+}
+
+.gallery {
+    margin: 0 auto;
+}
+
 
 .grid-conteiner {
     display: grid;
@@ -27,7 +134,7 @@ h1 {
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(8, 1fr);
     /* background-color: brown; */
-    /* border: 1px solid black; */
+    padding: 20px;
 }
 
 .item-img {
@@ -41,7 +148,7 @@ h1 {
 }
 
 .filter {
-    margin: 20px;
+    margin: 5px 0 20px 0;
     text-align: center;
 }
 
@@ -51,6 +158,34 @@ h1 {
     width: 300px;
 }
 
+
+.footer {
+    background-color: #363636;
+    color: #fa9908;
+}
+
+.container-canvas-page {
+    justify-content: flex-start;
+}
+
+.canvas, .editor, .container-canvas-page, .grid-conteiner {
+    border: 1px solid rgb(143, 142, 142);
+}
+
+.editor {
+    align-self: flex-start;
+}
+
+.txt-container {
+    padding: 20px;
+}
+
+.textlabel, .line-input {
+    padding: 5px;
+    margin: 5px;
+}
+
+/* should be last!*/
 .hide {
     display: none;
 }
