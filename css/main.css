@@ -193,15 +193,15 @@ a {
 }
 
 
-.download-btn {
+/* .download-btn {
     color: white;
-}
+} */
 
 .editor-part {
     flex-direction: column;
 }
 
-button:active {
+.download:active {
     color: white;
 }
 /* should be last!*/
