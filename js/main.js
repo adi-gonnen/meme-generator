@@ -54,7 +54,6 @@ function toggleGallery() {
 
 // CANVAS
 
-
 function initCanvas(img) {
     gCanvas = document.querySelector('.canvas');
     gCtx = gCanvas.getContext('2d');
@@ -150,3 +149,6 @@ function renderTxtCanvas(txt) {
      ctx.save();      
   }                  
 }
+
+
+

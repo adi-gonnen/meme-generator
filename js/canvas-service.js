@@ -71,10 +71,41 @@ function getImgSize(imgDimsObj) {
 
 // function renderCanvasSize = get the size of image and render according it
 function renderCanvasSize(imgDimsObj) {
-    gCanvas.width = imgDimsObj.width;
-    gCanvas.height = imgDimsObj.height;
+    gCanvas.width = 600;
+    gCanvas.height = 450;
+    var ratio = imgDimsObj.width / imgDimsObj.height;  
+    console.log('ratio', ratio);
+    if (imgDimsObj.width > imgDimsObj.height) {
+        if (imgDimsObj.width > gCanvas.width) {
+            // console.log('width');
+            // console.log('imgDimsObj.width', imgDimsObj.width);
+            imgDimsObj.height = gCanvas.width * (1 / ratio);
+            // console.log('imgDimsObj.height', imgDimsObj.height);
+            gCanvas.height = imgDimsObj.height;
+            // console.log('gCanvas.height', gCanvas.height);
+        } 
+    } else {
+        if (imgDimsObj.height > gCanvas.height) {
+            // console.log('height');
+            gCanvas.height = gCanvas.width;
+            // console.log('imgDimsObj.height', imgDimsObj.height);
+            imgDimsObj.width = gCanvas.height * ratio;
+            // console.log('imgDimsObj.width', imgDimsObj.width);
+            gCanvas.width = imgDimsObj.width;
+            // console.log('gCanvas.width', gCanvas.width);
+
+            // console.log('gCanvas.height', gCanvas.height);
+        } 
+    }
+
+    // gCanvas.width = imgDimsObj.width;
+    // gCanvas.height = imgDimsObj.height;
     gCtx.fillStyle = 'lightblue';
     gCtx.fillRect(0, 0, gCanvas.width, gCanvas.height);
+
+       // gCanvas.width = 450;
+    // gCanvas.height = 600;
+    // if (imgDimsObj.width > imgDimsObj.height)
 }
 
 

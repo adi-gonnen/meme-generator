@@ -28,6 +28,7 @@ var gImgs = [
     {id: makeId(), url: 'img/patrick.jpg', keywords: ['patrick']},
     {id: makeId(), url: 'img/putin.jpg', keywords: ['putin']},
     {id: makeId(), url: 'img/X-Everywhere.jpg', keywords: ['toy']},
+    {id: makeId(), url: 'img/protrait.jpg', keywords: ['woman']},
 ]; 
 
 function init() {
