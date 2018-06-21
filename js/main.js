@@ -41,11 +41,11 @@ function getImgsForDisplay() {
 
 function toggleGallery() {
     var elCanvas = document.querySelector('.container-canvas-page');
-    elCanvas.classList.remove('hide');
+    elCanvas.classList.toggle('hide');
     var elGallery = document.querySelector('.gallery');
-    elGallery.classList.add('hide');
+    elGallery.classList.toggle('hide');
     var elSearch = document.querySelector('.filter');
-    elSearch.classList.add('hide');
+    elSearch.classList.toggle('hide');
 }
 
 
@@ -54,27 +54,40 @@ function toggleGallery() {
 
 // CANVAS
 
+function backToGallery() {
+    toggleGallery();
+}
+
 function initCanvas(img) {
     gCanvas = document.querySelector('.canvas');
     gCtx = gCanvas.getContext('2d');
     var imgDimsObj = drawImgOnCanvas(img);
     renderCanvasSize(imgDimsObj);
-    var txt = onTxtInsert();
-    renderTxtCanvas(txt);
+    // var txt = onTxtInsert();
+    // renderTxtCanvas(txt);
 }
 
 //get input text from user and draw in canvas
 function onTxtInsert() {
-    var elLineInput = document.querySelector('.line-input');
-    var txt = elLineInput.value;
-    console.log('elLineInput', txt);
-    renderTxtCanvas(txt);
-    return txt;
-}
-
-//render txt in canvas
-function renderTxtCanvas(txt) {
-
+    var elLineInputTop = document.querySelector('.line-input-top');
+    var elLineInputBottom = document.querySelector('.line-input-bottom');
+    // var elLineInput;
+    var txt
+    var pos;
+    if (elLineInputTop.value) {
+        txt = elLineInputTop.value;
+        pos = 'top';
+        // console.log('elLineInputTop', txt);
+        renderTxtCanvas(txt, pos);
+    } 
+    if (elLineInputBottom.value) {
+        txt = elLineInputBottom.value;
+        pos = 'bottom';
+        // console.log('elLineInputBottom', txt);
+        renderTxtCanvas(txt, pos);
+    }
+    // var txt = elLineInput.value;
+    // return txt;
 }
 
 
@@ -123,7 +136,7 @@ function onUpdateFontSize(diff) {
 
 //get color-
 function getColorValue(colorValue) {
-    console.log('colorValue-??--', colorValue);
+    // console.log('colorValue-??--', colorValue);
     return changeTxtColor(colorValue);
 }
 
@@ -131,24 +144,25 @@ function getColorValue(colorValue) {
 function changeTxtColor(colorValue) {
     //TODO: change element - to txt element on canvas
     var elTxt = document.querySelector('.txt-container .textlabel');
-    console.log('elTxt--', elTxt);
+    // console.log('elTxt--', elTxt);
     elTxt.style.color = colorValue;
 }
 
 //render txt in canvas
-function renderTxtCanvas(txt) {
-    var canvas = document.getElementById('canvas');
- 
+function renderTxtCanvas(txt, pos) {
+    var x = 250;
+    var y = 400;
   // Make sure canvas is supported
-  if (canvas.getContext){
-     var ctx = canvas.getContext('2d');
-     ctx.font = "40px Impact";       
-    //  ctx.color="white";
-    ctx.fillStyle = 'white';
-     ctx.fillText(txt, 248, 43);
-     ctx.save();      
+  if (gCanvas.getContext){
+    gCtx.font = "40px Impact";       
+    gCtx.fillStyle = 'white';
+    if (pos === 'top') gCtx.fillText(txt, 250, 43);
+    else gCtx.fillText(txt, x, y);
+    gCtx.save();      
   }                  
 }
 
-
-
+function downloadImg(elImg) {
+    var currImg = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream"); 
+    elImg.href = currImg;
+}

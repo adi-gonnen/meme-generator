@@ -12,6 +12,12 @@ body{
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
+footer {
+    margin-top: 20px;
+    padding: 20px;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+}
 div, h1, h2, li {
     margin: 0;
 }
@@ -43,9 +49,6 @@ a {
 .show {
     display: block;
 }
-
-
-
 
 .text-align {
     text-align: center;
@@ -165,18 +168,22 @@ a {
 }
 
 .container-canvas-page {
+    /* flex-direction: column; */
     justify-content: flex-start;
 }
 
 .canvas, .editor, .container-canvas-page, .grid-conteiner {
+
     border: 1px solid rgb(143, 142, 142);
 }
 
 .editor {
     align-self: flex-start;
+    background-color: beige;
 }
 
 .txt-container {
+    flex-direction: column;
     padding: 20px;
 }
 
@@ -185,6 +192,18 @@ a {
     margin: 5px;
 }
 
+
+.download-btn {
+    color: white;
+}
+
+.editor-part {
+    flex-direction: column;
+}
+
+button:active {
+    color: white;
+}
 /* should be last!*/
 .hide {
     display: none;

@@ -108,6 +108,29 @@ function renderCanvasSize(imgDimsObj) {
     // if (imgDimsObj.width > imgDimsObj.height)
 }
 
+//class
+function handleLine(ev) {
+    var elModal = document.querySelector('.modal')
+  
+    var chart = charts.find(function(chart) {
+      return(
+        ev.clientX > chart.x &&
+        ev.clientX < chart.x + barWidth && 
+        ev.clientY > chart.y &&
+        ev.clientY < chart.y + chart.rate * heightFactor
+      )
+    })
+    if (chart) {
+      elModal.style.display = 'block'
+      elModal.innerText = 'name: ' + chart.name + ' rate: ' + chart.rate
+      elModal.style.top = ev.clientY + 'px'
+      elModal.style.left = ev.clientX + 'px'
+    } else {
+      elModal.style.display = 'none'
+    }
+  
+  
+  }
 
 
 
