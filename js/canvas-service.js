@@ -20,9 +20,6 @@ var gMemeTest = {
 var gCanvas;
 var gCtx;
 
-
-
-
 function drawImgOnCanvas(img) {
     console.log('img', img);
     var imgCanvas = new Image();
@@ -58,10 +55,6 @@ function renderCanvasSize(imgDimsObj) {
     gCtx.fillStyle = 'lightblue';
     gCtx.fillRect(0, 0, gCanvas.width, gCanvas.height);
 }
-
-
-
-
 
 
 

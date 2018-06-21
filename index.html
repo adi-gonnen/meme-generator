@@ -22,7 +22,7 @@
             </div>
             <div class="container container-canvas-page hide flex align-center">
                 <div class="canvas-return-btn-container flex space-around column">
-                    <button class="btn return-btn">Back to gallery</button>
+                    <button class="btn return-btn" onclick="backToGallery()">Back to gallery</button>
                     <canvas class="canvas"></canvas>
                 </div>
                 <div class="editor container flex space-around align-center column">
@@ -34,14 +34,29 @@
                     </div>
                     <ul class="edditor-btns container clean-list flex space-around align-center">
                         <li><button class="btn font-btn">Font</button></li>
-                        <li><button class="btn color-btn">Color</button></li>
-                        <li><button class="btn size-plus-btn">+</button></li>
-                        <li><button class="btn size-minus-btn">-</button></li>
+                        <li><button class="btn color-btn">
+                            <fieldset>
+                                <!-- <legend></legend> -->
+                                <!-- TODO: change body inside for - to the txt in meme -->
+                                <div>
+                                    <input type="color" id="colorValue" name="color" value="#000000" onchange="getColorValue(this.value)"/>
+                                    <label for="colorValue"></label>
+                                </div>
+                                <!-- <div>
+                                    <input type="color" id="textlabel" name="color" value="#e66465"/>
+                                    <label for="textlabel"></label>
+                                </div> -->
+                            </fieldset>
+                        </button></li>
+                        <li><button class="btn size-plus-btn" onclick="onIncreaseSize()">+</button></li>
+                        <li><button class="btn size-minus-btn" onclick="onDecreaseSize()">-</button></li>
+                        <li><button class="btn txt-shadow-btn" onclick="onTxtShadow()">Text Shadow</button></li>
                     </ul>
                     <button class="btn add-line-btn">+ Line</button>
                 </div>
             </div>
-        </main>  
+        </main>
+          
         <footer class="footer">footer</footer>
         <script src="js/utill-service.js"></script>
         <script src="js/gallery-service.js"></script>

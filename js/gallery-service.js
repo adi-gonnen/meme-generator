@@ -42,14 +42,6 @@ function selectImg(elImg) {
     initCanvas(img);
 }
 
-function selectImg(elImg) {
-    console.log('elImg', elImg);
-    var imgId = elImg.id;
-    var img = findItemById(imgId);
-    toggleGallery();
-    initCanvas(img);
-}
-
 function findItemById(imgId) {
     for (var i = 0; i < gImgs.length; i++) {
         var img = gImgs[i];
