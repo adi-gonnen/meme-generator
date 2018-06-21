@@ -17,15 +17,11 @@ var gMemeTest = {
 };
 
 //TODO: init() function on canvas - when user choose a img
-var gCanvas = document.querySelector('.canvas');
-var gCtx = gCanvas.getContext('2d');
+var gCanvas;
+var gCtx;
 
-function initCanvas(img) {
-    var imgDimsObj = drawImgOnCanvas(img);
-    renderCanvasSize(imgDimsObj);
-    var txt = onTxtInsert();
-    renderTxtCanvas(txt);
-}
+
+
 
 function drawImgOnCanvas(img) {
     console.log('img', img);
@@ -36,7 +32,7 @@ function drawImgOnCanvas(img) {
         drawImage(this);
     };
     //TODO: seprate return to diffrent func
-    return {width: imgCanvas.width, height: imgCanvas.height};
+    return { width: imgCanvas.width, height: imgCanvas.height };
 }
 
 
@@ -66,16 +62,7 @@ function renderCanvasSize(imgDimsObj) {
 
 
 
-//get input text from user and draw in canvas
-function onTxtInsert() {
-    var elLineInput = document.querySelector('.line-input');
-    var txt = elLineInput.value;
-    console.log('elLineInput', txt);
-    return txt;
-}
 
-//render txt in canvas
-function renderTxtCanvas(txt) {
 
-}
+
 

@@ -3,12 +3,12 @@
 console.log('test');
 
 
-function init() {
-    renderGallery();
-}
+
 
 function renderGallery() {
-    var imgs = getImgsForDisplay()
+    // var imgs = filterImgs(gImgs);
+    var imgs = getImgsForDisplay();
+
     var strHtml = '';
     imgs.forEach(function (img, idx) {
         strHtml += `<img id="${img.id}" class="item-img" onclick="selectImg(this)" style="background-image: url('../${img.url}')"></img>\n`
@@ -25,10 +25,10 @@ function filterImgs(imgs) {
     var userSearch = document.getElementById("search").value;
     if (userSearch === '') return imgs;
     else return imgs.filter(function(img) {
-        return img.keywords.forEach(function (keyword) {
-            return keyword === userSearch;
-            })
-        })
+        return img.keywords.some(function (keyword) {
+            return keyword.substring(0, userSearch.length) === userSearch;
+            });
+        });
 }
 
 function getImgsForDisplay() {
@@ -37,28 +37,41 @@ function getImgsForDisplay() {
     return imgs;
 }
 
-function selectImg(elImg) {
-    console.log('elImg', elImg);
-    var imgId = elImg.id;
-    var img = findItemById(imgId);
-    toggleGallery();
-    initCanvas(img);
-}
+
 
 function toggleGallery() {
-    var showCanvas = document.querySelector('.container-canvas-page');
-    showCanvas.classList.remove('hide');
-    var hideGallery = document.querySelector('.gallery');
-    hideGallery.classList.add('hide');
+    var elCanvas = document.querySelector('.container-canvas-page');
+    elCanvas.classList.remove('hide');
+    var elGallery = document.querySelector('.gallery');
+    elGallery.classList.add('hide');
+    var elSearch = document.querySelector('.filter');
+    elSearch.classList.add('hide');
 }
 
-function findItemById(imgId) {
-    for (var i = 0; i < gImgs.length; i++) {
-        var img = gImgs[i];
-        if (img.id === imgId) {
-            console.log('img.id', img.id);
-            console.log('id', imgId);
-            return img;
-        }
-    }
+
+
+
+
+// CANVAS
+
+function initCanvas(img) {
+    gCanvas = document.querySelector('.canvas');
+    gCtx = gCanvas.getContext('2d');
+    var imgDimsObj = drawImgOnCanvas(img);
+    renderCanvasSize(imgDimsObj);
+    var txt = onTxtInsert();
+    renderTxtCanvas(txt);
+}
+
+//get input text from user and draw in canvas
+function onTxtInsert() {
+    var elLineInput = document.querySelector('.line-input');
+    var txt = elLineInput.value;
+    console.log('elLineInput', txt);
+    return txt;
+}
+
+//render txt in canvas
+function renderTxtCanvas(txt) {
+
 }
