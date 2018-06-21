@@ -69,7 +69,7 @@ function getImgSize(imgDimsObj) {
     
 }
 
-// function renderCanvasSize = get the size of image and render according it
+// function renderCanvasSize = get the size of image and render according it-
 function renderCanvasSize(imgDimsObj) {
     gCanvas.width = 600;
     gCanvas.height = 450;
