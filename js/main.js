@@ -13,17 +13,17 @@ function renderGallery(imgs) {
 }
 
 function searchImg() {
-   renderGallery();
+    renderGallery();
 }
 
 function filterImgs(imgs) {
     var userSearch = document.getElementById("search").value;
     if (userSearch === '') return imgs;
-    else return imgs.filter(function(img) {
+    else return imgs.filter(function (img) {
         return img.keywords.some(function (keyword) {
             return keyword.substring(0, userSearch.length) === userSearch;
-            });
         });
+    });
 }
 
 function getImgsForDisplay() {
@@ -58,7 +58,7 @@ function initCanvas(img) {
 }
 
 function renderMeme() {
-    
+
 }
 
 //TODO: dinamic -  array of txts
@@ -75,7 +75,7 @@ function onTxtInsert() {
         gMeme.txts[0].line = txt;
         // console.log('elLineInputTop', txt);
         renderTxtCanvas(txt, pos);
-    } 
+    }
     if (elLineInputBottom.value) {
         txt = elLineInputBottom.value;
         pos = 'bottom';
@@ -114,7 +114,7 @@ function updateFontSizeOnEl(elTextLabel, updatedFontSize) {
 //get current font size
 function getCurrFontSize(elTextLabel) {
     console.log('elTextLabel', elTextLabel);
-    
+
     // debugger;
     var fontSizeTxt = window.getComputedStyle(elTextLabel, null).getPropertyValue('font-size');
     var fontSize = parseFloat(fontSizeTxt);
@@ -172,7 +172,7 @@ function renderTxtCanvas(txt, pos) {
     var img = getCurrImg();
     var x = gMeme.width / 2;
     console.log('x: ', x);
-    
+
     var y = gMeme.height / 2;
     console.log('y: ', y);
     // Make sure canvas is supported
@@ -193,7 +193,7 @@ function renderTxtCanvas(txt, pos) {
 
 //download
 function downloadImg(elImg) {
-    var currImg = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream"); 
+    var currImg = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
     elImg.href = currImg;
 }
 
@@ -202,4 +202,33 @@ function clearCanvas() {
     var currImg = getCurrImg();
     console.log('currImg--', currImg);
     initCanvas(currImg);
+}
+
+function onTxtShadow() {
+    //TODO: FOR TXT IN MEME
+    var elTextLabel = document.querySelector('.testTxt');
+    console.log('elTextLabel--', elTextLabel);
+    //get the color of text
+    //TODO: maybe to do it in array txts
+    var currTxtColor = gMeme.txts[0].color;
+    console.log('currTxtColor--', currTxtColor);
+    // var colorStrs = currTxtColor.split('');
+    // console.log('colorStrs--', colorStrs);
+    // console.log('colorStrs[1]--', colorStrs[1]);
+    // console.log('typeof colorStrs[1]--', typeof colorStrs[1]);
+    // var firstDigitNumber = +colorStrs[1];
+    // console.log('firstDigitNumber--', firstDigitNumber);
+    // if (typeof firstDigitNumber === 'number' && firstDigitNumber <= 6) {
+    //     elTextLabel.style.textShadow = '1px 1px 1px #ffffff';
+    // } else elTextLabel.style.textShadow = '1px 1px 1px #000000';
+    // console.log('elTextLabel.style.textShadow--', elTextLabel.style.textShadow);
+
+    //put a middum color of text shadow - good for dark & light colors
+    elTextLabel.style.textShadow = '1px 1px 1px #7f7f7f';
+    //TODO: if color hex number starts from 0 to 6 - in is dark color - put white text shadow -OR to Put two btns
+
+    //TODO: try to do toggle - but txt on canvas is not DOM??
+    //TODO:  isTxtShadow(); - RETURN STRUE OR FALSE AND UPDATE gMeme
+    // isTxtShadow();
+
 }

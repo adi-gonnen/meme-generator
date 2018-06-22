@@ -13,7 +13,7 @@ var gMeme = {
             pos: 'top',
             size: 16,
             align: 'left',
-            color: 'white',
+            color: '#100000',
             textShadow: false,
             // positionX: 0,
             // positionY: 0,
@@ -23,7 +23,7 @@ var gMeme = {
             pos: 'bottom',
             size: 16,
             align: 'left',
-            color: 'white',
+            color: '#ffffff',
             textShadow: false,
             // positionX: 0,
             // positionY: 0,
@@ -199,3 +199,6 @@ function renderCanvasSize(imgDimsObj) {
 // }
 
 
+function isTxtShadow() {
+    
+}
