@@ -1,9 +1,9 @@
 'use strict'
 
-console.log('canvas');
 var gCount = 0;
 //TODO: update all the properties - according to btns! and object positions
 var gMeme = {
+    img: {},
     selectedImgId: null,
     width: null,
     height: null,
@@ -13,7 +13,7 @@ var gMeme = {
             order: gCount++,
             size: 16,
             align: 'left',
-            color: 'white',
+            color: '#ffffff',
             textShadow: false,
             // positionX: 0,
             // positionY: 0,
@@ -165,3 +165,6 @@ function renderCanvasSize(imgDimsObj) {
 // }
 
 
+function isTxtShadow() {
+    
+}

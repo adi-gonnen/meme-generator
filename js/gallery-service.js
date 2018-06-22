@@ -39,6 +39,7 @@ function init() {
 }
 
 function selectImg(elImg) {
+    localStorage.clear();
     console.log('elImg', elImg);
     var imgId = elImg.id;
     var img = findItemById(imgId);
@@ -61,12 +62,14 @@ function findItemById(imgId) {
     }
 }
 
-
+//todo: cancel local storage
 function saveCurrImg(img) {
     saveToStorage(IMG_KEY, img);
 }
-
+getCurrImg();
 function getCurrImg() {
     var currImg = loadFromStorage(IMG_KEY);
+    // console.log('currImg: ',currImg);
+    
     return currImg;
 }

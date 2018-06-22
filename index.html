@@ -39,6 +39,7 @@
                             <input name="lineTxt" type="txt" class="line-input-bottom" placeholder="Enter your text" oninput="onTxtInsert()" required>
                         </div> -->
                     </div>
+                    <h3 class="testTxt">test the text</h3>
                     <ul class="edditor-btns container clean-list flex space-around align-center">
                         <li><button class="btn font-btn">Font</button></li>
                         <li><button class="btn color-btn">
@@ -55,8 +56,10 @@
                                 </div> -->
                             </fieldset>
                         </button></li>
-                        <li><button class="btn size-plus-btn" onclick="onIncreaseSize()">+</button></li>
-                        <li><button class="btn size-minus-btn" onclick="onDecreaseSize()">-</button></li>
+                        <!-- <li><button class="btn size-plus-btn" onclick="onIncreaseSize()">+</button></li>
+                        <li><button class="btn size-minus-btn" onclick="onDecreaseSize()">-</button></li> -->
+                        <li><button class="btn size-plus-btn" onclick="onChangeSize(1)">+</button></li>
+                        <li><button class="btn size-minus-btn" onclick="onChangeSize(-1)">-</button></li>
                         <li><button class="btn txt-shadow-btn" onclick="onTxtShadow()">Text Shadow</button></li>
                         <li><button class="btn txt-align-btn" onclick="onTxtAlign()">Text Align</button></li>
                         <!-- <button class="btn add-line-btn">+ Line</button>

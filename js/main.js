@@ -13,17 +13,17 @@ function renderGallery(imgs) {
 }
 
 function searchImg() {
-   renderGallery();
+    renderGallery();
 }
 
 function filterImgs(imgs) {
     var userSearch = document.getElementById("search").value;
     if (userSearch === '') return imgs;
-    else return imgs.filter(function(img) {
+    else return imgs.filter(function (img) {
         return img.keywords.some(function (keyword) {
             return keyword.substring(0, userSearch.length) === userSearch;
-            });
         });
+    });
 }
 
 function getImgsForDisplay() {
@@ -53,20 +53,28 @@ function initCanvas(img) {
     gCtx = gCanvas.getContext('2d');
     var imgDimsObj = drawImgOnCanvas(img);
     renderCanvasSize(imgDimsObj);
-    renderTxtLine(gMeme.txts);      
+    var txts = gMeme.txts;
+    renderTxtLine(txts)
+    console.log('txts: ', txts);
+    
     // var txt = onTxtInsert();
     // renderTxtCanvas(txt);
 }
 
 function renderMeme() {
-    
+    var img = getCurrImg();
+    // console.log('currImg--', currImg);
+    gMeme.txts.forEach(function (txt) {
+        locateTxt(txt);
+    })
+    initCanvas(img);
 }
 
 function onTxtInsert(elLine) {
     if (elLine.value) {
-        var id = elLine.id;
-        gMeme.txts[id].line = elLine.value;
-        locateTxt(elLine.value, elLine.id);
+        var idx = elLine.id;
+        gMeme.txts[idx].line = elLine.value;
+        locateTxt(elLine.value, idx);
     } 
 }
 
@@ -83,57 +91,67 @@ function getTxtElement(pos) {
 }
 
 //***********text */
-function updateFontSizeOnEl(elTextLabel, updatedFontSize) {
-    // console.log('updatedFontSize-new !!-', updatedFontSize);
-    //TODO: change according to txt array
-    gMeme.txts[0].size = updatedFontSize;
-    gMeme.txts[1].size = updatedFontSize;
-    console.log('gMeme.txts[0].size-new !!-', gMeme.txts[0].size);
-    console.log('gMeme-after updateFontSizeOnEl', gMeme);
-    // console.log('gMeme.txts[0].size-new !!-', gMeme.txts[0].size);
-    elTextLabel.style.fontSize = updatedFontSize + 'px';
-}
+// function updateFontSizeOnEl(elTextLabel, updatedFontSize) {
+//     // console.log('updatedFontSize-new !!-', updatedFontSize);
+//     //TODO: change according to txt array
+//     gMeme.txts[0].size = updatedFontSize;
+//     gMeme.txts[1].size = updatedFontSize;
+//     console.log('gMeme.txts[0].size-new !!-', gMeme.txts[0].size);
+//     console.log('gMeme-after updateFontSizeOnEl', gMeme);
+//     // console.log('gMeme.txts[0].size-new !!-', gMeme.txts[0].size);
+//     elTextLabel.style.fontSize = updatedFontSize + 'px';
+// }
 
 //get current font size
-function getCurrFontSize(elTextLabel) {
-    console.log('elTextLabel', elTextLabel);
-    
-    // debugger;
-    var fontSizeTxt = window.getComputedStyle(elTextLabel, null).getPropertyValue('font-size');
-    var fontSize = parseFloat(fontSizeTxt);
-    return fontSize;
-}
+// function getCurrFontSize(elTextLabel) {
+//     console.log('elTextLabel', elTextLabel);
 
-function updateFontSizeValue(elTextLabel, currFontSize, diff) {
-    var fontSizeTxt = elTextLabel.style.fontSize;
-    fontSizeTxt = (currFontSize + diff);
-    var updatedFontSize = parseFloat(fontSizeTxt);
-    return updatedFontSize;
-}
+//     // debugger;
+//     var fontSizeTxt = window.getComputedStyle(elTextLabel, null).getPropertyValue('font-size');
+//     var fontSize = parseFloat(fontSizeTxt);
+//     return fontSize;
+// }
+
+// function updateFontSizeValue(elTextLabel, currFontSize, diff) {
+//     var fontSizeTxt = elTextLabel.style.fontSize;
+//     fontSizeTxt = (currFontSize + diff);
+//     var updatedFontSize = parseFloat(fontSizeTxt);
+//     return updatedFontSize;
+// }
 
 //***************text */
-function onIncreaseSize() {
-    console.log('gMeme.txts[0].size onIncreaseSize', gMeme.txts[0].size);
-    console.log('gMeme.txts[1].size onIncreaseSize', gMeme.txts[1].size);
+// function onIncreaseSize() {
+//     // console.log('gMeme.txts[0].size onIncreaseSize', gMeme.txts[0].size);
+//     // console.log('gMeme.txts[1].size onIncreaseSize', gMeme.txts[1].size);
 
-    // debugger;
+//     // debugger;
+//     clearCanvas();
+//     onUpdateFontSize(1);
+// }
+
+// function onDecreaseSize() {
+//     onUpdateFontSize(-1);
+// }
+
+function onChangeSize(diff) {
     clearCanvas();
-    onUpdateFontSize(1);
+    gMeme.txts.forEach(function (txt) {
+        txt.size += (diff * 2);
+        console.log('txt.size: ', txt.size);
+        console.log('txt.line: ', txt.line);
+        locateTxt(txt.line, txt.order)
+    })
+    renderMeme();
 }
-
-function onDecreaseSize() {
-    onUpdateFontSize(-1);
-}
-
 //***************text */
-function onUpdateFontSize(diff) {
-    var elTextLabel = getTxtElement();
-    // var currFontSize = getCurrFontSize(elTextLabel);
-    var currFontSize = gMeme.txts[0].size;
-    var updatedFontSize = updateFontSizeValue(elTextLabel, currFontSize, diff);
-    // console.log('currFontSize-??--', updatedFontSize);
-    updateFontSizeOnEl(elTextLabel, updatedFontSize);
-}
+// function onUpdateFontSize(diff) {
+//     var elTextLabel = getTxtElement();
+//     // var currFontSize = getCurrFontSize(elTextLabel);
+//     var currFontSize = gMeme.txts[0].size;
+//     var updatedFontSize = updateFontSizeValue(elTextLabel, currFontSize, diff);
+//     // console.log('currFontSize-??--', updatedFontSize);
+//     updateFontSizeOnEl(elTextLabel, updatedFontSize);
+// }
 
 //get color-
 function getColorValue() {
@@ -167,14 +185,15 @@ function renderTxtLine(txts) {
             <button class="btn right">🠊</button>
         </div>
         </div>`;
+        // locateTxt(txt, idx);
     })
-    console.log(strHtml);
+    // console.log(strHtml);
     
     document.querySelector('.line-text').innerHTML = strHtml;
 }
 
 function locateTxt(txt, id) {
-    var img = getCurrImg();
+    // var img = getCurrImg();
     var x = 140;
     // console.log('x: ', x);
     var y = 60 + id * 50;           //every line add 20 px
@@ -184,15 +203,17 @@ function locateTxt(txt, id) {
         gCtx.fillStyle = getColorValue();
         // console.log('ctx.fillStyle--', gCtx.fillStyle);
         // console.log('gMeme.txts[0][color]--', gMeme.txts[0].color);
-        gMeme.txts[id].color = gCtx.fillStyle;
+        // gMeme.txts[id].color = gCtx.fillStyle;
         gCtx.fillText(txt, x, y);
+        console.log('txt: ', txt);
+        
         gCtx.save();
     }
 }
 
 //download
 function downloadImg(elImg) {
-    var currImg = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream"); 
+    var currImg = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
     elImg.href = currImg;
 }
 
@@ -201,4 +222,33 @@ function clearCanvas() {
     var currImg = getCurrImg();
     console.log('currImg--', currImg);
     initCanvas(currImg);
+}
+
+function onTxtShadow() {
+    //TODO: FOR TXT IN MEME
+    var elTextLabel = document.querySelector('.testTxt');
+    console.log('elTextLabel--', elTextLabel);
+    //get the color of text
+    //TODO: maybe to do it in array txts
+    var currTxtColor = gMeme.txts[0].color;
+    console.log('currTxtColor--', currTxtColor);
+    // var colorStrs = currTxtColor.split('');
+    // console.log('colorStrs--', colorStrs);
+    // console.log('colorStrs[1]--', colorStrs[1]);
+    // console.log('typeof colorStrs[1]--', typeof colorStrs[1]);
+    // var firstDigitNumber = +colorStrs[1];
+    // console.log('firstDigitNumber--', firstDigitNumber);
+    // if (typeof firstDigitNumber === 'number' && firstDigitNumber <= 6) {
+    //     elTextLabel.style.textShadow = '1px 1px 1px #ffffff';
+    // } else elTextLabel.style.textShadow = '1px 1px 1px #000000';
+    // console.log('elTextLabel.style.textShadow--', elTextLabel.style.textShadow);
+
+    //put a middum color of text shadow - good for dark & light colors
+    elTextLabel.style.textShadow = '1px 1px 1px #7f7f7f';
+    //TODO: if color hex number starts from 0 to 6 - in is dark color - put white text shadow -OR to Put two btns
+
+    //TODO: try to do toggle - but txt on canvas is not DOM??
+    //TODO:  isTxtShadow(); - RETURN STRUE OR FALSE AND UPDATE gMeme
+    // isTxtShadow();
+
 }
