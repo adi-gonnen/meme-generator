@@ -54,7 +54,14 @@
                         </button></li>
                         <li><button class="btn size-plus-btn" onclick="onIncreaseSize()">+</button></li>
                         <li><button class="btn size-minus-btn" onclick="onDecreaseSize()">-</button></li>
-                        <li><button class="btn txt-shadow-btn" onclick="onTxtShadow()">Text Shadow</button></li>
+                        <li>
+                            <button class="btn txt-shadow-btn">Text Shadow</button>
+                            <button class="btn txt-add-remove-btn" onclick="onTxtShadow(this)">Add</button>
+                            <button class="btn txt-shadow-btn" onclick="onTxtShadowColor('#ffffff')">white</button>
+                            <button class="btn txt-shadow-btn" onclick="onTxtShadowColor('#000000')">black</button>
+                        </li>
+
+
                         <li><button class="btn txt-align-btn" onclick="onTxtAlign()">Text Align</button></li>
                         <!-- <button class="btn add-line-btn">+ Line</button>
                         <button class="btn remove-line-btn">- Line</button> -->

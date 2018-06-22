@@ -204,31 +204,81 @@ function clearCanvas() {
     initCanvas(currImg);
 }
 
-function onTxtShadow() {
+
+function onTxtShadow(elBtn) {
+    console.log('Remove--', elBtn.innerText);
+    if (elBtn.innerText === 'Remove') txtShadow('none');
+}
+
+function onTxtShadowColor(colorValue) {
     //TODO: FOR TXT IN MEME
     var elTextLabel = document.querySelector('.testTxt');
     console.log('elTextLabel--', elTextLabel);
-    //get the color of text
-    //TODO: maybe to do it in array txts
-    var currTxtColor = gMeme.txts[0].color;
-    console.log('currTxtColor--', currTxtColor);
-    // var colorStrs = currTxtColor.split('');
-    // console.log('colorStrs--', colorStrs);
-    // console.log('colorStrs[1]--', colorStrs[1]);
-    // console.log('typeof colorStrs[1]--', typeof colorStrs[1]);
-    // var firstDigitNumber = +colorStrs[1];
-    // console.log('firstDigitNumber--', firstDigitNumber);
-    // if (typeof firstDigitNumber === 'number' && firstDigitNumber <= 6) {
-    //     elTextLabel.style.textShadow = '1px 1px 1px #ffffff';
-    // } else elTextLabel.style.textShadow = '1px 1px 1px #000000';
-    // console.log('elTextLabel.style.textShadow--', elTextLabel.style.textShadow);
+    var elBtnTxt = document.querySelector('.txt-add-remove-btn');
+    // if (elBtnTxt.innerText === 'Add') isTxtShadow('true');
 
-    //put a middum color of text shadow - good for dark & light colors
-    elTextLabel.style.textShadow = '1px 1px 1px #7f7f7f';
-    //TODO: if color hex number starts from 0 to 6 - in is dark color - put white text shadow -OR to Put two btns
+    if (colorValue === '#ffffff') {
+        elTextLabel.style.textShadow = '2px 2px 2px #ffffff';
+        elBtnTxt.innerText = 'Remove';
+        txtShadow('white');
+    } else if (colorValue === '#000000') {
+        elTextLabel.style.textShadow = '1px 1px 1px #000000';
+        elBtnTxt.innerText = 'Remove';
+        txtShadow('black');
+    } else if (colorValue === 'none') {
+        elTextLabel.style.textShadow = 'none';
+        elBtnTxt.innerText = 'Add';
+    }
+    
+
+
+
+    // var isShadow = isTxtShadow();
+    // var elBtnTxt = document.querySelector('.txt-add-remove-btn');
+    // if (isShadow) elBtnTxt.innerText = 'Remove';
+    // else elBtnTxt.innerText = 'Add';
+    // var isShadow = isTxtShadow();
+    // var elBtnTxt = document.querySelector('.txt-add-remove-btn');
+    // if (isShadow) elBtnTxt.innerText = 'Remove';
+    // else elBtnTxt.innerText = 'Add';
+
+
+
+    //TODO: maybe to do it in array txts
+    // console.log('currTxtColor--', currTxtColor);
+    
 
     //TODO: try to do toggle - but txt on canvas is not DOM??
     //TODO:  isTxtShadow(); - RETURN STRUE OR FALSE AND UPDATE gMeme
     // isTxtShadow();
 
 }
+
+// function onTxtShadow() {
+//     //TODO: FOR TXT IN MEME
+//     var elTextLabel = document.querySelector('.testTxt');
+//     console.log('elTextLabel--', elTextLabel);
+//     //get the color of text
+//     //TODO: maybe to do it in array txts
+//     var currTxtColor = gMeme.txts[0].color;
+//     console.log('currTxtColor--', currTxtColor);
+//     // var colorStrs = currTxtColor.split('');
+//     // console.log('colorStrs--', colorStrs);
+//     // console.log('colorStrs[1]--', colorStrs[1]);
+//     // console.log('typeof colorStrs[1]--', typeof colorStrs[1]);
+//     // var firstDigitNumber = +colorStrs[1];
+//     // console.log('firstDigitNumber--', firstDigitNumber);
+//     // if (typeof firstDigitNumber === 'number' && firstDigitNumber <= 6) {
+//     //     elTextLabel.style.textShadow = '1px 1px 1px #ffffff';
+//     // } else elTextLabel.style.textShadow = '1px 1px 1px #000000';
+//     // console.log('elTextLabel.style.textShadow--', elTextLabel.style.textShadow);
+
+//     //put a middum color of text shadow - good for dark & light colors
+//     elTextLabel.style.textShadow = '1px 1px 1px #7f7f7f';
+//     //TODO: if color hex number starts from 0 to 6 - in is dark color - put white text shadow -OR to Put two btns
+
+//     //TODO: try to do toggle - but txt on canvas is not DOM??
+//     //TODO:  isTxtShadow(); - RETURN STRUE OR FALSE AND UPDATE gMeme
+//     // isTxtShadow();
+
+// }

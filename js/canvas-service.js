@@ -10,21 +10,13 @@ var gMeme = {
     txts: [
         {
             line: '',
-            pos: 'top',
-            size: 16,
-            align: 'left',
-            color: '#100000',
-            textShadow: false,
-            // positionX: 0,
-            // positionY: 0,
-        },
-        {
-            line: '',
             pos: 'bottom',
             size: 16,
             align: 'left',
             color: '#ffffff',
             textShadow: false,
+            textShadowWhite: false,
+            textShadowBlack: false,
             // positionX: 0,
             // positionY: 0,
         }
@@ -199,6 +191,38 @@ function renderCanvasSize(imgDimsObj) {
 // }
 
 
-function isTxtShadow() {
-    
+function txtShadow(color) {
+    console.log('color', color);
+    //TODO: for txts array
+    if (color === 'white') {
+        gMeme.txts[0].textShadow = true;
+        gMeme.txts[0].textShadowWhite = true;
+        gMeme.txts[0].textShadowBlack = false;
+    } else if (color === 'black') {
+        gMeme.txts[0].textShadow = true;
+        gMeme.txts[0].textShadowWhite = false;
+        gMeme.txts[0].textShadowBlack = true;
+    } else if (color === 'none') {
+        gMeme.txts[0].textShadow = false;
+        gMeme.txts[0].textShadowWhite = false;
+        gMeme.txts[0].textShadowBlack = false;
+        onTxtShadowColor('none');
+    }
+
+    // if (color === 'white') {
+    //     gMeme.txts[0].textShadowWhite = true;
+    //     gMeme.txts[0].textShadowBlack = false;
+    // } else if (color === 'black') {
+    //     gMeme.txts[0].textShadowWhite = false;
+    //     gMeme.txts[0].textShadowBlack = true;
+    // }
+
+
+
+
+
+
+    // if (!gMeme.txts[0].textShadow) gMeme.txts[0].textShadow = true;
+    // else gMeme.txts[0].textShadow = false;
+    // return gMeme.txts[0].textShadow;
 }
