@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>meme-generator</title>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
         <link rel="shortcut icon" href="img/fabicon_trans.png" type="image/png">
         <link rel="stylesheet" href="css/main.css"/>
     </head>
@@ -13,11 +14,13 @@
             <h1>Meme Generator</h1>
         </header>
         <main class="main-container">
-            <div class="filter">
+            <div class=" flex filter">
+                <div class="search"><i class="fas fa-search"></i></div>
                 <input id="search" type="txt" class="search-words" oninput="searchImg()" placeholder="Type an image category...">
+                <h3>choose your photo:</h3>
             </div>
             <div class="gallery-images flex space-around align-center">
-                <div class="grid-conteiner gallery">grid gallery</div>
+                <div class="grid-conteiner gallery"></div>
             </div>
             <div class="container container-canvas-page hide flex align-center">
                 <!-- <div class="canvas-return-btn-container flex space-around column"> -->
@@ -26,14 +29,15 @@
                 <div class="editor container flex space-around align-center column">
                     <button class="btn return-btn" onclick="backToGallery()">Back to gallery</button>
                     <div class="txt-container flex space-around align-center ">
-                        <div class="upper-text">
-                            <label for="lineTxt" class="textlabel">Enter Upper Text</label>
-                            <input name="lineTxt" type="txt" class="line-input-top" placeholder="Enter your text" oninput="onTxtInsert()" required autofocus>
-                        </div>
-                        <div class="bottom-text">
+                        <div class="line-text flex"></div>
+                        <button class="add-line-btn" onclick="addLine()">add line</button>
+                            <!-- <label for="lineTxt" class="textlabel">top text</label> -->
+                            <!-- <input name="lineTxt" type="txt" class="line-input" placeholder="Enter your text" oninput="onTxtInsert()" required autofocus> -->
+                        
+                        <!-- <div class="bottom-text">
                             <label for="lineTxt" class="textlabel">Enter Bottom Text</label>
                             <input name="lineTxt" type="txt" class="line-input-bottom" placeholder="Enter your text" oninput="onTxtInsert()" required>
-                        </div>
+                        </div> -->
                     </div>
                     <ul class="edditor-btns container clean-list flex space-around align-center">
                         <li><button class="btn font-btn">Font</button></li>

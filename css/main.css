@@ -21,7 +21,9 @@ footer {
 div, h1, h2, li {
     margin: 0;
 }
-
+h3 {
+    margin-left: 50px;
+}
 a {
     text-decoration: none;
 }
@@ -154,8 +156,12 @@ a {
 }
 
 .filter {
-    margin: 5px 0 20px 0;
-    text-align: center;
+    margin: 20px 50px;
+    align-items: center;
+}
+
+.search {
+    margin-right: 10px;
 }
 
 .search-words {
@@ -195,6 +201,35 @@ a {
     margin: 5px;
 }
 
+.inline {
+    margin: 10px;
+    border-radius: 5px;
+}
+
+.line-btns {
+    margin: 10px 2px;
+    align-items: center;
+}
+.line-text {
+    flex-direction: column;
+    justify-content: center;
+}
+.up-down {
+    flex-direction: column;
+}
+.right, .left, .up, .down {
+    /* height: 15px;
+    width: 15px; */
+}
+.arrows {
+    align-items: center;
+    /* height: 20px; */
+}
+
+.btn-danger {
+    color: red;
+    height: 30px;   
+}
 
 /* .download-btn {
     color: white;

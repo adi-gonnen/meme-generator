@@ -1,7 +1,7 @@
 'use strict'
 
 console.log('canvas');
-
+var gCount = 0;
 //TODO: update all the properties - according to btns! and object positions
 var gMeme = {
     selectedImgId: null,
@@ -10,25 +10,14 @@ var gMeme = {
     txts: [
         {
             line: '',
-            pos: 'top',
+            order: gCount++,
             size: 16,
             align: 'left',
             color: 'white',
             textShadow: false,
             // positionX: 0,
             // positionY: 0,
-        },
-        {
-            line: '',
-            pos: 'bottom',
-            size: 16,
-            align: 'left',
-            color: 'white',
-            textShadow: false,
-            // positionX: 0,
-            // positionY: 0,
-        }
-    ]
+        }]
 };
 
 var gCanvas;
@@ -38,7 +27,23 @@ var gCtx;
 
 // var gImgsTest = [{ id: 1, url: 'img/2.jpg', keywords: ['happy'] }];
 
+function addLine() {
+    var newLine = creatLine();
+    var txts = gMeme.txts;
+    txts.push(newLine);
+    renderTxtLine(txts);
+}
 
+function creatLine() {
+    return {
+        line: '',
+        order: gCount++,
+        size: 16,
+        align: 'left',
+        color: 'white',
+        textShadow: false
+    }
+}
 
 //TODO: init() function on canvas - when user choose a img
 function gMemeIdUpdate() {
@@ -100,50 +105,11 @@ function getImgSize(imgDimsObj) {
 
 }
 
-// function renderCanvasSize = get the size of image and render according it-
-// function renderCanvasSize(imgDimsObj) {
-//     gCanvas.width = 600;
-//     gCanvas.height = 450;
-//     var ratio = imgDimsObj.width / imgDimsObj.height;  
-//     console.log('ratio', ratio);
-//     if (imgDimsObj.width > imgDimsObj.height) {
-//         if (imgDimsObj.width > gCanvas.width) {
-//             // console.log('width');
-//             // console.log('imgDimsObj.width', imgDimsObj.width);
-//             imgDimsObj.height = gCanvas.width * (1 / ratio);
-//             // console.log('imgDimsObj.height', imgDimsObj.height);
-//             gCanvas.height = imgDimsObj.height;
-//             // console.log('gCanvas.height', gCanvas.height);
-//         } 
-//     } else {
-//         if (imgDimsObj.height > gCanvas.height) {
-//             // console.log('height');
-//             gCanvas.height = gCanvas.width;
-//             // console.log('imgDimsObj.height', imgDimsObj.height);
-//             imgDimsObj.width = gCanvas.height * ratio;
-//             // console.log('imgDimsObj.width', imgDimsObj.width);
-//             gCanvas.width = imgDimsObj.width;
-//             // console.log('gCanvas.width', gCanvas.width);
-
-//             // console.log('gCanvas.height', gCanvas.height);
-//         } 
-//     }
-
-//     // gCanvas.width = imgDimsObj.width;
-//     // gCanvas.height = imgDimsObj.height;
-//     gCtx.fillStyle = 'rgb(239, 245, 243)';
-//     gCtx.fillRect(0, 0, gCanvas.width, gCanvas.height);
-//     gMeme.width = imgDimsObj.width;
-//     gMeme.height = imgDimsObj.height;
-
-// }
-
-
 function renderCanvasSize(imgDimsObj) {
     gCanvas.width = 600;
     gCanvas.height = 450;
     var ratio = imgDimsObj.width / imgDimsObj.height;
-    console.log('ratio', ratio);
+    // console.log('ratio', ratio);
     if (imgDimsObj.width > imgDimsObj.height) {
         if (imgDimsObj.width > gCanvas.width) {
             // console.log('width');
