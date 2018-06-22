@@ -15,6 +15,8 @@ var gMeme = {
             align: 'left',
             color: '#ffffff',
             textShadow: false,
+            textShadowWhite: false,
+            textShadowBlack: false,
             // positionX: 0,
             // positionY: 0,
         }]
@@ -165,6 +167,21 @@ function renderCanvasSize(imgDimsObj) {
 // }
 
 
-function isTxtShadow() {
-    
+function txtShadow(color) {
+    console.log('color', color);
+    //TODO: for txts array
+    if (color === 'white') {
+        gMeme.txts[0].textShadow = true;
+        gMeme.txts[0].textShadowWhite = true;
+        gMeme.txts[0].textShadowBlack = false;
+    } else if (color === 'black') {
+        gMeme.txts[0].textShadow = true;
+        gMeme.txts[0].textShadowWhite = false;
+        gMeme.txts[0].textShadowBlack = true;
+    } else if (color === 'none') {
+        gMeme.txts[0].textShadow = false;
+        gMeme.txts[0].textShadowWhite = false;
+        gMeme.txts[0].textShadowBlack = false;
+        onTxtShadowColor('none');
+    }
 }
