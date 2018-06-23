@@ -1,97 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>meme-generator</title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
-    <link rel="shortcut icon" href="img/fabicon_trans.png" type="image/png">
-    <link rel="stylesheet" href="css/main.css"/>
-</head>
-<body onload="init()">
-    <header class="header">
-        <h1>Meme Generator</h1>
-    </header>
-    <main class="main-container">
-        <div class=" flex filter">
-            <div class="search"><i class="fas fa-search"></i></div>
-            <input id="search" type="txt" class="search-words" oninput="searchImg()" placeholder="Type an image category...">
-            <h3>choose your photo:</h3>
-        </div>
-        <div class="gallery-images flex space-around align-center">
-            <div class="grid-conteiner gallery"></div>
-        </div>
-        <div class="container container-canvas-page hide flex align-center">
-            <!-- <div class="canvas-return-btn-container flex space-around column"> -->
-                <canvas  id="canvas" class="canvas"></canvas>
-            <!-- </div> -->
-            <div class="editor container flex space-around align-center column">
-                <button class="btn return-btn" onclick="backToGallery()">Back to gallery</button>
-                <div class="txt-container flex space-around align-center ">
-                    <div class="line-text flex"></div>
-                    <button class="add-line-btn" onclick="addLine()">add line</button>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Meme Generator</title>
+        <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous"> -->
+        <link rel="shortcut icon" href="img/fabicon_trans.png" type="image/png">
+        <link rel="stylesheet" href="css/main.css"/>
+    </head>
+    <body onload="init()">
+        <header class="header flex">
+            <div class="header-container flex align-center space-around column">
+                <ul class="nav clean-list flex align-center">
+                    <li class="about-link"><a href="#">About</a></li>
+                    <li class="gallery-link"><a class="gallery-link" href="#">Gallery</a></li>
+                </ul>
+                <h1>Meme Generator</h1>
+            </div>
+        </header>
+        <main class="main-container flex align-center column">
+            <div class="filter flex align-center column">
+                <h3>Choose your photo:</h3>
+                <div class="search">
+                    <i class="fa fa-search"></i>
+                    <input id="search" type="txt" class="search-words" oninput="searchImg()" placeholder="Type an image category...">
+                </div>
+            </div>
+            <div class="gallery-images">
+                <div class="gallery flex align-center space-around"></div>
+            </div>
+            <div class="container container-canvas-page hide flex align-center space-around">
+                    
+                <!-- <div class="canvas-return-btn-container flex space-around column"> -->
+                    <canvas  id="canvas" class="canvas"></canvas>
+                <!-- </div> -->
+                <div class="editor container flex space-around align-center column">
+                    <button class="btn return-btn" onclick="backToGallery()">Back to gallery</button>
+                    <div class="txt-container flex space-around align-center ">
+                        <div class="line-text flex column"></div>
                         <!-- <label for="lineTxt" class="textlabel">top text</label> -->
                         <!-- <input name="lineTxt" type="txt" class="line-input" placeholder="Enter your text" oninput="onTxtInsert()" required autofocus> -->
+                        
+                        <!-- <div class="bottom-text">
+                            <label for="lineTxt" class="textlabel">Enter Bottom Text</label>
+                            <input name="lineTxt" type="txt" class="line-input-bottom" placeholder="Enter your text" oninput="onTxtInsert()" required>
+                        </div> -->
+                        <button class="btn add-line-btn" onclick="addLine()">Add line (max 3)</button>
+                    </div>
                     
-                    <!-- <div class="bottom-text">
-                        <label for="lineTxt" class="textlabel">Enter Bottom Text</label>
-                        <input name="lineTxt" type="txt" class="line-input-bottom" placeholder="Enter your text" oninput="onTxtInsert()" required>
-                    </div> -->
+                    <div class="editor-btns container clean-list flex space-around align-center">
+                        <div class="editor-btns-first-line">
+                            <ul class="clean-list flex">
+                                <li><button class="btn color-btn">
+                                    <!-- <legend></legend> -->
+                                    <!-- TODO: change body inside for - to the txt in meme -->
+                                        <input type="color" id="colorValue" name="color" value="#ffffff" onchange="getColorValue()"/>
+                                        <label for="colorValue"></label>
+                                    <!-- <div>
+                                        <input type="color" id="textlabel" name="color" value="#e66465"/>
+                                        <label for="textlabel"></label>
+                                    </div> -->
+                                </button></li>
+                                <li><button class="btn txt-align-btn" onclick="onTxtAlign('left')"><i class="fa fa-align-left"></i></button></li>
+                                <li><button class="btn txt-align-btn" onclick="onTxtAlign('right')"><i class="fa fa-align-right"></i></button></li>
+                                <li><button class="btn txt-align-btn" onclick="onTxtAlign('center')"><i class="fa fa-align-center"></i></button></li>
+                            </ul>
+                        </div>
+                        <div class="editor-btns-second-line">
+                            <ul class="clean-list flex">
+                                <!-- <li class="only-txt"><button class="btn only-txt only-txt-size-btn">Size</button></li> -->
+                                <li class="only-txt only-txt-size-btn">Size</button></li>
+                                <li><button class="btn size-btn size-plus-btn" onclick="onChangeSize(1)"><i class="fa fa-plus-square"></i></button></li>
+                                <li><button class="btn size-btn size-minus-btn" onclick="onChangeSize(-1)"><i class="fa fa-minus"></i></button></li>
+                            </ul>
+                        </div>
+                        <div class="editor-btns-third-line">
+                            <ul class="clean-list flex">
+                                <li class="only-txt only-txt-font">Font</li>
+                                <li>
+                                    <select class="select-font btn font-list-btn" onchange="changeFont()">
+                                        <option>Impact</option>
+                                        <option>Arial</option>
+                                        <option>Cursive</option>
+                                        <option>Fantasy</option>
+                                    </select>
+                                </li>
+                            </ul>
+                        </div> 
+                        <div class="editor-btns-fourth-line">
+                            <ul class="clean-list flex">
+                                <li class="only-txt only-txt-shadow">Text Shadow</li>
+                                <li><button class="btn txt-shadow-btn txt-add-remove-btn" onclick="onTxtShadow(this)">Add</button></li>
+                                <li><button class="btn txt-shadow-btn txt-shadow-white-btn" onclick="onTxtShadowColor('#ffffff')">
+                                    <!-- <img src="img/white-shadow.png"/> -->
+                                </button></li>
+                                <li><button class="btn txt-shadow-btn txt-shadow-black-btn" onclick="onTxtShadowColor('#000000')">
+                                    <!-- <img src="img/black-shadow.png"/> -->
+                                </button></li>
+                            </ul>
+                        </div> 
+                        <!-- <button class="btn add-line-btn">+ Line</button>
+                        <button class="btn remove-line-btn">- Line</button> -->
+                    </div>
+                    <button class="btn download-btn">
+                        <a href="#" onclick="downloadImg(this)" class="download" download="my-img.jpg" >
+                        Download
+                        </a>
+                    </button> 
                 </div>
-                <!-- <h3 class="testTxt">test the text</h3> -->
-                <ul class="edditor-btns container clean-list flex space-around align-center">
-                    <li>
-                        <select class="select-font" onchange="changeFont()">
-                            <option>Impact</option>
-                            <option>Arial</option>
-                            <option>cursive</option>
-                            <option>fantasy</option>
-                        </select>
-                    </li>
-                    <li><button class="btn color-btn">
-                        <fieldset>
-                            <!-- <legend></legend> -->
-                            <!-- TODO: change body inside for - to the txt in meme -->
-                            <div>
-                                <input type="color" id="colorValue" name="color" value="#ffffff" onchange="getColorValue()"/>
-                                <label for="colorValue"></label>
-                            </div>
-                            <!-- <div>
-                                <input type="color" id="textlabel" name="color" value="#e66465"/>
-                                <label for="textlabel"></label>
-                            </div> -->
-                        </fieldset>
-                    </button></li>
-                    <!-- <li><button class="btn size-plus-btn" onclick="onIncreaseSize()">+</button></li>
-                    <li><button class="btn size-minus-btn" onclick="onDecreaseSize()">-</button></li> -->
-                    <li><button class="btn size-plus-btn" onclick="onChangeSize(1)">+</button></li>
-                    <li><button class="btn size-minus-btn" onclick="onChangeSize(-1)">-</button></li>
-                    <li>
-                        <button class="btn txt-shadow-btn">Text Shadow</button>
-                        <button class="btn txt-add-remove-btn" onclick="onTxtShadow(this)">Add</button>
-                        <button class="btn txt-shadow-btn" onclick="onTxtShadowColor('#ffffff')">white</button>
-                        <button class="btn txt-shadow-btn" onclick="onTxtShadowColor('#000000')">black</button>
-                    </li>
-
-
-                    <li><button class="btn txt-align-btn" onclick="onTxtAlign()">Text Align</button></li>
-                    <!-- <button class="btn add-line-btn">+ Line</button>
-                    <button class="btn remove-line-btn">- Line</button> -->
-                </ul>
-                <button class="btn download-btn">
-                    <a href="#" onclick="downloadImg(this)" class="download" download="my-img.jpg" >
-                    Download as jpeg
-                    </a>
-                </button> 
             </div>
-        </div>
-<!-- TODO: change onload to onclick on selected img -->
-        <footer class="footer">design by Liron &amp; Adi</footer>
-    </main>
-    <script src="js/utill-service.js"></script>
-    <script src="js/gallery-service.js"></script>
-    <script src="js/canvas-service.js"></script>
-    <script src="js/main.js"></script>  
-</body>
+            <!-- TODO: change onload to onclick on selected img -->
+        </main>
+        <!-- <h3 class="testTxt">test the text</h3> -->
+        <footer class="footer">Created by Liron &amp; Adi <i class="fa fa-github"></i></footer>
+        <script src="js/utill-service.js"></script>
+        <script src="js/gallery-service.js"></script>
+        <script src="js/canvas-service.js"></script>
+        <script src="js/main.js"></script>  
+    </body>
 </html>

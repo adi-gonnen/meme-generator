@@ -45,6 +45,7 @@ function toggleGallery() {
 
 function backToGallery() {
     toggleGallery();
+    clearCanvas();      //clear also txt on gMeme
     // var img = getCurrImg();
     // initCanvas();
     // renderCanvas(img);
@@ -75,61 +76,6 @@ function onTxtInsert(elLine) {
         renderTxt(txt);
     } 
 }
-
-// ******************text
-//get DOM txt
-function getTxtElement(pos) {
-    //TODO: change the selector to txt on canvas
-    //TODO: RENDER CANVAS AND CLEAR
-    // var elTextLabel = document.querySelector('.textlabel');
-    //NOT FINISH!!!!
-    var elTextLabel = document.querySelector(`.line-input-${pos}`);
-    var elTextLabel = document.querySelector('.line-input-bottom');
-    return elTextLabel;
-}
-
-//***********text */
-// function updateFontSizeOnEl(elTextLabel, updatedFontSize) {
-//     // console.log('updatedFontSize-new !!-', updatedFontSize);
-//     //TODO: change according to txt array
-//     gMeme.txts[0].size = updatedFontSize;
-//     gMeme.txts[1].size = updatedFontSize;
-//     console.log('gMeme.txts[0].size-new !!-', gMeme.txts[0].size);
-//     console.log('gMeme-after updateFontSizeOnEl', gMeme);
-//     // console.log('gMeme.txts[0].size-new !!-', gMeme.txts[0].size);
-//     elTextLabel.style.fontSize = updatedFontSize + 'px';
-// }
-
-//get current font size
-// function getCurrFontSize(elTextLabel) {
-//     console.log('elTextLabel', elTextLabel);
-
-//     // debugger;
-//     var fontSizeTxt = window.getComputedStyle(elTextLabel, null).getPropertyValue('font-size');
-//     var fontSize = parseFloat(fontSizeTxt);
-//     return fontSize;
-// }
-
-// function updateFontSizeValue(elTextLabel, currFontSize, diff) {
-//     var fontSizeTxt = elTextLabel.style.fontSize;
-//     fontSizeTxt = (currFontSize + diff);
-//     var updatedFontSize = parseFloat(fontSizeTxt);
-//     return updatedFontSize;
-// }
-
-//***************text */
-// function onIncreaseSize() {
-//     // console.log('gMeme.txts[0].size onIncreaseSize', gMeme.txts[0].size);
-//     // console.log('gMeme.txts[1].size onIncreaseSize', gMeme.txts[1].size);
-
-//     // debugger;
-//     clearCanvas();
-//     onUpdateFontSize(1);
-// }
-
-// function onDecreaseSize() {
-//     onUpdateFontSize(-1);
-// }
 
 function onChangeSize(diff) {
     clearCanvas();
@@ -185,20 +131,20 @@ function renderTxtLine(txts) {
     var strHtml = ``
     txts.forEach(function (txt, idx) {
         strHtml +=  `<div class="flex line-btns">
-        <button class="btn btn-danger" onclick="deleteLine(${idx})">x</button>
-        <input type="txt" class="inline" id="${txt.order}" placeholder="Enter your text" oninput="onTxtInsert(this)">
-        <div class="flex arrows">
-            <button id="${txt.order}" class="btn left" onclick="moveLine(this, 'left')">🠈</button>
-            <div class="flex up-down">
-                <button id="${txt.order}" class="btn up" onclick="moveLine(this, 'up')">🠉</button>
-                <button id="${txt.order}" class="btn down" onclick="moveLine(this, 'down')">🠋</button>
+            <input type="txt" class="inline" id="${txt.order}" placeholder="Enter your text" oninput="onTxtInsert(this)">
+            <div class="line-btns-container flex space-around align-center">
+                <button class="btn btn-danger" onclick="deleteLine(${idx})"><i class="fa fa-trash"></i></button>
+                <div class="flex arrows">
+                    <button id="${txt.order}" class="btn left" onclick="moveLine(this, 'left')">🠈</button>
+                    <button id="${txt.order}" class="btn up" onclick="moveLine(this, 'up')">🠉</button>
+                    <button id="${txt.order}" class="btn down" onclick="moveLine(this, 'down')">🠋</button>
+                    <button id="${txt.order}" class="btn right" onclick="moveLine(this, 'right')">🠊</button>
+                </div>
             </div>
-            <button id="${txt.order}" class="btn right" onclick="moveLine(this, 'right')">🠊</button>
-        </div>
         </div>`;
         // locateTxt(txt, idx);
     })
-    // console.log(strHtml);
+    console.log(strHtml);
     
     document.querySelector('.line-text').innerHTML = strHtml;
 }
@@ -214,7 +160,7 @@ function renderTxt(txt) {
     
     var txtSize = `${txt.size}px`;
     var txtFont = txt.font;
-    console.log('txtFont: ' ,txtFont);
+    // console.log('txtFont: ' ,txtFont);
     
     if (gCanvas.getContext) {
         gCtx.font = `${txtSize} ${txtFont}`;  

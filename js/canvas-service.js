@@ -61,8 +61,6 @@ function creatLine() {
     }
 }
 
-//TODO: init() function on canvas - when user choose a img
-//@@@name changed
 function gImgIdUpdate() {
     var img = getCurrImg();
     //update the img.id
@@ -72,7 +70,6 @@ function gImgIdUpdate() {
     // console.log('gMeme.selectedImgId', gMeme.selectedImgId);
 }
 
-//@@@name changed
 function renderCanvas() {
     var img = getCurrImg();
     // console.log('img', img);
@@ -86,7 +83,6 @@ function renderCanvas() {
     return { width: imgCanvas.width, height: imgCanvas.height };
 }
 
-//@@@name changed
 function drawCanvas(imgCanvas) {
     var x = 0;//TODO: CHECK THE REAL LOCATION;
     var y = 0;//TODO: CHECK THE REAL LOCATION;
@@ -102,31 +98,8 @@ function drawCanvas(imgCanvas) {
     // gCtx.putImageData(imageData, x, y);
 }
 
-//@@@this function not in use
-function drawImgCanvas(img) {
-    // gCtx = gCanvas.getContext('2d');
-    var x = 0;
-    var y = 0;
-    // var width = 300;
-    // var height = 400;
-    var imageObj = new Image();
-
-    imageObj.onload = function () {
-        gCtx.drawImage(imageObj, x, y);
-    };
-    // var imageUrl = img.url;
-    // ctx.setBackgroundImage(imageUrl);
-    imageObj.src = img.url;
-
-}
-
-//check if need to cancel
-function getImgSize(imgDimsObj) {
-
-}
-
 function renderCanvasSize(imgDimsObj) {
-    gCanvas.width = 510;
+    gCanvas.width = 540;
     gCanvas.height = 405;
     var ratio = imgDimsObj.width / imgDimsObj.height;
     // console.log('ratio', ratio);
