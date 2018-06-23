@@ -365,7 +365,7 @@ a {
 .editor {
     align-self: flex-start;
     background-color: #696767;
-    width: 332px;
+    width: 280px;
     
 }
 
@@ -380,11 +380,11 @@ a {
 }
 
 .add-line-btn {
-    width: 154px;
+    width: 160px;
 }
 
 .btn-danger, .right, .left, .up, .down {
-    width: 50px;
+    width: 52px;
 }
 
 .btn-danger {
@@ -426,8 +426,16 @@ a {
     height: 50px;
 }
 
-.editor-btns-first-line, .editor-btns-second-line, .editor-btns-third-line {
-    width: 100%;
+.editor-btns-first-line {
+    border-top: 2px solid rgb(145, 144, 144);
+}
+
+.editor-btns-first-line, .editor-btns-second-line, .editor-btns-third-line, .editor-btns-fourth-line {
+    width: 101%;
+    border-bottom: 2px solid rgb(145, 144, 144);
+    border-left: 2px solid rgb(145, 144, 144);
+    border-right: 2px solid rgb(145, 144, 144);
+    /* align-self: center; */
 }
 
 .txt-container {
@@ -436,21 +444,17 @@ a {
     width: 100%;
 }
 
-
-
-
-
-
-.color-btn, .txt-align-btn, .size-btn, .font-btn {
-    width: 60px;
+.color-btn, .txt-align-btn, .font-btn, .size-plus-btn, .size-minus-btn, .txt-shadow-btn {
+    width: 65px;
 }
 
-.txt-add-remove-btn {
-    width: 135px;
+
+.only-txt-size-btn {
+    width: 132px;
 }
 
 .font-list-btn {
-    width: 150px;
+    width: 199px;
 }
 
 
@@ -465,7 +469,7 @@ a {
     margin: 10px;
     border-radius: 5px;
     height: 40px;
-    width: 290px;
+    width: 260px;
 }
 
 

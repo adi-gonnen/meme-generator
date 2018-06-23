@@ -65,21 +65,25 @@
                                 <li><button class="btn txt-align-btn" onclick="onTxtAlign('left')">left</button></li>
                                 <li><button class="btn txt-align-btn" onclick="onTxtAlign('right')">right</button></li>
                                 <li><button class="btn txt-align-btn" onclick="onTxtAlign('center')">center</button></li>
-                                <li><button class="btn txt-shadow-btn only-txt-shadow-btn">Text Shadow</button></li>
                             </ul>
                         </div>
                         <div class="editor-btns-second-line">
                             <ul class="clean-list flex">
-                                <li><button class="btn size-btn">Size</button></li>
+                                <li><button class="btn only-txt only-txt-size-btn">Size</button></li>
                                 <li><button class="btn size-btn size-plus-btn" onclick="onChangeSize(1)">+</button></li>
                                 <li><button class="btn size-btn size-minus-btn" onclick="onChangeSize(-1)">-</button></li>
-                                <li><button class="btn txt-add-remove-btn" onclick="onTxtShadow(this)">Add</button></li>
                             </ul>
                         </div>
                         <div class="editor-btns-third-line">
                             <ul class="clean-list flex">
-                                <li><button class="btn font-btn">Font</button></li>
+                                <li><button class="btn only-txt font-btn">Font</button></li>
                                 <li><button class="btn font-list-btn">Font List</button></li>
+                            </ul>
+                        </div> 
+                        <div class="editor-btns-fourth-line">
+                            <ul class="clean-list flex">
+                                <li><button class="btn only-txt txt-shadow-btn only-txt-shadow-btn">Text Shadow</button></li>
+                                <li><button class="btn txt-shadow-btn txt-add-remove-btn" onclick="onTxtShadow(this)">Add</button></li>
                                 <li><button class="btn txt-shadow-btn txt-shadow-white-btn" onclick="onTxtShadowColor('#ffffff')">white</button></li>
                                 <li><button class="btn txt-shadow-btn txt-shadow-black-btn" onclick="onTxtShadowColor('#000000')">black</button></li>
                             </ul>
@@ -89,7 +93,7 @@
                     </div>
                     <button class="btn download-btn">
                         <a href="#" onclick="downloadImg(this)" class="download" download="my-img.jpg" >
-                        Download as jpeg
+                        Download
                         </a>
                     </button> 
                 </div>
