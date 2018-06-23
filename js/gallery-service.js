@@ -41,6 +41,24 @@ function init() {
     renderGallery(gImgs);
 }
 
+function searchImg() {
+    renderGallery();
+}
+
+function getImgsForDisplay() {
+    var imgs = [];
+    imgs = filterImgs(gImgs)
+    return imgs;
+}
+
+function backToGallery() {
+    toggleGallery();
+    // clearCanvas();      
+    gMeme.txts.forEach(function (txt) {
+        txt.line = '';
+        })
+}
+
 function selectImg(elImg) {
     localStorage.clear();
     // console.log('elImg', elImg);
@@ -48,7 +66,6 @@ function selectImg(elImg) {
     var img = findItemById(imgId);
     // console.log('img--', img);
     toggleGallery();
-    // debugger;
     saveCurrImg(img);
     initCanvas(img);
 }

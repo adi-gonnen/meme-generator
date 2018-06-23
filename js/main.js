@@ -1,19 +1,13 @@
 'use strict'
 
 function renderGallery(imgs) {
-    // var imgs = filterImgs(gImgs);
     imgs = getImgsForDisplay();
-
     var strHtml = '';
     imgs.forEach(function (img, idx) {
         strHtml += `<img id="${img.id}" class="item-img" onclick="selectImg(this)" style="background-image: url('../${img.url}')"></img>\n`
     });
     document.querySelector('.gallery').innerHTML = strHtml;
     // console.log(strHtml);
-}
-
-function searchImg() {
-    renderGallery();
 }
 
 function filterImgs(imgs) {
@@ -24,12 +18,6 @@ function filterImgs(imgs) {
             return keyword.substring(0, userSearch.length) === userSearch;
         });
     });
-}
-
-function getImgsForDisplay() {
-    var imgs = [];
-    imgs = filterImgs(gImgs)
-    return imgs;
 }
 
 function toggleGallery() {
@@ -43,97 +31,54 @@ function toggleGallery() {
 
 // CANVAS
 
-function backToGallery() {
-    toggleGallery();
-    clearCanvas();      //clear also txt on gMeme
-    // var img = getCurrImg();
-    // initCanvas();
-    // renderCanvas(img);
-}
-
 function initCanvas(img) {
-    gImgIdUpdate();
+    // gMeme.selectedImgId = img.id;       
     gCanvas = document.querySelector('.canvas');
     gCtx = gCanvas.getContext('2d');
     var imgDimsObj = renderCanvas();
     renderCanvasSize(imgDimsObj);
     var txts = gMeme.txts;
     renderTxtLine(txts)
-    // console.log('txts: ', txts);
-    
-    // var txt = onTxtInsert();
-    // renderTxtCanvas(txt);
 }
 
 function onTxtInsert(elLine) {
     if (elLine.value) {
         var idx = elLine.id;
-        console.log('idx! ', idx);
+        // console.log('idx! ', idx);
         gMeme.txts[idx].line = elLine.value;
         var txt = getTxtById(+idx)
-        // var img = getCurrImg();
         // console.log('txt! ', txt);
-        renderTxt(txt);
+        renderCanvas();
     } 
 }
 
 function onChangeSize(diff) {
-    clearCanvas();
-    gMeme.txts.forEach(function (txt) {
-        txt.size += (diff * 3);
-        // console.log('txt: ', txt);
-        // console.log('txt.size: ', txt.size);
-        // console.log('txt.line: ', txt.line);
-    })
+    // clearCanvas();
+    gMeme.size += (diff * 3);
     renderCanvas();
 }
 
-//get color-
-function getColorValue() {
-    var elInputColor = document.querySelector('#colorValue').value;
-    // console.log('colorValue-??--', colorValue);
-    // console.log('elInputColor-??--', elInputColor);
-    return elInputColor;
-}
-
 //change color
-function changeTxtColor() {
-    // debugger;
-    clearCanvas();
-    // console.log('elTxt--', elTxt);
-    gMeme.txts.forEach(function (txt) {  //update color in gMeme
-        txt.color = getColorValue(); 
-        }); 
-    renderCanvas();   
+function onChangeColor() {
+    var elInputColor = document.querySelector('#colorValue').value;
+    gMeme.color = elInputColor;
+    renderCanvas();  
 }
 
 function changeFont() {
-    clearCanvas();
+    // clearCanvas();
     var elFont = document.querySelector('.select-font').value;
-    gMeme.txts.forEach(function (txt) {  //update font in gMeme
-        txt.font = elFont; 
-        // console.log('elTxt--', txt.font);
-        }); 
+        gMeme.font = elFont; 
     renderCanvas();  
-    // console.log('font: ', elFont);
 }
 
-// function changeFont() {
-//     clearCanvas();
-//     gMeme.txts.forEach(function (txt) {  //update font in gMeme
-//         txt.font = getFont(); 
-//         console.log('elTxt--', txt.font);
-//         }); 
-//     renderCanvas();  
-// }
-
-function renderTxtLine(txts) {
+function renderTxtLine() {
     var strHtml = ``
-    txts.forEach(function (txt, idx) {
+    gMeme.txts.forEach(function (txt, idx) {
         strHtml +=  `<div class="flex line-btns">
-            <input type="txt" class="inline" id="${txt.order}" placeholder="Enter your text" oninput="onTxtInsert(this)">
+            <input type="txt" class="inline" id="${txt.order}" placeholder="Enter your text" oninput="onTxtInsert(this)" onkeyup="handleKey(event)">
             <div class="line-btns-container flex space-around align-center">
-                <button class="btn btn-danger" onclick="deleteLine(${idx})"><i class="fa fa-trash"></i></button>
+                <button class="btn btn-danger" onclick="onDeleteLine(${idx})"><i class="fa fa-trash"></i></button>
                 <div class="flex arrows">
                     <button id="${txt.order}" class="btn left" onclick="moveLine(this, 'left')">🠈</button>
                     <button id="${txt.order}" class="btn up" onclick="moveLine(this, 'up')">🠉</button>
@@ -142,39 +87,13 @@ function renderTxtLine(txts) {
                 </div>
             </div>
         </div>`;
-        // locateTxt(txt, idx);
     })
-    console.log(strHtml);
+    // console.log(strHtml);
     
     document.querySelector('.line-text').innerHTML = strHtml;
 }
 
 //add text to canvas
-function renderTxt(txt) {
-    var x = txt.posX;
-    // console.log('x: ', x);
-    var y = txt.posY + (txt.order * 50);           //every line add 50 px
-    // console.log('y: ', y, id);
-    // var txt = getTxtById(id);
-    // console.log('txt:::', txt, txt.line, txt.order);
-    
-    var txtSize = `${txt.size}px`;
-    var txtFont = txt.font;
-    // console.log('txtFont: ' ,txtFont);
-    
-    if (gCanvas.getContext) {
-        gCtx.font = `${txtSize} ${txtFont}`;  
-        console.log('gCtx.font: ', gCtx.font);
-        var currColor = getColorValue(); 
-        gCtx.fillStyle = currColor;  
-        // txt.color = currColor;     //update color in gMeme
-        // console.log('ctx.font: ', gCtx.font);
-        // console.log('gMeme.txts[0][color]--', gMeme.txts[0].color);
-        gCtx.fillText(txt.line, x, y);
-        // console.log('txt: ', txt);
-        gCtx.save();
-    }
-}
 
 function moveLine(elLine, pos) {
     var id = elLine.id;
@@ -199,8 +118,8 @@ function moveLine(elLine, pos) {
         x -= 20;
         gMeme.txts[id].posX = x;
     } 
-    console.log('posX: ', x, 'posY: ', y);
-    clearInterval();
+    // console.log('posX: ', x, 'posY: ', y);
+    // clearInterval();
     renderCanvas();
 
 }
@@ -210,15 +129,6 @@ function downloadImg(elImg) {
     var currImg = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
     elImg.href = currImg;
 }
-
-function clearCanvas() {
-    gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height);
-    var currImg = getCurrImg();
-    // console.log('currImg--', currImg);
-    initCanvas(currImg);
-    // renderCanvas();
-}
-
 
 function onTxtShadow(elBtn) {
     // console.log('Remove--', elBtn.innerText);
@@ -246,11 +156,27 @@ function onTxtShadowColor(colorValue) {
     }
 }
 
-function deleteLine(id) {
-    var txts = gMeme.txts;
-    txts.splice(id, 1);
-    // console.log(elDeleteLine);
-    renderTxtLine(txts);  
-    clearCanvas();
+function onDeleteLine(id) {
+    gMeme.txts[id].line = '';
+    // clearCanvas();
     renderCanvas();
+    renderTxtLine();
 }
+
+function handleKey(ev) {
+    // console.log('ev:', ev);
+    if (ev.key === 'Backspace') {
+        // clearCanvas();
+        renderCanvas();
+        var elInput = getElementById('0');
+        elInput.value = txts[0].line;
+    }
+}
+
+// function clearCanvas() {
+//     gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height);
+//     // var currImg = getCurrImg();
+//     // console.log('currImg--', currImg);
+//     // initCanvas(currImg);
+//     // renderCanvas();
+// }
