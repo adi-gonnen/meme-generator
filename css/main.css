@@ -50,18 +50,6 @@ a {
     font-size: 1rem;
 }
 
-.only-txt {
-    font-family: arial;
-    text-align: center;
-    line-height: 50px;
-    font-size: 0.8rem;
-}
-
-.only-txt-shadow {
-    line-height: 25px;
-    word-spacing: 3px;
-}
-
 .btn:focus {
     outline: none;
 }
@@ -197,7 +185,7 @@ a {
 }
 
 .nav li a:active {
-    color: rgb(70, 102, 114);
+    color: rgb(73, 73, 73);
     font-size: 1.1rem;
 }
 
@@ -230,6 +218,7 @@ a {
     /* width: 500px; */
     /* height: 100vh; */
     flex-wrap: wrap;
+    justify-content: center;
     /* padding: 20px; */
 }
 
@@ -374,6 +363,7 @@ a {
 
 .canvas {
     border: 1px solid #dad7d7;
+    align-self: flex-start;
 }
 
 .editor {
@@ -411,11 +401,7 @@ a {
 
 .btn-danger:hover, .btn-danger:active {
     color: red;
-}
-
-.line-text {
-    /* flex-direction: column;
-    justify-content: center; */
+    background-color: rgb(73, 73, 73);
 }
 
 .line-btns {
@@ -467,16 +453,15 @@ a {
     width: 100%;
 }
 
-.color-btn, .txt-align-btn, .only-txt-font, .size-plus-btn, .size-minus-btn, .txt-shadow-btn, .only-txt-shadow, .only-txt-font {
+.color-btn, .txt-align-btn, .size-plus-btn, .size-minus-btn, .txt-shadow-btn, .only-txt-shadow, .only-txt-font {
     width: 65px;
 }
 
-.only-txt-size-btn {
+.only-txt-size-btn, .font-list-btn, .only-txt-font {
     width: 132px;
 }
 
 .font-list-btn {
-    width: 199px;
     padding: 15px;
 }
 
@@ -484,10 +469,35 @@ a {
     font-size: 1.4rem;
 }
 
+.txt-align-btn:active {
+    background-color: #49464673;
+    /* with dark color or not*/
+    color: #393838;
+}
+
+.txt-shadow-black-btn:active {
+    box-shadow: inset 0px 0px 0px 13px #d5d2d273;
+}
+
+.txt-shadow-white-btn:active {
+    box-shadow: inset 0px 0px 0px 13px #242323ba;
+}
+
+
+
 .only-txt {
     color: rgb(145, 144, 144);
     font-size: 0.85rem;
     cursor: initial;
+    font-family: arial;
+    text-align: center;
+    line-height: 50px;
+    font-size: 0.8rem;
+}
+
+.only-txt-shadow {
+    line-height: 25px;
+    word-spacing: 3px;
 }
 
 .txt-shadow-white-btn {
