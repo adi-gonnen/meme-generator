@@ -176,7 +176,7 @@ function renderTxtLine(txts) {
         strHtml +=  `<div class="flex line-btns">
         <input type="txt" class="inline" id="${txt.order}" placeholder="Enter your text" oninput="onTxtInsert(this)">
         <div class="line-btns-container flex space-around align-center">
-            <button class="btn btn-danger" onclick="deleteLine(event, ${idx})">x</button>
+            <button class="btn btn-danger" onclick="deleteLine(event, ${idx})"><i class="fa fa-trash"></i></button>
             <div class="flex arrows">
                 <button class="btn left">🠈</button>
                 <button class="btn up">🠉</button>

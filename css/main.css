@@ -35,15 +35,31 @@ a {
 .btn, .color-btn input, .color-btn label {
     cursor: pointer;
 }
- 
-.btn {
+
+.btn, li.only-txt {
     background-color: #363636;
     /* padding: 10px; */
     margin: 1px;
     /* border-radius: 6px; */
     border: 0;
     font-weight: bold;
+    transition: all 0.3s;
+}
+
+.btn {
     font-size: 1rem;
+}
+
+.only-txt {
+    font-family: arial;
+    text-align: center;
+    line-height: 50px;
+    font-size: 0.8rem;
+}
+
+.only-txt-shadow {
+    line-height: 25px;
+    word-spacing: 3px;
 }
 
 .btn:focus {
@@ -147,33 +163,37 @@ a {
     left: 70% */
 }
 
-.nav li {
-    line-height: 1.1rem;
+.nav li a{
+    width: 100px;
     font-size: 1.1rem;
     text-transform: uppercase;
-    
-    /* transition: all 1s; */
-    /* width: 110px;
-    line-height: 110px;
-    height: 110px; */
-    /* border: 1px solid black; */
+    /* border-right: 1px solid #1e1e1e;
+    border-left: 1px solid #1e1e1e; */
+    justify-content: center;
+    text-align: center;
+    display: block;
+    line-height: 100px;
 }
 
 .nav li:first-child {
-    padding: 0 20px 0 0;
+    padding: 0 10px 0 0;
 }
 
 /*TODO: why it is not working - i want to center nav with header"*/
+
 .header-container .nav li a {
     /* color: #ffffff; */
     justify-content: center;
     /* display: block; */
     /* line-height: 20px; */
-
 }
 
-.nav li a:hover {
+.nav li a:hover, .btn:hover, .return-btn:hover, .download-btn a:hover {
     color: rgb(176, 227, 247);
+}
+
+.btn:hover, .return-btn:hover, .download-btn a:hover {
+    background-color: rgb(73, 73, 73);
 }
 
 .nav li a:active {
@@ -212,13 +232,16 @@ a {
     flex-wrap: wrap;
     /* padding: 20px; */
 }
+
 /* .grid-conteiner {
     display: grid;
     /* grid-gap: 10px; */
-    /*grid-template-columns: repeat(5, 1fr);
+
+/*grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(8, 1fr);
     /* background-color: brown; */
-    /*padding: 20px;
+
+/*padding: 20px;
 } */
 
 .item-img {
@@ -241,7 +264,6 @@ a {
 .filter h3 {
     font-family: 'Courgette', cursive;
     margin-top: 0;
-
     padding-right: 20px;
     /* padding */
 }
@@ -265,32 +287,28 @@ a {
     font-family: 'Courier New', Courier, monospace;
 }
 
+
+
 @media screen and (min-width: 737px) {
     .header-container {
         flex-direction: row-reverse;
         justify-content: space-between;
     }
-
     .header {
         height: 100px;
     }
-
     .header-container h1 {
         font-size: 3rem;
     }
-
     .main-container {
         width: 90%;
     }
-
     .nav, .header h1 {
         padding: 0;
     }
-
     .nav {
         align-self: center;
     }
-
     .search-words {
         width: 300px;
     }
@@ -300,17 +318,14 @@ a {
     .header-container {
         max-width: 680px;
     }
-
-    .nav li {
+    .nav li a {
         line-height: 1.1rem;
         font-size: 1.1rem;
         text-transform: uppercase;
     }
-
     .filter {
         flex-direction: row;
     }
-
     .filter h3 {
         margin-top: 20px;
     }
@@ -332,8 +347,7 @@ a {
     .header-container {
         max-width: 820px;
     }
-
-    .nav li {
+    .nav li a {
         line-height: 1.2rem;
         font-size: 1.2rem;
         text-transform: uppercase;
@@ -366,12 +380,20 @@ a {
     align-self: flex-start;
     background-color: #696767;
     width: 280px;
-    
 }
 
-.return-btn, .download-btn{
+.return-btn, .download-btn, .download-btn a {
     width: 100%;
     height: 50px;
+    line-height: 50px;
+    color: rgb(59, 233, 82);
+    padding: 0;
+}
+
+.download-btn a {
+    display: block;
+    padding: 0;
+    width: 100%;
 }
 
 .add-line-btn, .btn-danger, .right, .left, .up, .down {
@@ -387,14 +409,13 @@ a {
     width: 52px;
 }
 
-.btn-danger {
+.btn-danger:hover, .btn-danger:active {
     color: red;
 }
 
 .line-text {
     /* flex-direction: column;
     justify-content: center; */
- 
 }
 
 .line-btns {
@@ -406,23 +427,21 @@ a {
 .arrows {
     align-items: center;
     /* height: 20px; */
-    
 }
 
-.right, .left, .up, .down  {
+.right, .left, .up, .down {
     /* height: 15px;
     width: 15px; */
-    margin: 1px;;
+    margin: 1px;
 }
 
 .editor-btns {
     width: 100%;
     flex-wrap: wrap;
     margin: 10px 0;
-
 }
 
-.editor-btns .btn{
+.editor-btns .btn, .only-txt {
     height: 50px;
 }
 
@@ -438,16 +457,19 @@ a {
     /* align-self: center; */
 }
 
+.editor-btns-fourth-line .btn {
+    padding-bottom: 4px;
+}
+
 .txt-container {
     flex-direction: column;
     /* padding: 20px; */
     width: 100%;
 }
 
-.color-btn, .txt-align-btn, .font-btn, .size-plus-btn, .size-minus-btn, .txt-shadow-btn {
+.color-btn, .txt-align-btn, .only-txt-font, .size-plus-btn, .size-minus-btn, .txt-shadow-btn, .only-txt-shadow, .only-txt-font {
     width: 65px;
 }
-
 
 .only-txt-size-btn {
     width: 132px;
@@ -455,8 +477,36 @@ a {
 
 .font-list-btn {
     width: 199px;
+    padding: 15px;
 }
 
+.size-plus-btn, .size-minus-btn, .btn-danger, .txt-align-btn, .right, .left, .up, .down {
+    font-size: 1.4rem;
+}
+
+.only-txt {
+    color: rgb(145, 144, 144);
+    font-size: 0.85rem;
+    cursor: initial;
+}
+
+.txt-shadow-white-btn {
+    background-color: white;
+    box-shadow: inset 0px 0px 0px 14px #363636;
+}
+
+.txt-shadow-black-btn {
+    /* border: 10px solid #363636; */
+    background-color: black;
+    box-shadow: inset 0px 0px 0px 13px #363636;
+}
+
+/* .txt-shadow-btn span {
+    border: 10px solid rgb(20, 158, 158);
+    font-size: 0.5rem;
+    line-height: 10px;
+    background-color: red;
+} */
 
 /******/
 
@@ -472,8 +522,6 @@ a {
     width: 260px;
 }
 
-
-
 /* .download-btn {
     color: white;
 } */
@@ -488,10 +536,12 @@ a {
     color: white;
 }
 
-
-
 /* should be last!*/
 
 .hide {
     display: none;
+}
+
+.gallery-link {
+    color: rgb(176, 227, 247);
 }

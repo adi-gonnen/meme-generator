@@ -5,7 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Meme Generator</title>
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+        <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous"> -->
         <link rel="shortcut icon" href="img/fabicon_trans.png" type="image/png">
         <link rel="stylesheet" href="css/main.css"/>
     </head>
@@ -14,7 +15,7 @@
             <div class="header-container flex align-center space-around column">
                 <ul class="nav clean-list flex align-center">
                     <li class="about-link"><a href="#">About</a></li>
-                    <li class="gallery-link"><a href="#">Gallery</a></li>
+                    <li class="gallery-link"><a class="gallery-link" href="#">Gallery</a></li>
                 </ul>
                 <h1>Meme Generator</h1>
             </div>
@@ -23,7 +24,7 @@
             <div class="filter flex align-center column">
                 <h3>Choose your photo:</h3>
                 <div class="search">
-                    <i class="fas fa-search"></i>
+                    <i class="fa fa-search"></i>
                     <input id="search" type="txt" class="search-words" oninput="searchImg()" placeholder="Type an image category...">
                 </div>
             </div>
@@ -62,30 +63,42 @@
                                         <label for="textlabel"></label>
                                     </div> -->
                                 </button></li>
-                                <li><button class="btn txt-align-btn" onclick="onTxtAlign('left')">left</button></li>
-                                <li><button class="btn txt-align-btn" onclick="onTxtAlign('right')">right</button></li>
-                                <li><button class="btn txt-align-btn" onclick="onTxtAlign('center')">center</button></li>
+                                <li><button class="btn txt-align-btn" onclick="onTxtAlign('left')"><i class="fa fa-align-left"></i></button></li>
+                                <li><button class="btn txt-align-btn" onclick="onTxtAlign('right')"><i class="fa fa-align-right"></i></button></li>
+                                <li><button class="btn txt-align-btn" onclick="onTxtAlign('center')"><i class="fa fa-align-center"></i></button></li>
                             </ul>
                         </div>
                         <div class="editor-btns-second-line">
                             <ul class="clean-list flex">
-                                <li><button class="btn only-txt only-txt-size-btn">Size</button></li>
-                                <li><button class="btn size-btn size-plus-btn" onclick="onChangeSize(1)">+</button></li>
-                                <li><button class="btn size-btn size-minus-btn" onclick="onChangeSize(-1)">-</button></li>
+                                <!-- <li class="only-txt"><button class="btn only-txt only-txt-size-btn">Size</button></li> -->
+                                <li class="only-txt only-txt-size-btn">Size</button></li>
+                                <li><button class="btn size-btn size-plus-btn" onclick="onChangeSize(1)"><i class="fa fa-plus-square"></i></button></li>
+                                <li><button class="btn size-btn size-minus-btn" onclick="onChangeSize(-1)"><i class="fa fa-minus"></i></button></li>
                             </ul>
                         </div>
                         <div class="editor-btns-third-line">
                             <ul class="clean-list flex">
-                                <li><button class="btn only-txt font-btn">Font</button></li>
-                                <li><button class="btn font-list-btn">Font List</button></li>
+                                <li class="only-txt only-txt-font">Font</li>
+                                <li>
+                                    <select class="select-font btn font-list-btn" onchange="getFont()">
+                                        <option>Impact</option>
+                                        <option>Arial</option>
+                                        <option>Cursive</option>
+                                        <option>Fantasy</option>
+                                    </select>
+                                </li>
                             </ul>
                         </div> 
                         <div class="editor-btns-fourth-line">
                             <ul class="clean-list flex">
-                                <li><button class="btn only-txt txt-shadow-btn only-txt-shadow-btn">Text Shadow</button></li>
+                                <li class="only-txt only-txt-shadow">Text Shadow</li>
                                 <li><button class="btn txt-shadow-btn txt-add-remove-btn" onclick="onTxtShadow(this)">Add</button></li>
-                                <li><button class="btn txt-shadow-btn txt-shadow-white-btn" onclick="onTxtShadowColor('#ffffff')">white</button></li>
-                                <li><button class="btn txt-shadow-btn txt-shadow-black-btn" onclick="onTxtShadowColor('#000000')">black</button></li>
+                                <li><button class="btn txt-shadow-btn txt-shadow-white-btn" onclick="onTxtShadowColor('#ffffff')">
+                                    <!-- <img src="img/white-shadow.png"/> -->
+                                </button></li>
+                                <li><button class="btn txt-shadow-btn txt-shadow-black-btn" onclick="onTxtShadowColor('#000000')">
+                                    <!-- <img src="img/black-shadow.png"/> -->
+                                </button></li>
                             </ul>
                         </div> 
                         <!-- <button class="btn add-line-btn">+ Line</button>
@@ -101,7 +114,7 @@
             <!-- TODO: change onload to onclick on selected img -->
         </main>
         <!-- <h3 class="testTxt">test the text</h3> -->
-        <footer class="footer">Created by Liron &amp; Adi <i class="fab fa-github"></i></footer>
+        <footer class="footer">Created by Liron &amp; Adi <i class="fa fa-github"></i></footer>
         <script src="js/utill-service.js"></script>
         <script src="js/gallery-service.js"></script>
         <script src="js/canvas-service.js"></script>
