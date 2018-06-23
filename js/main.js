@@ -174,16 +174,16 @@ function renderTxtLine(txts) {
     var strHtml = ``
     txts.forEach(function (txt, idx) {
         strHtml +=  `<div class="flex line-btns">
-        <button class="btn btn-danger" onclick="deleteLine(event, ${idx})">x</button>
-       <input type="txt" class="inline" id="${txt.order}" placeholder="Enter your text" oninput="onTxtInsert(this)">
-        <div class="flex arrows">
-            <button class="btn left">🠈</button>
-            <div class="flex up-down">
+        <input type="txt" class="inline" id="${txt.order}" placeholder="Enter your text" oninput="onTxtInsert(this)">
+        <div class="line-btns-container flex space-around align-center">
+            <button class="btn btn-danger" onclick="deleteLine(event, ${idx})">x</button>
+            <div class="flex arrows">
+                <button class="btn left">🠈</button>
                 <button class="btn up">🠉</button>
                 <button class="btn down">🠋</button>
+                <button class="btn right">🠊</button>
             </div>
-            <button class="btn right">🠊</button>
-        </div>
+            </div>
         </div>`;
         // locateTxt(txt, idx);
     })

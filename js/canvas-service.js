@@ -108,8 +108,8 @@ function getImgSize(imgDimsObj) {
 }
 
 function renderCanvasSize(imgDimsObj) {
-    gCanvas.width = 600;
-    gCanvas.height = 450;
+    gCanvas.width = 540;
+    gCanvas.height = 405;
     var ratio = imgDimsObj.width / imgDimsObj.height;
     // console.log('ratio', ratio);
     if (imgDimsObj.width > imgDimsObj.height) {
