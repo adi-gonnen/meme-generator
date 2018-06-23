@@ -45,36 +45,55 @@ function toggleGallery() {
 
 function backToGallery() {
     toggleGallery();
+    // var img = getCurrImg();
+    // initCanvas();
+    // renderCanvas(img);
 }
 
 function initCanvas(img) {
-    gMemeIdUpdate();
+    gImgIdUpdate();
     gCanvas = document.querySelector('.canvas');
     gCtx = gCanvas.getContext('2d');
-    var imgDimsObj = drawImgOnCanvas(img);
+    var imgDimsObj = renderCanvas(img);
     renderCanvasSize(imgDimsObj);
     var txts = gMeme.txts;
     renderTxtLine(txts)
-    console.log('txts: ', txts);
+    // console.log('txts: ', txts);
     
     // var txt = onTxtInsert();
     // renderTxtCanvas(txt);
 }
 
-function renderMeme() {
-    var img = getCurrImg();
-    // console.log('currImg--', currImg);
-    gMeme.txts.forEach(function (txt) {
-        locateTxt(txt);
-    })
-    initCanvas(img);
-}
+// function initCanvas() {
+//     gCanvas = document.querySelector('.canvas');
+//     gCtx = gCanvas.getContext('2d');
+// }
+// function renderCanvas(img) {
+//     gMemeIdUpdate();
+//     var imgDimsObj = drawImgOnCanvas(img);
+//     renderCanvasSize(imgDimsObj);
+//     var txts = gMeme.txts;
+//     renderTxtLine(txts)
+//  }
+
+// function renderMeme() {
+//     var img = getCurrImg();
+//     // console.log('currImg--', currImg);
+//     gMeme.txts.forEach(function (txt) {
+//         locateTxt(txt);
+//     })
+//     // initCanvas(img);
+// }
 
 function onTxtInsert(elLine) {
     if (elLine.value) {
         var idx = elLine.id;
+        // console.log('idx! ', idx);
         gMeme.txts[idx].line = elLine.value;
-        locateTxt(elLine.value, idx);
+        var txt = getTxtById(+idx)
+        var img = getCurrImg();
+        // console.log('txt! ', txt);
+        renderTxt(txt);
     } 
 }
 
@@ -135,41 +154,45 @@ function getTxtElement(pos) {
 
 function onChangeSize(diff) {
     clearCanvas();
+    var img = getCurrImg();
     gMeme.txts.forEach(function (txt) {
-        txt.size += (diff * 2);
-        console.log('txt.size: ', txt.size);
-        console.log('txt.line: ', txt.line);
-        locateTxt(txt.line, txt.order)
+        txt.size += (diff * 3);
+        // console.log('txt: ', txt);
+        // console.log('txt.size: ', txt.size);
+        // console.log('txt.line: ', txt.line);
     })
-    renderMeme();
+    renderCanvas(img);
 }
-//***************text */
-// function onUpdateFontSize(diff) {
-//     var elTextLabel = getTxtElement();
-//     // var currFontSize = getCurrFontSize(elTextLabel);
-//     var currFontSize = gMeme.txts[0].size;
-//     var updatedFontSize = updateFontSizeValue(elTextLabel, currFontSize, diff);
-//     // console.log('currFontSize-??--', updatedFontSize);
-//     updateFontSizeOnEl(elTextLabel, updatedFontSize);
-// }
 
 //get color-
 function getColorValue() {
     var elInputColor = document.querySelector('#colorValue').value;
     // console.log('colorValue-??--', colorValue);
-    console.log('elInputColor-??--', elInputColor);
+    // console.log('elInputColor-??--', elInputColor);
     return elInputColor;
 }
 
 //change color
-function changeTxtColor(colorValue) {
+function changeTxtColor() {
+    // debugger;
+    clearCanvas();
+    var img = getCurrImg();
     //TODO: change element - to txt element on canvas
     // var elTxt = document.querySelector('.txt-container .textlabel');
     // console.log('elTxt--', elTxt);
     // elTxt.style.color = colorValue;
+    // var currColor = getColorValue(); 
+    // gCtx.fillStyle = currColor;  
+    gMeme.txts.forEach(function (txt) {  //update color in gMeme
+        txt.color = getColorValue(); 
+        }); 
+    renderCanvas(img);   
 }
-
-
+function getFont() {
+    var elFont = document.querySelector('.select-font').value;
+    console.log('font: ', elFont);
+    return elFont;
+}
 function renderTxtLine(txts) {
     var strHtml = ``
     txts.forEach(function (txt, idx) {
@@ -177,12 +200,12 @@ function renderTxtLine(txts) {
         <button class="btn btn-danger" onclick="deleteLine(event, ${idx})">x</button>
        <input type="txt" class="inline" id="${txt.order}" placeholder="Enter your text" oninput="onTxtInsert(this)">
         <div class="flex arrows">
-            <button class="btn left">🠈</button>
+            <button class="btn left" onclick="moveLine('left')">🠈</button>
             <div class="flex up-down">
-                <button class="btn up">🠉</button>
-                <button class="btn down">🠋</button>
+                <button class="btn up" moveLine('up')>🠉</button>
+                <button class="btn down" moveLine('down')>🠋</button>
             </div>
-            <button class="btn right">🠊</button>
+            <button class="btn right" moveLine('right')>🠊</button>
         </div>
         </div>`;
         // locateTxt(txt, idx);
@@ -192,23 +215,34 @@ function renderTxtLine(txts) {
     document.querySelector('.line-text').innerHTML = strHtml;
 }
 
-function locateTxt(txt, id) {
-    // var img = getCurrImg();
-    var x = 140;
+//add text to canvas
+function renderTxt(txt) {
+    var x = txt.posX;
     // console.log('x: ', x);
-    var y = 60 + id * 50;           //every line add 20 px
-    // console.log('y: ', y);
+    var y = txt.posY + (txt.order * 50);           //every line add 50 px
+    // console.log('y: ', y, id);
+    // var txt = getTxtById(id);
+    // console.log('txt:::', txt, txt.line, txt.order);
+    
+    var txtSize = `${txt.size}px`;
+    // console.log('txtSize: ' ,txtSize);
+    
     if (gCanvas.getContext) {
-        gCtx.font = "40px Impact";
-        gCtx.fillStyle = getColorValue();
-        // console.log('ctx.fillStyle--', gCtx.fillStyle);
+        gCtx.font = `${txtSize} Impact`;  
+        // console.log('gCtx.font: ', gCtx.font);
+        var currColor = getColorValue(); 
+        gCtx.fillStyle = currColor;  
+        // txt.color = currColor;     //update color in gMeme
+        // console.log('ctx.font: ', gCtx.font);
         // console.log('gMeme.txts[0][color]--', gMeme.txts[0].color);
-        // gMeme.txts[id].color = gCtx.fillStyle;
-        gCtx.fillText(txt, x, y);
-        console.log('txt: ', txt);
-        
+        gCtx.fillText(txt.line, x, y);
+        // console.log('txt: ', txt);
         gCtx.save();
     }
+}
+
+function moveLine(pos) {
+
 }
 
 //download
@@ -220,20 +254,21 @@ function downloadImg(elImg) {
 function clearCanvas() {
     gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height);
     var currImg = getCurrImg();
-    console.log('currImg--', currImg);
+    // console.log('currImg--', currImg);
     initCanvas(currImg);
+    // renderCanvas();
 }
 
 
 function onTxtShadow(elBtn) {
-    console.log('Remove--', elBtn.innerText);
+    // console.log('Remove--', elBtn.innerText);
     if (elBtn.innerText === 'Remove') txtShadow('none');
 }
 
 function onTxtShadowColor(colorValue) {
     //TODO: FOR TXT IN MEME
     var elTextLabel = document.querySelector('.testTxt');
-    console.log('elTextLabel--', elTextLabel);
+    // console.log('elTextLabel--', elTextLabel);
     var elBtnTxt = document.querySelector('.txt-add-remove-btn');
     // if (elBtnTxt.innerText === 'Add') isTxtShadow('true');
 

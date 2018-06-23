@@ -40,10 +40,10 @@ function init() {
 
 function selectImg(elImg) {
     localStorage.clear();
-    console.log('elImg', elImg);
+    // console.log('elImg', elImg);
     var imgId = elImg.id;
     var img = findItemById(imgId);
-    console.log('img--', img);
+    // console.log('img--', img);
     toggleGallery();
     // debugger;
     saveCurrImg(img);
@@ -55,8 +55,8 @@ function findItemById(imgId) {
     for (var i = 0; i < gImgs.length; i++) {
         var img = gImgs[i];
         if (img.id === imgId) {
-            console.log('img.id', img.id);
-            console.log('id', imgId);
+            // console.log('img.id', img.id);
+            // console.log('id', imgId);
             return img;
         }
     }
@@ -66,7 +66,7 @@ function findItemById(imgId) {
 function saveCurrImg(img) {
     saveToStorage(IMG_KEY, img);
 }
-getCurrImg();
+// getCurrImg();
 function getCurrImg() {
     var currImg = loadFromStorage(IMG_KEY);
     // console.log('currImg: ',currImg);

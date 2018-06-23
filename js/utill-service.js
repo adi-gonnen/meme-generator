@@ -1,5 +1,4 @@
 'use strict'
-console.log('utills');
 
 
 function saveToStorage(key, value) {

@@ -11,14 +11,14 @@ var gMeme = {
         {
             line: '',
             order: gCount++,
-            size: 16,
+            size: 25,
             align: 'left',
             color: '#ffffff',
             textShadow: false,
             textShadowWhite: false,
             textShadowBlack: false,
-            // positionX: 0,
-            // positionY: 0,
+            posX: 80,
+            posY: 60
         }]
 };
 
@@ -30,6 +30,7 @@ var gCtx;
 // var gImgsTest = [{ id: 1, url: 'img/2.jpg', keywords: ['happy'] }];
 
 function addLine() {
+    if (gMeme.txts.length === 3) return;
     var newLine = creatLine();
     var txts = gMeme.txts;
     txts.push(newLine);
@@ -37,18 +38,23 @@ function addLine() {
 }
 
 function creatLine() {
+    var size = gMeme.txts[0].size;
+    var color = gMeme.txts[0].color;
     return {
         line: '',
         order: gCount++,
-        size: 16,
+        size: size,
         align: 'left',
-        color: 'white',
-        textShadow: false
+        color: color,
+        textShadow: false,
+        posX: 80,
+        posY: 60
     }
 }
 
 //TODO: init() function on canvas - when user choose a img
-function gMemeIdUpdate() {
+//@@@name changed
+function gImgIdUpdate() {
     var img = getCurrImg();
     //update the img.id
     // console.log('img.idAAA', img.id);
@@ -57,27 +63,28 @@ function gMemeIdUpdate() {
     // console.log('gMeme.selectedImgId', gMeme.selectedImgId);
 }
 
-function drawImgOnCanvas(img) {
+//@@@name changed
+function renderCanvas(img) {
     // console.log('img', img);
     var imgCanvas = new Image();
     // console.log('imgCanvas', imgCanvas);
     imgCanvas.src = img.url;
     imgCanvas.onload = function () {
-        drawImage(this);
+        drawCanvas(this);
     };
     //TODO: seprate return to diffrent func
     return { width: imgCanvas.width, height: imgCanvas.height };
 }
 
-function drawImage(imgCanvas) {
+//@@@name changed
+function drawCanvas(imgCanvas) {
     var x = 0;//TODO: CHECK THE REAL LOCATION;
     var y = 0;//TODO: CHECK THE REAL LOCATION;
     // console.log('width: ', imgCanvas.width);
-    // if (imgCanvas.width < 400) x = 150;
-
     gCtx.drawImage(imgCanvas, x, y, gCanvas.width, gCanvas.height);
-    // gCtx.drawImage(imgCanvas, x, y, imgCanvas.width, imgCanvas.height);
-
+    gMeme.txts.forEach(function (txt) {
+        renderTxt(txt);
+        })
     //MAYBE: not nessesry!
     // var imageData = gCtx.getImageData(x, y, imgCanvas.width, imgCanvas.height);
     // var data = imageData.data;
@@ -85,7 +92,8 @@ function drawImage(imgCanvas) {
     // gCtx.putImageData(imageData, x, y);
 }
 
-function drawCanvas(img) {
+//@@@this function not in use
+function drawImgCanvas(img) {
     // gCtx = gCanvas.getContext('2d');
     var x = 0;
     var y = 0;
@@ -108,8 +116,8 @@ function getImgSize(imgDimsObj) {
 }
 
 function renderCanvasSize(imgDimsObj) {
-    gCanvas.width = 600;
-    gCanvas.height = 450;
+    gCanvas.width = 510;
+    gCanvas.height = 405;
     var ratio = imgDimsObj.width / imgDimsObj.height;
     // console.log('ratio', ratio);
     if (imgDimsObj.width > imgDimsObj.height) {
@@ -168,7 +176,7 @@ function renderCanvasSize(imgDimsObj) {
 
 
 function txtShadow(color) {
-    console.log('color', color);
+    // console.log('color', color);
     //TODO: for txts array
     if (color === 'white') {
         gMeme.txts[0].textShadow = true;
@@ -183,5 +191,16 @@ function txtShadow(color) {
         gMeme.txts[0].textShadowWhite = false;
         gMeme.txts[0].textShadowBlack = false;
         onTxtShadowColor('none');
+    }
+}
+// console.log('try txt: ', getTxtById(0));
+
+function getTxtById(id) {
+    for (var i = 0; i < gMeme.txts.length; i++) {
+        var txt = gMeme.txts[i];
+        console.log('txt@ ', txt, 'id', id);
+        if (txt.order === +id) {
+            return txt;
+        }
     }
 }
