@@ -10,6 +10,7 @@ var gMeme = {
     txts: [
         {
             line: '',
+            font: 'Impact',
             order: gCount++,
             size: 25,
             align: 'left',
@@ -38,14 +39,22 @@ function addLine() {
 }
 
 function creatLine() {
-    var size = gMeme.txts[0].size;
-    var color = gMeme.txts[0].color;
+    var currSize;
+    var currColor;
+    var locate = gMeme.txts.indexOf(); //check
+    if (gMeme.txts.length > 0) {
+        currSize = gMeme.txts[0].size;
+        currColor = gMeme.txts[0].color;
+    }  else {
+        currSize = 25;
+    }   currColor = '#ffffff';
     return {
         line: '',
+        font: 'Impact',
         order: gCount++,
-        size: size,
+        size: currSize,
         align: 'left',
-        color: color,
+        color: currColor,
         textShadow: false,
         posX: 80,
         posY: 60
@@ -64,7 +73,8 @@ function gImgIdUpdate() {
 }
 
 //@@@name changed
-function renderCanvas(img) {
+function renderCanvas() {
+    var img = getCurrImg();
     // console.log('img', img);
     var imgCanvas = new Image();
     // console.log('imgCanvas', imgCanvas);

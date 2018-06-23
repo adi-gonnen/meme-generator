@@ -54,7 +54,7 @@ function initCanvas(img) {
     gImgIdUpdate();
     gCanvas = document.querySelector('.canvas');
     gCtx = gCanvas.getContext('2d');
-    var imgDimsObj = renderCanvas(img);
+    var imgDimsObj = renderCanvas();
     renderCanvasSize(imgDimsObj);
     var txts = gMeme.txts;
     renderTxtLine(txts)
@@ -64,34 +64,13 @@ function initCanvas(img) {
     // renderTxtCanvas(txt);
 }
 
-// function initCanvas() {
-//     gCanvas = document.querySelector('.canvas');
-//     gCtx = gCanvas.getContext('2d');
-// }
-// function renderCanvas(img) {
-//     gMemeIdUpdate();
-//     var imgDimsObj = drawImgOnCanvas(img);
-//     renderCanvasSize(imgDimsObj);
-//     var txts = gMeme.txts;
-//     renderTxtLine(txts)
-//  }
-
-// function renderMeme() {
-//     var img = getCurrImg();
-//     // console.log('currImg--', currImg);
-//     gMeme.txts.forEach(function (txt) {
-//         locateTxt(txt);
-//     })
-//     // initCanvas(img);
-// }
-
 function onTxtInsert(elLine) {
     if (elLine.value) {
         var idx = elLine.id;
-        // console.log('idx! ', idx);
+        console.log('idx! ', idx);
         gMeme.txts[idx].line = elLine.value;
         var txt = getTxtById(+idx)
-        var img = getCurrImg();
+        // var img = getCurrImg();
         // console.log('txt! ', txt);
         renderTxt(txt);
     } 
@@ -154,14 +133,13 @@ function getTxtElement(pos) {
 
 function onChangeSize(diff) {
     clearCanvas();
-    var img = getCurrImg();
     gMeme.txts.forEach(function (txt) {
         txt.size += (diff * 3);
         // console.log('txt: ', txt);
         // console.log('txt.size: ', txt.size);
         // console.log('txt.line: ', txt.line);
     })
-    renderCanvas(img);
+    renderCanvas();
 }
 
 //get color-
@@ -176,36 +154,46 @@ function getColorValue() {
 function changeTxtColor() {
     // debugger;
     clearCanvas();
-    var img = getCurrImg();
-    //TODO: change element - to txt element on canvas
-    // var elTxt = document.querySelector('.txt-container .textlabel');
     // console.log('elTxt--', elTxt);
-    // elTxt.style.color = colorValue;
-    // var currColor = getColorValue(); 
-    // gCtx.fillStyle = currColor;  
     gMeme.txts.forEach(function (txt) {  //update color in gMeme
         txt.color = getColorValue(); 
         }); 
-    renderCanvas(img);   
+    renderCanvas();   
 }
-function getFont() {
+
+function changeFont() {
+    clearCanvas();
     var elFont = document.querySelector('.select-font').value;
-    console.log('font: ', elFont);
-    return elFont;
+    gMeme.txts.forEach(function (txt) {  //update font in gMeme
+        txt.font = elFont; 
+        // console.log('elTxt--', txt.font);
+        }); 
+    renderCanvas();  
+    // console.log('font: ', elFont);
 }
+
+// function changeFont() {
+//     clearCanvas();
+//     gMeme.txts.forEach(function (txt) {  //update font in gMeme
+//         txt.font = getFont(); 
+//         console.log('elTxt--', txt.font);
+//         }); 
+//     renderCanvas();  
+// }
+
 function renderTxtLine(txts) {
     var strHtml = ``
     txts.forEach(function (txt, idx) {
         strHtml +=  `<div class="flex line-btns">
-        <button class="btn btn-danger" onclick="deleteLine(event, ${idx})">x</button>
-       <input type="txt" class="inline" id="${txt.order}" placeholder="Enter your text" oninput="onTxtInsert(this)">
+        <button class="btn btn-danger" onclick="deleteLine(${idx})">x</button>
+        <input type="txt" class="inline" id="${txt.order}" placeholder="Enter your text" oninput="onTxtInsert(this)">
         <div class="flex arrows">
-            <button class="btn left" onclick="moveLine('left')">🠈</button>
+            <button id="${txt.order}" class="btn left" onclick="moveLine(this, 'left')">🠈</button>
             <div class="flex up-down">
-                <button class="btn up" moveLine('up')>🠉</button>
-                <button class="btn down" moveLine('down')>🠋</button>
+                <button id="${txt.order}" class="btn up" onclick="moveLine(this, 'up')">🠉</button>
+                <button id="${txt.order}" class="btn down" onclick="moveLine(this, 'down')">🠋</button>
             </div>
-            <button class="btn right" moveLine('right')>🠊</button>
+            <button id="${txt.order}" class="btn right" onclick="moveLine(this, 'right')">🠊</button>
         </div>
         </div>`;
         // locateTxt(txt, idx);
@@ -225,11 +213,12 @@ function renderTxt(txt) {
     // console.log('txt:::', txt, txt.line, txt.order);
     
     var txtSize = `${txt.size}px`;
-    // console.log('txtSize: ' ,txtSize);
+    var txtFont = txt.font;
+    console.log('txtFont: ' ,txtFont);
     
     if (gCanvas.getContext) {
-        gCtx.font = `${txtSize} Impact`;  
-        // console.log('gCtx.font: ', gCtx.font);
+        gCtx.font = `${txtSize} ${txtFont}`;  
+        console.log('gCtx.font: ', gCtx.font);
         var currColor = getColorValue(); 
         gCtx.fillStyle = currColor;  
         // txt.color = currColor;     //update color in gMeme
@@ -241,7 +230,32 @@ function renderTxt(txt) {
     }
 }
 
-function moveLine(pos) {
+function moveLine(elLine, pos) {
+    var id = elLine.id;
+    // console.log('id:: ', id);
+
+    var x = gMeme.txts[id].posX;
+    var y = gMeme.txts[id].posY;
+    // console.log('posX: ', x, 'posY: ', y);
+    if (pos === 'up') {
+        y -= 20; 
+        gMeme.txts[id].posY = y;
+    }
+    if (pos === 'down') {
+        y += 20; 
+        gMeme.txts[id].posY = y;
+    }
+    if (pos === 'right') {
+        x += 20; 
+        gMeme.txts[id].posX = x;
+    }
+    if (pos === 'left') {
+        x -= 20;
+        gMeme.txts[id].posX = x;
+    } 
+    console.log('posX: ', x, 'posY: ', y);
+    clearInterval();
+    renderCanvas();
 
 }
 
@@ -284,4 +298,13 @@ function onTxtShadowColor(colorValue) {
         elTextLabel.style.textShadow = 'none';
         elBtnTxt.innerText = 'Add';
     }
+}
+
+function deleteLine(id) {
+    var txts = gMeme.txts;
+    txts.splice(id, 1);
+    // console.log(elDeleteLine);
+    renderTxtLine(txts);  
+    clearCanvas();
+    renderCanvas();
 }
