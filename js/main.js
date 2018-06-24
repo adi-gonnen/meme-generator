@@ -88,7 +88,7 @@ function renderTxtLine() {
             <div class="line-btns-container flex space-around align-center">
                 <button class="btn btn-danger" onclick="onDeleteLine(${idx})"><i class="fa fa-trash"></i></button>
                 <div class="flex arrows">
-                    <button id="${txt.order}" class="btn left" onclick="moveLine(this, 'left')">🠈</button>
+                    <button id="${txt.order}" class="btn left" onclick="moveLine(this, 'left')"><i class="fa fa-arrow-left"></i></button>
                     <button id="${txt.order}" class="btn up" onclick="moveLine(this, 'up')">🠉</button>
                     <button id="${txt.order}" class="btn down" onclick="moveLine(this, 'down')">🠋</button>
                     <button id="${txt.order}" class="btn right" onclick="moveLine(this, 'right')">🠊</button>
@@ -97,7 +97,7 @@ function renderTxtLine() {
         </div>`;
     })
     // console.log(strHtml);
-    
+    //<button id="${txt.order}" class="btn left" onclick="moveLine(this, 'left')">🠈</button>
     document.querySelector('.line-text').innerHTML = strHtml;
 }
 
