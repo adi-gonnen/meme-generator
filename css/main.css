@@ -322,6 +322,7 @@ a {
 
 .team-member {
     justify-content: space-around;
+    /* max-width: 350px; */
 }
 
 .team-name {
