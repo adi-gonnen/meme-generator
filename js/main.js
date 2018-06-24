@@ -38,7 +38,8 @@ function initCanvas(img) {
     var imgDimsObj = renderCanvas();
     renderCanvasSize(imgDimsObj);
     var txts = gMeme.txts;
-    renderTxtLine(txts)
+    locateLine();
+    renderTxtLine(txts);
 }
 
 function onTxtInsert(elLine) {
@@ -101,7 +102,7 @@ function moveLine(elLine, pos) {
 
     var x = gMeme.txts[id].posX;
     var y = gMeme.txts[id].posY;
-    // console.log('posX: ', x, 'posY: ', y);
+    console.log('before- posX: ', x, 'posY: ', y);
     if (pos === 'up') {
         y -= 20; 
         gMeme.txts[id].posY = y;
@@ -118,7 +119,7 @@ function moveLine(elLine, pos) {
         x -= 20;
         gMeme.txts[id].posX = x;
     } 
-    // console.log('posX: ', x, 'posY: ', y);
+    console.log('after--posX: ', x, 'posY: ', y);
     // clearInterval();
     renderCanvas();
 
