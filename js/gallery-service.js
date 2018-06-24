@@ -1,6 +1,5 @@
 'use strict'
 
-// console.log('test-general');
 
 var gImgs = [
     {id: makeId(), url: './img/2.jpg', keywords: ['happy']},
@@ -39,7 +38,6 @@ var gImgs = [
 var IMG_KEY = 'currImg';
 
 function init() {
-    // toggleHoverGalleryNav();
     renderGallery(gImgs);
 }
 
@@ -55,8 +53,6 @@ function getImgsForDisplay() {
 
 function backToGallery() {
     toggleGallery();
-    // toggleHoverGalleryNav();
-    // clearCanvas();      
     gMeme.txts.forEach(function (txt) {
         txt.line = '';
         })
@@ -69,7 +65,6 @@ function selectImg(elImg) {
     var img = findItemById(imgId);
     // console.log('img--', img);
     toggleGallery();
-    // toggleHoverGalleryNav();
     saveCurrImg(img);
     initCanvas(img);
 }
@@ -86,14 +81,12 @@ function findItemById(imgId) {
     }
 }
 
-//todo: cancel local storage
 function saveCurrImg(img) {
     saveToStorage(IMG_KEY, img);
 }
-// getCurrImg();
+
 function getCurrImg() {
     var currImg = loadFromStorage(IMG_KEY);
     // console.log('currImg: ',currImg);
-    
     return currImg;
 }

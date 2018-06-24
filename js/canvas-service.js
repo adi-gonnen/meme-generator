@@ -49,28 +49,9 @@ function renderTxt(txt, idx) {
     console.log('txt:::', txt, txt.line, txt.order);
 
     var txtSize = `${gMeme.size}px`;
-    // var y = (gMeme.height - 380);
     var fontSize = `${gMeme.size}px`;
     var txtFont = gMeme.font;
     // console.log('txtFont: ' ,txtFont);
-
-    // var txtAlign = gMeme.align;
-
-    // if (colorValue === '#ffffff') {
-
-    //     txt.line.style.textShadow = '3px 1px 2px #ffffff';
-    //     txtShadow('white');
-    //     // renderCanvas();
-    // } else if (colorValue === '#000000') {
-    //     txt.line.style.textShadow = '4px 4px 1px #000000';
-    //     txtShadow('black');
-    //     // renderCanvas();
-    // }
-
-
-    // ['3px', '1px', '2px', '#ffffff'];
-
-
 
     if (gCanvas.getContext) {
         gCtx.font = `${txtSize} ${txtFont}`;
@@ -102,9 +83,9 @@ function renderTxt(txt, idx) {
 
         // console.log('ctx.font: ', gCtx.font);
         // console.log('gMeme.txts[0][color]--', gMeme.txts[0].color);
-        console.log('txt.posX: ', txt.posX);
+        // console.log('txt.posX: ', txt.posX);
         gCtx.fillText(txt.line, x, y);
-        console.log('txt.posX: ', txt.posX);
+        // console.log('txt.posX: ', txt.posX);
         // console.log('txt: ', txt);
         gCtx.save();
     }
@@ -121,71 +102,46 @@ function locateLine() {
 }
 
 function drawCanvas(imgCanvas) {
-    var x = 0;//TODO: CHECK THE REAL LOCATION;
-    var y = 0;//TODO: CHECK THE REAL LOCATION;
+    var x = 0;
+    var y = 0;
     // console.log('width: ', imgCanvas.width);
     gCtx.drawImage(imgCanvas, x, y, gCanvas.width, gCanvas.height);
-    //MAYBE: not nessesry!
-    // var imageData = gCtx.getImageData(x, y, imgCanvas.width, imgCanvas.height);
-    // var data = imageData.data;
-    // overwrite original image
-    // gCtx.putImageData(imageData, x, y);
 }
 
 function renderCanvasSize(imgDimsObj) {
     gCanvas.width = 540;
     gCanvas.height = 405;
     var ratio = imgDimsObj.width / imgDimsObj.height;
-    // console.log('ratio', ratio);
     if (imgDimsObj.width > imgDimsObj.height) {
         if (imgDimsObj.width > gCanvas.width) {
-            // console.log('width');
-            // console.log('imgDimsObj.width', imgDimsObj.width);
             imgDimsObj.height = gCanvas.width * (1 / ratio);
-            // console.log('imgDimsObj.height', imgDimsObj.height);
             gCanvas.height = imgDimsObj.height;
-            // console.log('gCanvas.height', gCanvas.height);
         } else {
             var widthRatio = gCanvas.width / imgDimsObj.width;
             imgDimsObj.width = gCanvas.width;
             imgDimsObj.height *= widthRatio;
-            // console.log('imgDimsObj.height (wide)', imgDimsObj.height);
-            // console.log('imgDimsObj.width (wide)', imgDimsObj.width);
         }
     } else {
         if (imgDimsObj.height > gCanvas.height) {
             gCanvas.height = gCanvas.width;
-            // console.log('imgDimsObj.height', imgDimsObj.height);
             imgDimsObj.width = gCanvas.height * ratio;
-            // console.log('imgDimsObj.width', imgDimsObj.width);
             gCanvas.width = imgDimsObj.width;
-            // console.log('gCanvas.width', gCanvas.width);
-
-            // console.log('gCanvas.height', gCanvas.height);
         } else {
             var heightRatio = gCanvas.height / imgDimsObj.height;
             imgDimsObj.height = gCanvas.height;
             imgDimsObj.width *= heightRatio;
-            // console.log('imgDimsObj.height (long)', imgDimsObj.height);
-            // console.log('imgDimsObj.width(long)', imgDimsObj.width);
         }
     }
-
-    // gCanvas.width = imgDimsObj.width;
-    // gCanvas.height = imgDimsObj.height;
     gCtx.fillStyle = 'rgb(239, 245, 243)';
     gCtx.fillRect(0, 0, imgDimsObj.width, imgDimsObj.height);
-    // gCtx.drawImage(imageObj, x, y, imgDimsObj.width, imgDimsObj.height);
-    // gCtx.fillRect(0, 0, 400, 600);
     gMeme.width = imgDimsObj.width;
     gMeme.height = imgDimsObj.height;
 }
 
 function txtShadow(color) {
-    // debugger;
-    console.log('color');
+    // console.log('color');
     if (color === '#ffffff') {
-        console.log('white');
+        // console.log('white');
         if (gMeme.textShadowWhite === 'none') {
             gMeme.textShadowWhite = ['3', '1', '1', '#ffffff'];
         }
@@ -195,7 +151,7 @@ function txtShadow(color) {
         gMeme.textShadowBlack = 'none';
         renderCanvas();
     } else if (color === '#000000') {
-        console.log('black');
+        // console.log('black');
         if (gMeme.textShadowBlack === 'none') {
             gMeme.textShadowBlack = ['4', '4', '1', '#000000'];
         }
@@ -209,18 +165,18 @@ function txtShadow(color) {
 }
 
 function txtAlign(alignValue) {
-    console.log('onTxtAlign');
+    // console.log('onTxtAlign');
     if (alignValue === 'left') {
         gMeme.align = 'left';
-        console.log('left', alignValue);
+        // console.log('left', alignValue);
     }
     if (alignValue === 'center') {
         gMeme.align = 'center';
-        console.log('center', alignValue);
+        // console.log('center', alignValue);
     }
     if (alignValue === 'right') {
         gMeme.align = 'right';
-        console.log('right', alignValue);
+        // console.log('right', alignValue);
     }
 
     updatePosX();
@@ -228,7 +184,7 @@ function txtAlign(alignValue) {
 
 function updatePosX() {
     gMeme.txts.forEach(function (txt, idx) {
-        console.log('idx!!', idx);
+        // console.log('idx!!', idx);
         if (gMeme.align === 'left') txt.posX = 10;
         if (gMeme.align === 'right') txt.posX = gCanvas.width - 80;
         if (gMeme.align === 'center') txt.posX = gCanvas.width / 2 - 40;
