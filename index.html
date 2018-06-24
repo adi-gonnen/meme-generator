@@ -14,13 +14,14 @@
         <header class="header flex">
             <div class="header-container flex align-center space-around column">
                 <ul class="nav clean-list flex align-center">
-                    <li class="about-link"><a href="#">About</a></li>
-                    <li class="gallery-link"><a class="gallery-link" href="#" onclick="backToGallery()">Gallery</a></li>
+                    <li class="about-link"><a href="#about-us">About</a></li>
+                    <li class="gallery-link"><a class="gallery-link"  onclick="window.scrollTo(0, 0);">Gallery</a></li>
                 </ul>
                 <h1>Meme Generator</h1>
             </div>
         </header>
-        <main class="main-container flex align-center column">
+        <div class="main-page"></div>
+        <main id="gallery" class="main-container flex align-center column">
             <div class="filter flex align-center column">
                 <h3>Choose your photo:</h3>
                 <div class="search">
@@ -85,6 +86,7 @@
                                         <option>Arial</option>
                                         <option>Cursive</option>
                                         <option>Fantasy</option>
+                                        <option>Times New Roman</option>
                                     </select>
                                 </li>
                             </ul>
@@ -110,6 +112,35 @@
                         </a>
                     </button> 
                 </div>
+            </div>
+            <div id="about-us" class="about-us">
+                <section class="section-about"> 
+                    <h2 class="about-header">about us</h2>
+                    <div class="team-member flex">
+                        <div class="team flex liron">
+                            <img class="team-img" src="img/about-us/Liron.jpg" alt="Liron Reshef Steinberger">
+                            <h4 class="team-name">Liron Reshef Steinberger</h4>
+                            <p class="text-muted">front-end developer</p>
+                            <div class="icons flex">
+                                    <i><a id="liron-github" class="fa fa-github git" href="https://github.com/LironReshefSteinberger"></a></i>
+                                    <i><a id="liron-mail" class="fa fa-at git" action="mailto:reshef.liron@gmail.com" method="post" enctype="text/plain"></a></i>
+                                </div>
+                        </div>
+                        <div class="team flex adi">
+                            <img class="team-img" src="img/about-us/adi.jpg" alt="Adi Gonnen">
+                            <h4 class="team-name">Adi Gonnen</h4>
+                            <p class="text-muted">front-end developer</p>
+                            <div class="icons flex">
+                                <i><a id="adi-github" class="fa fa-github git" href="https://github.com/adi-gonnen"></a></i>
+                                <i><a id="adi-mail" class="fa fa-at git">
+                                <form action="mailto:adigonnen@gmail.com" method="post" enctype="text/plain"></form>
+                                </a>
+                            </i>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
             </div>
             <!-- TODO: change onload to onclick on selected img -->
         </main>
