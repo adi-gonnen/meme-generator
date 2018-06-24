@@ -294,17 +294,18 @@ a {
     margin: 5px;
     /*TO CHECK:MAYBE not nessesery*/
     padding: 5px;
+    width: 90%;
 }
 
 .canvas {
     border: 1px solid #dad7d7;
-    align-self: flex-start;
+    align-self: center;
 }
 
 .editor {
-    align-self: flex-start;
     background-color: #696767;
-    width: 552px;
+    flex-wrap: wrap;
+    align-self: center;
 }
 
 .return-btn, .download-btn, .download-btn a {
@@ -343,6 +344,9 @@ a {
     /* margin: 10px 2px; */
     align-items: center;
     flex-direction: column;
+    /*NEW*/
+    width: 100%;
+    align-self: center;
 }
 
 .arrows {
@@ -357,9 +361,11 @@ a {
 }
 
 .editor-btns {
-    width: 100%;
+    /* width: 100%; */
+    /* width: 91%; */
     flex-wrap: wrap;
     margin: 10px 0;
+    flex-direction: column;
 }
 
 .editor-btns .btn, .only-txt {
@@ -371,7 +377,8 @@ a {
 }
 
 .editor-btns-first-line, .editor-btns-second-line, .editor-btns-third-line, .editor-btns-fourth-line {
-    width: 101%;
+    /* width: 50%; */
+    /* width: 101%; */
     border-bottom: 2px solid rgb(145, 144, 144);
     border-left: 2px solid rgb(145, 144, 144);
     border-right: 2px solid rgb(145, 144, 144);
@@ -481,6 +488,11 @@ a {
     color: white;
 }
 
+@media screen and (min-width: 321px) {
+    .canvas, .editor {
+        width: 100%;
+    }
+}
 
 @media screen and (min-width: 737px) {
      /*GALLERY*/
@@ -507,7 +519,9 @@ a {
         width: 300px;
     }
 
-
+    /* .editor-btns {
+        width: 93%;
+    } */
 }
 
 @media screen and (min-width: 737px) {
@@ -527,7 +541,25 @@ a {
     }
 }
 
+@media screen and (min-width: 768px) {
+    .canvas {
+        /* align-self: flex-start; */
+        width: 70%;
+    }
+
+    .editor {
+        /* align-self: flex-start; */
+        background-color: #696767;
+        width: 70%;
+        flex-wrap: wrap;
+    }
+}
+
 @media screen and (min-width: 790px) {
+    .canvas, .editor {
+        align-self: center;
+    }
+
     .header-container {
         max-width: 740px;
     }
@@ -555,10 +587,22 @@ a {
         flex-direction: row;
     }
 
+    .canvas {
+        align-self: center;
+    }
+
     .editor {
         flex-direction: column;
         width: 280px;
     }
+
+    .editor-btns {
+        width: 100%;
+    }
+
+    /* .editor-btns-first-line, .editor-btns-second-line, .editor-btns-third-line, .editor-btns-fourth-line {
+        width: 101%;
+    } */
 }
 
 
@@ -568,6 +612,6 @@ a {
     display: none;
 }
 
-/* .gallery-link {
+.gallery-link .hover {
     color: rgb(176, 227, 247);
-} */
+}
