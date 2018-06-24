@@ -88,10 +88,10 @@ function renderTxtLine() {
             <div class="line-btns-container flex space-around align-center">
                 <button class="btn btn-danger" onclick="onDeleteLine(${idx})"><i class="fa fa-trash"></i></button>
                 <div class="flex arrows">
-                    <button id="${txt.order}" class="btn left" onclick="moveLine(this, 'left')"><i class="fa fa-arrow-left"></i></button>
-                    <button id="${txt.order}" class="btn up" onclick="moveLine(this, 'up')"><i class="fa fa-arrow-up"></i></button>
-                    <button id="${txt.order}" class="btn down" onclick="moveLine(this, 'down')"><i class="fa fa-arrow-down"></i></button>
-                    <button id="${txt.order}" class="btn right" onclick="moveLine(this, 'right')"><i class="fa fa-arrow-right"></i></button>
+                    <button id="${txt.order}" class="btn left" onclick="moveLine(this, 'left')"><i class="fas fa-arrow-left"></i></button>
+                    <button id="${txt.order}" class="btn up" onclick="moveLine(this, 'up')"><i class="fas fa-arrow-up"></i></button>
+                    <button id="${txt.order}" class="btn down" onclick="moveLine(this, 'down')"><i class="fas fa-arrow-down"></i></button>
+                    <button id="${txt.order}" class="btn right" onclick="moveLine(this, 'right')"><i class="fas fa-arrow-right"></i></button>
                 </div>
             </div>
         </div>`;
