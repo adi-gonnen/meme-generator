@@ -53,9 +53,10 @@ function getImgsForDisplay() {
     return imgs;
 }
 
+// .nav li a:active
+
 function backToGallery() {
-    toggleGallery();
-    // toggleHoverGalleryNav();
+    showGallery();
     // clearCanvas();      
     gMeme.txts.forEach(function (txt) {
         txt.line = '';
@@ -68,8 +69,8 @@ function selectImg(elImg) {
     var imgId = elImg.id;
     var img = findItemById(imgId);
     // console.log('img--', img);
-    toggleGallery();
-    // toggleHoverGalleryNav();
+    // toggleGallery();
+    showCanvas();
     saveCurrImg(img);
     initCanvas(img);
 }

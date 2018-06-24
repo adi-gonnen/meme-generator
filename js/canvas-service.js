@@ -312,7 +312,7 @@ function updatePosX() {
 
 function addLine() {
     if (gMeme.txts.length === 3) {
-
+        // addClassBlockBtn();
         return;
     }
     var nextId = 1;
