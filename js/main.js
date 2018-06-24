@@ -9,7 +9,7 @@ function renderGallery(imgs) {
     imgs = getImgsForDisplay();
     var strHtml = '';
     imgs.forEach(function (img, idx) {
-        strHtml += `<img id="${img.id}" class="item-img" onclick="selectImg(this)" style="background-image: url('../${img.url}')"></img>\n`
+        strHtml += `<img id="${img.id}" class="item-img" onclick="selectImg(this)" style="background-image: url('${img.url}')"></img>\n`
     });
     document.querySelector('.gallery').innerHTML = strHtml;
     // console.log(strHtml);
@@ -88,16 +88,15 @@ function renderTxtLine() {
             <div class="line-btns-container flex space-around align-center">
                 <button class="btn btn-danger" onclick="onDeleteLine(${idx})"><i class="fa fa-trash"></i></button>
                 <div class="flex arrows">
-                    <button id="${txt.order}" class="btn left" onclick="moveLine(this, 'left')">🠈</button>
-                    <button id="${txt.order}" class="btn up" onclick="moveLine(this, 'up')">🠉</button>
-                    <button id="${txt.order}" class="btn down" onclick="moveLine(this, 'down')">🠋</button>
-                    <button id="${txt.order}" class="btn right" onclick="moveLine(this, 'right')">🠊</button>
+                    <button id="${txt.order}" class="btn left" onclick="moveLine(this, 'left')"><i class="fas fa-arrow-left"></i></button>
+                    <button id="${txt.order}" class="btn up" onclick="moveLine(this, 'up')"><i class="fas fa-arrow-up"></i></button>
+                    <button id="${txt.order}" class="btn down" onclick="moveLine(this, 'down')"><i class="fas fa-arrow-down"></i></button>
+                    <button id="${txt.order}" class="btn right" onclick="moveLine(this, 'right')"><i class="fas fa-arrow-right"></i></button>
                 </div>
             </div>
         </div>`;
     })
     // console.log(strHtml);
-    
     document.querySelector('.line-text').innerHTML = strHtml;
 }
 
@@ -183,6 +182,7 @@ function downloadImg(elImg) {
 //     //     // renderCanvas();
 //     // }
 // }
+//
 
 function onDeleteLine(id) {
     gMeme.txts[id].line = '';
