@@ -28,15 +28,15 @@
                     <input id="search" type="txt" class="search-words" oninput="searchImg()" placeholder="Type an image category...">
                 </div>
             </div>
-            <div class="gallery-images">
-                <div class="gallery flex align-center space-around"></div>
+            <div class="gallery-images flex">
+                <div class="gallery flex"></div>
             </div>
-            <div class="container container-canvas-page hide flex align-center space-around">
+            <div class="container container-canvas-page hide flex align-center space-around column">
                     
                 <!-- <div class="canvas-return-btn-container flex space-around column"> -->
                     <canvas id="canvas" class="canvas"></canvas>
                 <!-- </div> -->
-                <div class="editor container flex space-around align-center column">
+                <div class="editor container flex space-around align-center">
                     <button class="btn return-btn" onclick="backToGallery()">Back to gallery</button>
                     <div class="txt-container flex space-around align-center ">
                         <div class="line-text flex column"></div>
@@ -47,7 +47,7 @@
                             <label for="lineTxt" class="textlabel">Enter Bottom Text</label>
                             <input name="lineTxt" type="txt" class="line-input-bottom" placeholder="Enter your text" oninput="onTxtInsert()" required>
                         </div> -->
-                        <button class="btn add-line-btn" onclick="addLine()">Add line (max 3)</button>
+                        <button class="btn add-line-btn" onclick="addLine()">Add line (up to 3)</button>
                     </div>
                     
                     <div class="editor-btns container clean-list flex space-around align-center">
@@ -64,15 +64,15 @@
                                     </div> -->
                                 </button></li>
                                 <li><button class="btn txt-align-btn" onclick="onTxtAlign('left')"><i class="fa fa-align-left"></i></button></li>
-                                <li><button class="btn txt-align-btn" onclick="onTxtAlign('right')"><i class="fa fa-align-right"></i></button></li>
                                 <li><button class="btn txt-align-btn" onclick="onTxtAlign('center')"><i class="fa fa-align-center"></i></button></li>
+                                <li><button class="btn txt-align-btn" onclick="onTxtAlign('right')"><i class="fa fa-align-right"></i></button></li>
                             </ul>
                         </div>
                         <div class="editor-btns-second-line">
                             <ul class="clean-list flex">
                                 <!--@@@ <li class="only-txt"><button class="btn only-txt only-txt-size-btn">Size</button></li> -->
                                 <li class="only-txt only-txt-size-btn">Size</button></li>
-                                <li><button class="btn size-btn size-plus-btn" onclick="onChangeSize(1)"><i class="fa fa-plus-square"></i></button></li>
+                                <li><button class="btn size-btn size-plus-btn" onclick="onChangeSize(1)"><i class="fa fa-plus"></i></button></li>
                                 <li><button class="btn size-btn size-minus-btn" onclick="onChangeSize(-1)"><i class="fa fa-minus"></i></button></li>
                             </ul>
                         </div>
