@@ -5,7 +5,7 @@
 var gImgs = [
     {id: makeId(), url: 'img/2.jpg', keywords: ['happy']},
     {id: makeId(), url: 'img/003.jpg', keywords: ['politics', 'famous','tramp']},
-    {id: makeId(), url: 'img/004.jpg', keywords: ['pets','dog']},
+    {id: makeId(), url: 'img/skeleton.jpg', keywords: ['skeleton']},
     {id: makeId(), url: 'img/005.jpg', keywords: ['pets','dog','baby']},
     {id: makeId(), url: 'img/5.jpg', keywords: ['baby', 'angry']},
     {id: makeId(), url: 'img/006.jpg', keywords: ['pets','cat']},
@@ -19,6 +19,7 @@ var gImgs = [
     {id: makeId(), url: 'img/img4.jpg', keywords: ['politics', 'famous','tramp']},
     {id: makeId(), url: 'img/img5.jpg', keywords: ['children']},
     {id: makeId(), url: 'img/img6.jpg', keywords: ['pets','dog']},
+    {id: makeId(), url: 'img/004.jpg', keywords: ['pets','dog']},
     {id: makeId(), url: 'img/img11.jpg', keywords: ['politics', 'obama']},
     {id: makeId(), url: 'img/img12.jpg', keywords: ['sport']},
     {id: makeId(), url: 'img/leo.jpg', keywords: ['famous','happy']},
@@ -38,7 +39,7 @@ var gImgs = [
 var IMG_KEY = 'currImg';
 
 function init() {
-    toggleHoverGalleryNav();
+    // toggleHoverGalleryNav();
     renderGallery(gImgs);
 }
 
@@ -54,7 +55,7 @@ function getImgsForDisplay() {
 
 function backToGallery() {
     toggleGallery();
-    toggleHoverGalleryNav();
+    // toggleHoverGalleryNav();
     // clearCanvas();      
     gMeme.txts.forEach(function (txt) {
         txt.line = '';
@@ -68,7 +69,7 @@ function selectImg(elImg) {
     var img = findItemById(imgId);
     // console.log('img--', img);
     toggleGallery();
-    toggleHoverGalleryNav();
+    // toggleHoverGalleryNav();
     saveCurrImg(img);
     initCanvas(img);
 }

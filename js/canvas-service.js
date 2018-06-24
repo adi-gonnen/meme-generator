@@ -49,6 +49,8 @@ function renderTxt(txt, idx) {
     console.log('txt:::', txt, txt.line, txt.order);
 
     var txtSize = `${gMeme.size}px`;
+    // var y = (gMeme.height - 380);
+    var fontSize = `${gMeme.size}px`;
     var txtFont = gMeme.font;
     // console.log('txtFont: ' ,txtFont);
 
@@ -72,10 +74,11 @@ function renderTxt(txt, idx) {
 
     if (gCanvas.getContext) {
         gCtx.font = `${txtSize} ${txtFont}`;
+        gCtx.font = `${fontSize} ${txtFont}`;  
         // console.log('gCtx.font: ', gCtx.font);
         var currColor = gMeme.color
         gCtx.fillStyle = currColor;
-//????
+
         // gCtx.textAlign = txtAlign;
 
 
@@ -105,6 +108,16 @@ function renderTxt(txt, idx) {
         // console.log('txt: ', txt);
         gCtx.save();
     }
+}
+
+function locateLine() {
+    var y;
+    gMeme.txts.forEach(function (txt, idx) {
+        if (idx === 0) y = 50;
+        else if (idx === 1) y = gCanvas.height / 2;
+        else y = gCanvas.height - 50;
+        txt.posY = y;
+    })
 }
 
 function drawCanvas(imgCanvas) {
@@ -166,7 +179,6 @@ function renderCanvasSize(imgDimsObj) {
     // gCtx.fillRect(0, 0, 400, 600);
     gMeme.width = imgDimsObj.width;
     gMeme.height = imgDimsObj.height;
-
 }
 
 function txtShadow(color) {
@@ -304,20 +316,27 @@ function addLine() {
         return;
     }
     var nextId = 1;
-    if (gMeme.txts.length === 2) nextId = 2;        //line order
-    var newLine = creatLine(nextId);
+    var posY = 230
+    if (gMeme.txts.length === 2) {
+        nextId = 2;                     //line order
+        posY = 380
+    }
+    var newLine = creatLine(nextId, posY);
     var txts = gMeme.txts;
     txts.push(newLine);
+    locateLine();
+    console.log('new line: ', gMeme.txts);
+    
     renderTxtLine(txts);
 }
 
-function creatLine(num) {
-    var locate = gMeme.txts.indexOf(); //check
+function creatLine(num, y) {
+    // var locate = gMeme.txts.indexOf(); //check
     return {
         line: '',
         order: num,
         posX: 80,
-        posY: 60
+        posY: y
     }
 }
 
