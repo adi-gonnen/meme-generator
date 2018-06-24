@@ -182,6 +182,7 @@ function downloadImg(elImg) {
 //     //     // renderCanvas();
 //     // }
 // }
+//
 
 function onDeleteLine(id) {
     gMeme.txts[id].line = '';

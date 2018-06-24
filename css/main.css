@@ -114,15 +114,15 @@ a {
 /* webpage*/
 
 .main-page {
-    margin-top: 100px;
+    /* margin-top: 100px; */
 }
 
 .header {
     height: 110px;
     background-color: #363636;
     justify-content: center;
-    position: fixed;
-    top:0;
+    /* position: fixed; */
+    /* top:0; */
     width: 100%;
     /* margin-bottom: 100px; */
 }
@@ -297,9 +297,14 @@ a {
 
 /* about us */
 
+.team-members {
+    width: 640px;
+    justify-content: center;
+}
+
 .team-img {
-    margin-right: auto;
-    margin-left: auto;
+    /* margin-right: auto; */
+    /* margin-left: auto; */
     width: 225px;
     height: 225px;
     border: 7px solid white;
@@ -309,7 +314,8 @@ a {
 .team {
     flex-direction: column;
     align-items: center;
-    margin: auto 70px;
+   
+    /* margin: auto 70px; */
 }
 
 .about-header {
@@ -317,18 +323,32 @@ a {
     color: #fa9908;
     letter-spacing: 2px;
     font-size: 3rem;
+    margin: 40px 0 30px 0;
     /* margin: 30px; */
 }
 
-.team-member {
-    justify-content: space-around;
-    /* max-width: 350px; */
+.liron {
+    /* line-height: 37px; */
+}
+
+.adi {
+    align-self: center;
+    /* line-height: -10px; */
+}
+
+.adi-name {
+    position: relative;
+    top: 20px;
+
 }
 
 .team-name {
     font-size: 2em;
     text-shadow: none;
-    margin: 20px auto;
+    margin: 55px;
+    width: 200px;
+    height: 20px;
+    text-align: center;
 }
 
 .git {
