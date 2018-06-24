@@ -9,7 +9,7 @@ function renderGallery(imgs) {
     imgs = getImgsForDisplay();
     var strHtml = '';
     imgs.forEach(function (img, idx) {
-        strHtml += `<img id="${img.id}" class="item-img" onclick="selectImg(this)" style="background-image: url('../${img.url}')"></img>\n`
+        strHtml += `<img id="${img.id}" class="item-img" onclick="selectImg(this)" style="background-image: url('${img.url}')"></img>\n`
     });
     document.querySelector('.gallery').innerHTML = strHtml;
     // console.log(strHtml);
