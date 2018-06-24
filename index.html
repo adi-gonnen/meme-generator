@@ -26,7 +26,33 @@
                 <h3>Choose your photo:</h3>
                 <div class="search">
                     <i class="fa fa-search"></i>
-                    <input id="search" type="txt" class="search-words" oninput="searchImg()" placeholder="Type an image category...">
+                    <input list="search-datalist" name="search-datalist" id="search" type="txt" class="search-words" oninput="searchImg()" placeholder="Type an image category...">
+                    <datalist id="search-datalist">
+                      <option value="happy">
+                      <option value="pets">
+                      <option value="politics">
+                      <option value="tramp">
+                      <option value="famous">
+                      <option value="dog">
+                      <option value="baby">
+                      <option value="angry">
+                      <option value="wounder">
+                      <option value="scary">
+                      <option value="funny">
+                      <option value="children">
+                      <option value="politics">
+                      <option value="opera">
+                      <option value="obama">
+                      <option value="patrick">
+                      <option value="putin">
+                      <option value="toy">
+                      <option value="woman">
+                      <option value="animal">
+                      <option value="putin">
+                      <option value="toy">
+                      <option value="woman">
+                    </datalist>
+                    <!-- <input id="search" type="txt" class="search-words" oninput="searchImg()" placeholder="Type an image category..."> -->
                 </div>
             </div>
             <div class="gallery-images flex">
@@ -64,9 +90,9 @@
                                         <label for="textlabel"></label>
                                     </div> -->
                                 </button></li>
-                                <li><button class="btn txt-align-btn" onclick="onTxtAlign('left')"><i class="fa fa-align-left"></i></button></li>
-                                <li><button class="btn txt-align-btn" onclick="onTxtAlign('center')"><i class="fa fa-align-center"></i></button></li>
-                                <li><button class="btn txt-align-btn" onclick="onTxtAlign('right')"><i class="fa fa-align-right"></i></button></li>
+                                <li><button class="btn txt-align-btn" onclick="txtAlign('left')"><i class="fa fa-align-left"></i></button></li>
+                                <li><button class="btn txt-align-btn" onclick="txtAlign('center')"><i class="fa fa-align-center"></i></button></li>
+                                <li><button class="btn txt-align-btn" onclick="txtAlign('right')"><i class="fa fa-align-right"></i></button></li>
                             </ul>
                         </div>
                         <div class="editor-btns-second-line">
@@ -94,11 +120,11 @@
                         <div class="editor-btns-fourth-line">
                             <ul class="clean-list flex">
                                 <li class="only-txt only-txt-shadow">Text Shadow</li>
-                                <li><button class="btn txt-shadow-btn txt-add-remove-btn" onclick="onTxtShadow(this)">Add</button></li>
-                                <li><button class="btn txt-shadow-btn txt-shadow-white-btn" onclick="onTxtShadowColor('#ffffff')">
+                                <!-- <li><button class="btn txt-shadow-btn txt-add-remove-btn" onclick="onTxtShadow(this)">Add</button></li> -->
+                                <li><button class="btn txt-shadow-btn txt-shadow-white-btn" onclick="txtShadow('#ffffff')">
                                     <!-- <img src="img/white-shadow.png"/> -->
                                 </button></li>
-                                <li><button class="btn txt-shadow-btn txt-shadow-black-btn" onclick="onTxtShadowColor('#000000')">
+                                <li><button class="btn txt-shadow-btn txt-shadow-black-btn" onclick="txtShadow('#000000')">
                                     <!-- <img src="img/black-shadow.png"/> -->
                                 </button></li>
                             </ul>
@@ -144,7 +170,7 @@
             </div>
             <!-- TODO: change onload to onclick on selected img -->
         </main>
-        <!-- <h3 class="testTxt">test the text</h3> -->
+        
         <footer class="footer">Created by Liron &amp; Adi <i class="fa fa-github"></i></footer>
         <script src="js/utill-service.js"></script>
         <script src="js/gallery-service.js"></script>

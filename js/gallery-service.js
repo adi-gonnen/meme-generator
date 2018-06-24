@@ -39,6 +39,7 @@ var gImgs = [
 var IMG_KEY = 'currImg';
 
 function init() {
+    // toggleHoverGalleryNav();
     renderGallery(gImgs);
 }
 
@@ -54,6 +55,7 @@ function getImgsForDisplay() {
 
 function backToGallery() {
     toggleGallery();
+    // toggleHoverGalleryNav();
     // clearCanvas();      
     gMeme.txts.forEach(function (txt) {
         txt.line = '';
@@ -67,6 +69,7 @@ function selectImg(elImg) {
     var img = findItemById(imgId);
     // console.log('img--', img);
     toggleGallery();
+    // toggleHoverGalleryNav();
     saveCurrImg(img);
     initCanvas(img);
 }
