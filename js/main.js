@@ -1,5 +1,10 @@
 'use strict'
 
+function toggleHoverGalleryNav() {
+    var elGalleryLink = document.querySelector('.gallery-link-a');
+    elGalleryLink.classList.toggle('gallery-link-hover');
+}
+
 function renderGallery(imgs) {
     imgs = getImgsForDisplay();
     var strHtml = '';
@@ -11,7 +16,7 @@ function renderGallery(imgs) {
 }
 
 function filterImgs(imgs) {
-    var userSearch = document.getElementById("search").value;
+    var userSearch = document.getElementById('search').value;
     if (userSearch === '') return imgs;
     else return imgs.filter(function (img) {
         return img.keywords.some(function (keyword) {
@@ -27,6 +32,8 @@ function toggleGallery() {
     elGallery.classList.toggle('hide');
     var elSearch = document.querySelector('.filter');
     elSearch.classList.toggle('hide');
+    var elGalleryLink = document.querySelector('.gallery-link');
+    elGalleryLink.classList.toggle('gallery-link-hover');
 }
 
 // CANVAS
@@ -76,7 +83,7 @@ function renderTxtLine() {
     var strHtml = ``
     gMeme.txts.forEach(function (txt, idx) {
         strHtml +=  `<div class="flex line-btns">
-            <input type="txt" class="inline" id="${txt.order}" placeholder="Enter your text" oninput="onTxtInsert(this)" onkeyup="handleKey(event)">
+            <input type="txt" class="inline" id="${txt.order}" placeholder="Enter your text" oninput="onTxtInsert(this)" onkeyup="handleKey(event)" autofocus>
             <div class="line-btns-container flex space-around align-center">
                 <button class="btn btn-danger" onclick="onDeleteLine(${idx})"><i class="fa fa-trash"></i></button>
                 <div class="flex arrows">
@@ -130,31 +137,51 @@ function downloadImg(elImg) {
     elImg.href = currImg;
 }
 
-function onTxtShadow(elBtn) {
-    // console.log('Remove--', elBtn.innerText);
-    if (elBtn.innerText === 'Remove') txtShadow('none');
-}
+// function onTxtShadow(elBtn) {
+//     // console.log('Remove--', elBtn.innerText);
+//     if (elBtn.innerText === 'Remove') txtShadow('none');
+// }
 
-function onTxtShadowColor(colorValue) {
-    //TODO: FOR TXT IN MEME
-    var elTextLabel = document.querySelector('.testTxt');
-    // console.log('elTextLabel--', elTextLabel);
-    var elBtnTxt = document.querySelector('.txt-add-remove-btn');
-    // if (elBtnTxt.innerText === 'Add') isTxtShadow('true');
+// function onTxtShadowColor(colorValue) {
+//     //TODO: FOR TXT IN MEME
+//     // var elTextLabel = document.querySelector('.testTxt');
+//     // elTextLabel.style.color = 'white';
+//     // console.log('elTextLabel--', elTextLabel);
+//     // var elBtnTxt = document.querySelector('.txt-add-remove-btn');
+//     // if (elBtnTxt.innerText === 'Add') isTxtShadow('true');
 
-    if (colorValue === '#ffffff') {
-        elTextLabel.style.textShadow = '2px 2px 2px #ffffff';
-        elBtnTxt.innerText = 'Remove';
-        txtShadow('white');
-    } else if (colorValue === '#000000') {
-        elTextLabel.style.textShadow = '1px 1px 1px #000000';
-        elBtnTxt.innerText = 'Remove';
-        txtShadow('black');
-    } else if (colorValue === 'none') {
-        elTextLabel.style.textShadow = 'none';
-        elBtnTxt.innerText = 'Add';
-    }
-}
+//     gMeme.txts.forEach(function (txt, idx) {
+//         console.log('idx!!', idx);
+//         if (colorValue === '#ffffff') {
+            
+//             txt.line.style.textShadow = '3px 1px 2px #ffffff';
+//             txtShadow('white');
+//             // renderCanvas();
+//         } else if (colorValue === '#000000') {
+//             txt.line.style.textShadow = '4px 4px 1px #000000';
+//             txtShadow('black');
+//             // renderCanvas();
+//         } else if (colorValue === 'none') {
+//             txt.line.style.textShadow = 'none';
+//             // renderCanvas();
+//         }
+//         renderTxt(txt, idx);
+//         })
+
+
+//     // if (colorValue === '#ffffff') {
+//     //     elTextLabel.style.textShadow = '3px 1px 2px #ffffff';
+//     //     txtShadow('white');
+//     //     // renderCanvas();
+//     // } else if (colorValue === '#000000') {
+//     //     elTextLabel.style.textShadow = '4px 4px 1px #000000';
+//     //     txtShadow('black');
+//     //     // renderCanvas();
+//     // } else if (colorValue === 'none') {
+//     //     elTextLabel.style.textShadow = 'none';
+//     //     // renderCanvas();
+//     // }
+// }
 
 function onDeleteLine(id) {
     gMeme.txts[id].line = '';
@@ -180,3 +207,4 @@ function handleKey(ev) {
 //     // initCanvas(currImg);
 //     // renderCanvas();
 // }
+
