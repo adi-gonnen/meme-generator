@@ -45,7 +45,7 @@ function renderTxt(txt, idx) {
     var y = txt.posY;
     if (idx === 1) y = 230;      
     if (idx === 2) y = 380;
-    // console.log('txt:::', txt, txt.line, txt.order);
+    console.log('txt:::', txt, txt.line, txt.order);
     
     var txtSize = `${gMeme.size}px`;
     var txtFont = gMeme.font;
