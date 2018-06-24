@@ -12,7 +12,6 @@ function renderGallery(imgs) {
         strHtml += `<img id="${img.id}" class="item-img" onclick="selectImg(this)" style="background-image: url('${img.url}')"></img>\n`
     });
     document.querySelector('.gallery').innerHTML = strHtml;
-    // console.log(strHtml);
 }
 
 function filterImgs(imgs) {
@@ -82,16 +81,13 @@ function initCanvas(img) {
 function onTxtInsert(elLine) {
     if (elLine.value) {
         var idx = elLine.id;
-        // console.log('idx! ', idx);
         gMeme.txts[idx].line = elLine.value;
         var txt = getTxtById(+idx)
-        // console.log('txt! ', txt);
         renderCanvas();
     } 
 }
 
 function onChangeSize(diff) {
-    // clearCanvas();
     gMeme.size += (diff * 3);
     renderCanvas();
 }
@@ -103,7 +99,6 @@ function onChangeColor() {
 }
 
 function changeFont() {
-    // clearCanvas();
     var elFont = document.querySelector('.select-font').value;
         gMeme.font = elFont; 
     renderCanvas();  
@@ -132,17 +127,14 @@ function renderTxtLine() {
             </div>
         </div>`;
     })
-    // console.log(strHtml);
     document.querySelector('.line-text').innerHTML = strHtml;
 }
 
 function moveLine(elLine, pos) {
     var id = elLine.id;
-    // console.log('id:: ', id);
 
     var x = gMeme.txts[id].posX;
     var y = gMeme.txts[id].posY;
-    // console.log('before- posX: ', x, 'posY: ', y);
     if (pos === 'up') {
         y -= 20; 
         gMeme.txts[id].posY = y;
@@ -159,8 +151,6 @@ function moveLine(elLine, pos) {
         x -= 20;
         gMeme.txts[id].posX = x;
     } 
-    // console.log('after--posX: ', x, 'posY: ', y);
-    // clearInterval();
     renderCanvas();
 
 }
@@ -173,7 +163,6 @@ function downloadImg(elImg) {
 
 function onDeleteLine(id) {
     gMeme.txts[id].line = '';
-    // clearCanvas();
     renderCanvas();
     renderTxtLine();
 }
@@ -207,4 +196,5 @@ function removeActiveOnLink(className) {
 function addClassBlockBtn() {
     var elAddBtn = document.querySelector('.add-line-btn');
     elAddBtn.classList.add('block-btn');
+    elAddBtn.style.color = 'grey';
 }

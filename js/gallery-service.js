@@ -51,11 +51,8 @@ function getImgsForDisplay() {
     return imgs;
 }
 
-// .nav li a:active
-
 function backToGallery() {
     showGallery();
-    // clearCanvas();      
     gMeme.txts.forEach(function (txt) {
         txt.line = '';
         })
@@ -63,22 +60,17 @@ function backToGallery() {
 
 function selectImg(elImg) {
     localStorage.clear();
-    // console.log('elImg', elImg);
     var imgId = elImg.id;
     var img = findItemById(imgId);
-    // console.log('img--', img);
     showCanvas();
     saveCurrImg(img);
     initCanvas(img);
 }
 
-
 function findItemById(imgId) {
     for (var i = 0; i < gImgs.length; i++) {
         var img = gImgs[i];
         if (img.id === imgId) {
-            // console.log('img.id', img.id);
-            // console.log('id', imgId);
             return img;
         }
     }
@@ -90,6 +82,5 @@ function saveCurrImg(img) {
 
 function getCurrImg() {
     var currImg = loadFromStorage(IMG_KEY);
-    // console.log('currImg: ',currImg);
     return currImg;
 }

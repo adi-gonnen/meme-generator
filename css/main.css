@@ -5,15 +5,12 @@
 
 html, body {
     margin: 0;
-    /*padding: 0;*/
 }
 
 body {
     background-color: #ffffff;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
-
-/* Font Face */
 
 @font-face {
     font-family: Lato-regular;
@@ -22,15 +19,12 @@ body {
 
 @font-face {
     font-family: Shrikhand;
-    /* font-family: 'Shrikhand', cursive; */
     src: url('../fonts/Shrikhand-Regular.ttf');
 }
 @font-face {
     font-family: Paytone;
-    /* font-family: 'Paytone One', sans-serif; */
     src: url('../fonts/PaytoneOne-Regular.ttf');
 }
-
 
 div, h1, h2, ul, li {
     margin: 0;
@@ -51,9 +45,7 @@ a {
 
 .btn, li.only-txt {
     background-color: #363636;
-    /* padding: 10px; */
     margin: 1px;
-    /* border-radius: 6px; */
     border: 0;
     font-weight: bold;
     transition: all 0.3s;
@@ -61,6 +53,11 @@ a {
 
 .btn {
     font-size: 1rem;
+}
+ 
+.block-btn {
+    color: rgb(145, 144, 144);
+    cursor: initial;
 }
 
 .btn:focus {
@@ -76,12 +73,6 @@ a {
 .text-align {
     text-align: center;
 }
-
-/* .container {
-    padding: 0 20px;
-} */
-
-/* lists */
 
 .clean-list {
     list-style-type: none;
@@ -137,31 +128,16 @@ a {
     width: 94%;
     max-width: 700px;
     margin: 10px auto;
-    /* padding: 20px; */
-    /* line-height: 110px; */
-    /* position: relative; */
-}
-
-.header-container h1, .nav {
-    /* margin: 20px; */
 }
 
 .header-container h1 {
     text-align: center;
     font-size: 2.2rem;
-    /* text-shadow: 5px 2px  white; */
     text-shadow: 4px 3px black;
-    /* align-self: flex-start; */
 }
 
 .nav {
-    /* z-index: 5; */
-    /* width: 250px;*/
-    /* position: absolute; */
     align-self: flex-end;
-    /* position: absolute;
-    top: 7%;
-    left: 70% */
 }
 
 .gallery-link, .about-link {
@@ -172,8 +148,6 @@ a {
     width: 100px;
     font-size: 1.1rem;
     text-transform: uppercase;
-    /* border-right: 1px solid #1e1e1e;
-    border-left: 1px solid #1e1e1e; */
     justify-content: center;
     text-align: center;
     display: block;
@@ -184,12 +158,8 @@ a {
     padding: 0 10px 0 0;
 }
 
-/*TODO: why it is not working - i want to center nav with header"*/
-
 .header-container .nav li a {
-    /* color: #ffffff; */
     justify-content: center;
-    /* display: block; */
     /* line-height: 20px; */
 }
 
@@ -206,11 +176,6 @@ a {
     font-size: 1.1rem;
 }
 
-/* .active {
-    color: rgb(73, 73, 73);
-    font-size: 1.1rem;
-} */
-
 .fa-search {
     padding-right: 10px;
     text-shadow: 1px 1px #fa9908;
@@ -219,10 +184,8 @@ a {
 /*GALLERY*/
 
 .main-container {
-    /* width: 100%; */
     width: 90%;
     max-width: 980px;
-    /* is height nessersy??*/
     margin: 0 auto;
     background-color: rgb(239, 245, 243);
     padding: 20px;
@@ -231,52 +194,28 @@ a {
 }
 
 .gallery-images {
-    /* width: 980px; */
     margin: 0 auto;
 }
 
 .gallery {
     margin: 0 auto;
-    /* width: 500px; */
-    /* height: 100vh; */
     flex-wrap: wrap;
     justify-content: center;
-    /* padding: 20px; */
 }
-
-/* .grid-conteiner {
-    display: grid;
-    /* grid-gap: 10px; */
-
-/*grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(8, 1fr);
-    /* background-color: brown; */
-
-/*padding: 20px;
-} */
 
 .item-img {
     width: 150px;
     height: 150px;
     margin: 10px;
-    /* background-size: 150px 150px; */
     background-size: cover;
     background-position: center;
     cursor: pointer;
-}
-
-.filter {
-    /* margin: 20px 50px; */
-    /* align-items: center; */
-    /* width: 550px; */
-    /* margin: 0 auto; */
 }
 
 .filter h3 {
     font-family: 'Courgette', cursive;
     margin-top: 0;
     padding-right: 20px;
-    /* padding */
 }
 
 .search {
@@ -292,7 +231,6 @@ a {
 .footer {
     background-color: #363636;
     color: #fa9908;
-    /* margin-top: 20px; */
     padding: 20px;
     text-align: center;
     font-family: 'Courier New', Courier, monospace;
@@ -311,14 +249,7 @@ a {
     flex-direction: column;
 }
 
-/* .team-members {
-    width: 640px;
-    justify-content: center;
-} */
-
 .team-img {
-    /* margin-right: auto; */
-    /* margin-left: auto; */
     width: 225px;
     height: 225px;
     border: 7px solid white;
@@ -328,8 +259,6 @@ a {
 .team {
     flex-direction: column;
     align-items: center;
-   
-    /* margin: auto 70px; */
 }
 
 .about-header {
@@ -338,22 +267,15 @@ a {
     letter-spacing: 2px;
     font-size: 3rem;
     margin: 40px 0 30px 0;
-    /* margin: 30px; */
-}
-
-.liron {
-    /* line-height: 37px; */
 }
 
 .adi {
     align-self: center;
-    /* line-height: -10px; */
 }
 
 .adi-name {
     position: relative;
     top: 20px;
-
 }
 
 .team-name {
@@ -374,35 +296,10 @@ i {
     margin: 10px;
 }
 
-/* .section-about {
-    /* position: absolute; */
-    /* top: 120px; */
-    /* right: center; */
-/* } */ 
-
-/* .about-us{
-    /* position: relative; */
-    /* top: 170px; */
-    /* margin-top: 140px; */
-/* } */
-
-
-
 /* CANVAS*/
 
-.container-canvas-page {
-    /* flex-direction: column; */
-    /* justify-content: space-between; */
-}
-
-.container-canvas-page, .editor {
-    /* border: 1px solid rgb(143, 142, 142); */
-}
-
 .canvas, .editor {
-    /* border: 1px solid rgb(143, 142, 142); */
     margin: 5px;
-    /*TO CHECK:MAYBE not nessesery*/
     padding: 5px;
     width: 90%;
 }
@@ -433,7 +330,6 @@ i {
 }
 
 .add-line-btn, .btn-danger, .right, .left, .up, .down {
-    /* width: 150px; */
     height: 50px;
 }
 
@@ -451,28 +347,21 @@ i {
 }
 
 .line-btns {
-    /* margin: 10px 2px; */
     align-items: center;
     flex-direction: column;
-    /*NEW*/
     width: 100%;
     align-self: center;
 }
 
 .arrows {
     align-items: center;
-    /* height: 20px; */
 }
 
 .right, .left, .up, .down {
-    /* height: 15px;
-    width: 15px; */
     margin: 1px;
 }
 
 .editor-btns {
-    /* width: 100%; */
-    /* width: 91%; */
     flex-wrap: wrap;
     margin: 10px 0;
     flex-direction: column;
@@ -487,12 +376,9 @@ i {
 }
 
 .editor-btns-first-line, .editor-btns-second-line, .editor-btns-third-line, .editor-btns-fourth-line {
-    /* width: 50%; */
-    /* width: 101%; */
     border-bottom: 2px solid rgb(145, 144, 144);
     border-left: 2px solid rgb(145, 144, 144);
     border-right: 2px solid rgb(145, 144, 144);
-    /* align-self: center; */
 }
 
 .editor-btns-fourth-line .btn {
@@ -501,7 +387,6 @@ i {
 
 .txt-container {
     flex-direction: column;
-    /* padding: 20px; */
     width: 100%;
 }
 
@@ -523,7 +408,6 @@ i {
 
 .txt-align-btn:active {
     background-color: #49464673;
-    /* with dark color or not*/
     color: #393838;
 }
 
@@ -551,7 +435,6 @@ i {
 }
 
 .only-txt-shadow {
-    /* line-height: 25px; */
     word-spacing: 3px;
 }
 
@@ -561,19 +444,9 @@ i {
 }
 
 .txt-shadow-black-btn {
-    /* border: 10px solid #363636; */
     background-color: black;
     box-shadow: inset 0px 0px 0px 13px #363636;
 }
-
-/* .txt-shadow-btn span {
-    border: 10px solid rgb(20, 158, 158);
-    font-size: 0.5rem;
-    line-height: 10px;
-    background-color: red;
-} */
-
-/******/
 
 .textlabel, .line-input {
     padding: 5px;
@@ -586,12 +459,6 @@ i {
     height: 40px;
     width: 260px;
 }
-
-/* .download-btn {
-    color: white;
-} */
-
-/****/
 
 .editor-part {
     flex-direction: column;
@@ -631,11 +498,6 @@ i {
     .search-words {
         width: 300px;
     }
-
-    /* .editor-btns {
-        width: 93%;
-    } */
-
     .team-members {
         flex-direction: row;
     }
@@ -660,12 +522,10 @@ i {
 
 @media screen and (min-width: 768px) {
     .canvas {
-        /* align-self: flex-start; */
         width: 70%;
     }
 
     .editor {
-        /* align-self: flex-start; */
         background-color: #696767;
         width: 70%;
         flex-wrap: wrap;
@@ -690,15 +550,11 @@ i {
 
 @media screen and (min-width: 910px) {
     /*GALLERY*/
-    .header-container {
-        /* max-width: 820px; */
-    }
     .nav li a {
         line-height: 1.2rem;
         font-size: 1.2rem;
         text-transform: uppercase;
     }
-
     /*CANVAS*/
     .container-canvas-page {
         flex-direction: row;
@@ -716,10 +572,6 @@ i {
     .editor-btns {
         width: 100%;
     }
-
-    /* .editor-btns-first-line, .editor-btns-second-line, .editor-btns-third-line, .editor-btns-fourth-line {
-        width: 101%;
-    } */
 }
 
 @media screen and (min-width: 910px) {
@@ -727,12 +579,6 @@ i {
         align-self: flex-start;
     }
 }
-
-/* .gallery-link:visited, .about-link:visited {
-    color: rgb(73, 73, 73);
-    font-size: 1.1rem;
-} */
-
 
 /* should be last!*/
 
