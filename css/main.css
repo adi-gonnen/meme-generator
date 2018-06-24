@@ -612,6 +612,6 @@ a {
     display: none;
 }
 
-/* .gallery-link {
+.gallery-link .hover {
     color: rgb(176, 227, 247);
-} */
+}
