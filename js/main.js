@@ -25,15 +25,43 @@ function filterImgs(imgs) {
     });
 }
 
-function toggleGallery() {
-    var elCanvas = document.querySelector('.container-canvas-page');
-    elCanvas.classList.toggle('hide');
+function showGallery() {
     var elGallery = document.querySelector('.gallery');
-    elGallery.classList.toggle('hide');
+    elGallery.classList.remove('hide');
     var elSearch = document.querySelector('.filter');
-    elSearch.classList.toggle('hide');
-    var elGalleryLink = document.querySelector('.gallery-link');
-    elGalleryLink.classList.toggle('gallery-link-hover');
+    elSearch.classList.remove('hide');
+    var elCanvas = document.querySelector('.container-canvas-page');
+    elCanvas.classList.add('hide');
+    var elAbout = document.querySelector('.about-us');
+    elAbout.classList.add('hide');
+    addActiveOnLink('.gallery-link');
+    removeActiveOnLink('.about-link');
+    clearCanvas();
+}
+function showAbout() {
+    var elAbout = document.querySelector('.about-us');
+    elAbout.classList.remove('hide');
+    var elGallery = document.querySelector('.gallery');
+    elGallery.classList.add('hide');
+    var elSearch = document.querySelector('.filter');
+    elSearch.classList.add('hide');
+    var elCanvas = document.querySelector('.container-canvas-page');
+    elCanvas.classList.add('hide');
+    addActiveOnLink('.about-link');
+    removeActiveOnLink('.gallery-link');
+}
+function showCanvas() {
+    var elCanvas = document.querySelector('.container-canvas-page');
+    elCanvas.classList.remove('hide');
+    var elGallery = document.querySelector('.gallery');
+    elGallery.classList.add('hide');
+    var elSearch = document.querySelector('.filter');
+    elSearch.classList.add('hide');
+    var elAbout = document.querySelector('.about-us');
+    elAbout.classList.add('hide');
+    removeActiveOnLink('.gallery-link');
+    removeActiveOnLink('.about-link');
+    
 }
 
 // CANVAS
@@ -41,11 +69,14 @@ function toggleGallery() {
 function initCanvas(img) {
     gCanvas = document.querySelector('.canvas');
     gCtx = gCanvas.getContext('2d');
+    gMeme = createMeme();
     var imgDimsObj = renderCanvas();
     renderCanvasSize(imgDimsObj);
     var txts = gMeme.txts;
     locateLine();
     renderTxtLine(txts);
+    console.log(gMeme);
+    
 }
 
 function onTxtInsert(elLine) {
@@ -158,13 +189,22 @@ function submitMail(name) {
     window.location = open(`https://mail.google.com/mail/?view=cm&fs=1&to=${mail}`,"_blank");
 }
 
+function clearCanvas() {
+    gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height);
+    gMeme = createMeme();
+}
 
+function addActiveOnLink(className) {
+    var elLink = document.querySelector(className);
+    elLink.classList.add('active');
+}
 
-// function clearCanvas() {
-//     gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height);
-//     // var currImg = getCurrImg();
-//     // console.log('currImg--', currImg);
-//     // initCanvas(currImg);
-//     // renderCanvas();
-// }
+function removeActiveOnLink(className) {
+    var elLink = document.querySelector(className);
+    elLink.classList.remove('active');
+}
 
+function addClassBlockBtn() {
+    var elAddBtn = document.querySelector('.add-line-btn');
+    elAddBtn.classList.add('block-btn');
+}

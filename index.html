@@ -15,8 +15,8 @@
         <header class="header flex">
             <div class="header-container flex align-center space-around column">
                 <ul class="nav clean-list flex align-center">
-                    <li class="about-link"><a href="#about-us">About</a></li>
-                    <li class="gallery-link"><a class="gallery-link" onclick="window.scrollTo(0, 0);">Gallery</a></li>
+                    <li class="about-link"><a href="#about-us" class="about-link" onclick="showAbout()">About</a></li>
+                    <li class="gallery-link"><a class="gallery-link" onclick="showGallery()">Gallery</a></li>
                 </ul>
                 <h1>Meme Generator</h1>
             </div>
@@ -61,7 +61,7 @@
             <div class="container container-canvas-page hide flex align-center space-around column">
                     <canvas id="canvas" class="canvas"></canvas>
                 <div class="editor container flex space-around align-center">
-                    <button class="btn return-btn" onclick="backToGallery()">Back to gallery</button>
+                    <button class="btn return-btn" onclick="showGallery()">Back to gallery</button>
                     <div class="txt-container flex space-around align-center ">
                         <div class="line-text flex column"></div>
                         <button class="btn add-line-btn" onclick="addLine()">Add line (up to 3)</button>
@@ -95,6 +95,8 @@
                                         <option>Cursive</option>
                                         <option>Fantasy</option>
                                         <option>Times New Roman</option>
+                                        <option>Shrikhand</option>
+                                        <option>Paytone</option>
                                     </select>
                                 </li>
                             </ul>
@@ -116,8 +118,8 @@
                     </button> 
                 </div>
             </div>
-            <div id="about-us" class="about-us">
-                <section class="section-about"> 
+            <div id="about-us" class="about-us hide">
+                <div class="section-about flex column"> 
                     <h2 class="about-header">About us</h2>
                     <div class="team-members flex">
                         <div class="team flex liron">
@@ -125,8 +127,10 @@
                             <h4 class="team-name liron">Liron Reshef Steinberger</h4>
                             <p class="text-muted">Front-End developer</p>
                             <div class="icons flex">
-                                    <i><a id="liron-github" class="fa fa-github git" href="https://github.com/LironReshefSteinberger"></a></i>
+                                    <!-- <i><a id="liron-github" class="fa fa-github git" href="https://github.com/LironReshefSteinberger"></a></i> -->
+                                    <i><a id="liron-github" class="fa fa-github git" href="https://github.com/LironReshefSteinberger" target="_blank"></a></i>
                                     <i><a id="liron-mail" class="fa fa-at git" onclick="submitMail('liron')" action="mailto:reshef.liron@gmail.com" method="post" enctype="text/plain"></a></i>
+                                    <!-- <i><a id="liron-mail" class="fa fa-at git" action="mailto:reshef.liron@gmail.com" method="post" enctype="text/plain"></a></i> -->
                                 </div>
                         </div>
                         <div class="team flex adi">
@@ -134,17 +138,20 @@
                             <h4 class="team-name adi adi-name">Adi Gonnen</h4>
                             <p class="text-muted">Front-End developer</p>
                             <div class="icons flex">
-                                <i><a id="adi-github" class="fa fa-github git" href="https://github.com/adi-gonnen"></a></i>
+                                <!-- <i><a id="adi-github" class="fa fa-github git" href="https://github.com/adi-gonnen"></a></i> -->
+                                <i><a id="adi-github" class="fa fa-github git" href="https://github.com/adi-gonnen" target="_blank"></a></i>
                                 <i><a type="submit" id="adi-mail" class="fa fa-at git" onclick="submitMail('adi')">
-                                <form action="mailto:adigonnen@gmail.com" method="post" enctype="text/plain"></form>
+                                <!-- <i><a id="adi-mail" class="fa fa-at git">
+                                <form action="mailto:adigonnen@gmail.com" method="post" enctype="text/plain"></form> -->
                                 </a></i>
                             </div>
                         </div>
                     </div>
                 </section>
+                </div>
             </div>
         </main>
-        <footer class="footer">Created by Liron &amp; Adi <i class="fa fa-github"></i></footer>
+        <footer class="footer">Created by Liron &amp; Adi</footer>
         <script src="js/utill-service.js"></script>
         <script src="js/gallery-service.js"></script>
         <script src="js/canvas-service.js"></script>

@@ -2,23 +2,27 @@
 
 var gCanvas;
 var gCtx;
-var gMeme = {
-    width: null,
-    height: null,
-    size: 30,
-    align: 'left',
-    color: '#ffffff',
-    textShadowWhite: false,
-    textShadowBlack: true,
-    font: 'Impact',
-    txts: [
-        {
-            line: '',
-            order: 0,
-            posX: 80,
-            posY: 60
-        }]
-};
+var gMeme;
+
+function createMeme() {
+    return {
+        width: null,
+        height: null,
+        size: 30,
+        align: 'left',
+        color: '#ffffff',
+        textShadowWhite: false,
+        textShadowBlack: true,
+        font: 'Impact',
+        txts: [
+            {
+                line: '',
+                order: 0,
+                posX: 80,
+                posY: 60
+            }]
+        }
+}
 
 function renderCanvas() {
     var img = getCurrImg();
@@ -166,7 +170,10 @@ function updatePosX() {
 }
 
 function addLine() {
-    if (gMeme.txts.length === 3) return;
+    if (gMeme.txts.length === 3) {
+        // addClassBlockBtn();
+        return;
+    }
     var nextId = 1;
     var posY = 230
     if (gMeme.txts.length === 2) {
