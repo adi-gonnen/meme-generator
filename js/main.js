@@ -39,7 +39,6 @@ function toggleGallery() {
 // CANVAS
 
 function initCanvas(img) {
-    // gMeme.selectedImgId = img.id;       
     gCanvas = document.querySelector('.canvas');
     gCtx = gCanvas.getContext('2d');
     var imgDimsObj = renderCanvas();
@@ -66,7 +65,6 @@ function onChangeSize(diff) {
     renderCanvas();
 }
 
-//change color
 function onChangeColor() {
     var elInputColor = document.querySelector('#colorValue').value;
     gMeme.color = elInputColor;
@@ -84,7 +82,14 @@ function renderTxtLine() {
     var strHtml = ``
     gMeme.txts.forEach(function (txt, idx) {
         strHtml +=  `<div class="flex line-btns">
-            <input type="txt" class="inline" id="${txt.order}" placeholder="Enter your text" oninput="onTxtInsert(this)" onkeyup="handleKey(event)" autofocus>
+            <input type="txt" class="inline" id="${txt.order}" placeholder="Enter your text" `
+            console.log('txt.line');
+        if (txt.value !== '') {
+            strHtml += ` value="${txt.line}" `;
+        }
+            
+        strHtml += 
+            `oninput="onTxtInsert(this)" onkeyup="handleKey(event)" autofocus>
             <div class="line-btns-container flex space-around align-center">
                 <button class="btn btn-danger" onclick="onDeleteLine(${idx})"><i class="fa fa-trash"></i></button>
                 <div class="flex arrows">
@@ -100,15 +105,13 @@ function renderTxtLine() {
     document.querySelector('.line-text').innerHTML = strHtml;
 }
 
-//add text to canvas
-
 function moveLine(elLine, pos) {
     var id = elLine.id;
     // console.log('id:: ', id);
 
     var x = gMeme.txts[id].posX;
     var y = gMeme.txts[id].posY;
-    console.log('before- posX: ', x, 'posY: ', y);
+    // console.log('before- posX: ', x, 'posY: ', y);
     if (pos === 'up') {
         y -= 20; 
         gMeme.txts[id].posY = y;
@@ -125,7 +128,7 @@ function moveLine(elLine, pos) {
         x -= 20;
         gMeme.txts[id].posX = x;
     } 
-    console.log('after--posX: ', x, 'posY: ', y);
+    // console.log('after--posX: ', x, 'posY: ', y);
     // clearInterval();
     renderCanvas();
 
@@ -137,53 +140,6 @@ function downloadImg(elImg) {
     elImg.href = currImg;
 }
 
-// function onTxtShadow(elBtn) {
-//     // console.log('Remove--', elBtn.innerText);
-//     if (elBtn.innerText === 'Remove') txtShadow('none');
-// }
-
-// function onTxtShadowColor(colorValue) {
-//     //TODO: FOR TXT IN MEME
-//     // var elTextLabel = document.querySelector('.testTxt');
-//     // elTextLabel.style.color = 'white';
-//     // console.log('elTextLabel--', elTextLabel);
-//     // var elBtnTxt = document.querySelector('.txt-add-remove-btn');
-//     // if (elBtnTxt.innerText === 'Add') isTxtShadow('true');
-
-//     gMeme.txts.forEach(function (txt, idx) {
-//         console.log('idx!!', idx);
-//         if (colorValue === '#ffffff') {
-            
-//             txt.line.style.textShadow = '3px 1px 2px #ffffff';
-//             txtShadow('white');
-//             // renderCanvas();
-//         } else if (colorValue === '#000000') {
-//             txt.line.style.textShadow = '4px 4px 1px #000000';
-//             txtShadow('black');
-//             // renderCanvas();
-//         } else if (colorValue === 'none') {
-//             txt.line.style.textShadow = 'none';
-//             // renderCanvas();
-//         }
-//         renderTxt(txt, idx);
-//         })
-
-
-//     // if (colorValue === '#ffffff') {
-//     //     elTextLabel.style.textShadow = '3px 1px 2px #ffffff';
-//     //     txtShadow('white');
-//     //     // renderCanvas();
-//     // } else if (colorValue === '#000000') {
-//     //     elTextLabel.style.textShadow = '4px 4px 1px #000000';
-//     //     txtShadow('black');
-//     //     // renderCanvas();
-//     // } else if (colorValue === 'none') {
-//     //     elTextLabel.style.textShadow = 'none';
-//     //     // renderCanvas();
-//     // }
-// }
-//
-
 function onDeleteLine(id) {
     gMeme.txts[id].line = '';
     // clearCanvas();
@@ -192,14 +148,17 @@ function onDeleteLine(id) {
 }
 
 function handleKey(ev) {
-    // console.log('ev:', ev);
-    if (ev.key === 'Backspace') {
-        // clearCanvas();
-        renderCanvas();
-        var elInput = getElementById('0');
-        elInput.value = txts[0].line;
-    }
+    if (ev.key === 'Backspace') renderCanvas();
 }
+
+function submitMail(name) {
+    var mail;
+    if (name === 'adi') mail = 'adigonnen@gmail.com';
+    else mail = 'reshef.liron@gmail.com'
+    window.location = open(`https://mail.google.com/mail/?view=cm&fs=1&to=${mail}`,"_blank");
+}
+
+
 
 // function clearCanvas() {
 //     gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height);
