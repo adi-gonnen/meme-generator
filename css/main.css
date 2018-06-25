@@ -80,6 +80,12 @@ a {
     padding: 0;
 }
 
+
+.different-color {
+    color: #fa9908;
+}
+
+
 /* flex */
 
 .flex {
@@ -210,6 +216,13 @@ a {
     background-size: cover;
     background-position: center;
     cursor: pointer;
+    transition: all 0.5s;
+    border: 6px solid rgb(216, 215, 215);
+}
+
+.item-img:hover {
+    transform: scale(0.95, 0.95);
+
 }
 
 .filter h3 {
@@ -254,6 +267,8 @@ a {
     height: 225px;
     border: 7px solid white;
     border-radius: 50%;
+    background-size: contain;
+    background-position: center;
 }
 
 .team {
